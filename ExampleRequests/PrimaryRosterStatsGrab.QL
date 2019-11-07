@@ -1,7 +1,7 @@
 [
 {
 "operationName":"GetOverwatchPrimaryRosterPlayerStatisticsV2Query",
-"variables":{"teamId":"3TgFASLSgVEEGepquSDe95"},
+"variables":{"teamId":"**TEAMID**"},
 "query" : "query GetOverwatchPrimaryRosterPlayerStatisticsV2Query($teamId: ID, $videoIds: [ID!]) {
   statistics(teamId: $teamId, type: OVERWATCH, videoIds: $videoIds) {
     ... on OverwatchStatistics {

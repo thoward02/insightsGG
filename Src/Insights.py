@@ -33,10 +33,15 @@ class App:
         self.Token = Return["access_token"]
 
         #Grab and store user's teams
-        self.Teams = self.GrabTeams(100)
+        self.Teams = self.BuildTeams(100)
+
+        #Populate Teams with Vods
+        for Teams in self.Teams:
+            self.Teams[Teams]["VodList"] = self.GrabTeamVodList(self.Teams[Teams]["id"], 100)
 
 
-    def GrabTeams(self, TeamLimit):
+    #Fetch all of the user's teams, return them in JSON object
+    def BuildTeams(self, TeamLimit):
         #Build Request
         RequestData = {}
 
@@ -55,8 +60,40 @@ class App:
         TeamList = {}
 
         #Loop through returned teams and store them
-        for items in GrabRequest.json()["data"]["queryTeams"]["teamEdges"]:
-            TeamName = items["team"]["name"]
+        for Teams in GrabRequest.json()["data"]["queryTeams"]["teamEdges"]:
+            TeamName = Teams["team"]["name"]
+            TeamList[TeamName] = {
+                "id" : Teams["team"]["id"],
+                "description" : Teams["team"]["description"],
+                "owner" : Teams["team"]["owner"]["alias"]
+            }
+
+        return TeamList
+
+    #Grab all of the VODs ina users team
+    def GrabTeamVodList(self, TeamId, VodLimit):
+        RequestData = {}
+
+        RequestData["operationName"] = "GetVideosQuery"
+        RequestData["variables"]     = {
+            "teamId" : TeamId,
+            "limit"  : VodLimit
+        }
+        RequestData["query"]         = self.RequestOptions["GetVideosQuery"]
+
+        #Convert request to a string because GraphQL will only take a string request
+        RequestData = json.dumps(RequestData)
+
+        Header = {"Authorization" : "Bearer " + self.Token, "content-type" : "application/json"}
+
+        GrabRequest = requests.post(url = self.RequestPath, data=RequestData, headers=Header);
+
+        VodList = {}
+
+        for Vods in GrabRequest.json()["data"]["queryVideos"]["videos"]:
+            VodList[Vods["name"]] = Vods
+
+        return VodList
 
 
 

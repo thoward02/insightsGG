@@ -1,4 +1,5 @@
-[{"operationName":"GetTagsQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp"},"query":"query GetTagsQuery($teamId: ID, $limit: Int, $after: Cursor) {
+[
+{"operationName":"GetTagsQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp"},"query":"query GetTagsQuery($teamId: ID, $limit: Int, $after: Cursor) {
   queryTags(teamId: $teamId, limit: $limit, after: $after) {
     tags {
       ...TagFragment
@@ -24,7 +25,8 @@ fragment PageInfoFragment on QueryPageInfo {
   more
   __typename
 }
-"},{"operationName":"GetVideosQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp","limit":100},"query":"query GetVideosQuery($teamId: ID, $limit: Int, $after: Cursor) {
+"},
+{"operationName":"GetVideosQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp","limit":100},"query":"query GetVideosQuery($teamId: ID, $limit: Int, $after: Cursor) {
   queryVideos(teamId: $teamId, limit: $limit, after: $after) {
     videos {
       ...VideoFragment
@@ -128,20 +130,22 @@ fragment PageInfoFragment on QueryPageInfo {
   more
   __typename
 }
-"},{"operationName":"GetMembersQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp"},"query":"query GetMembersQuery($teamId: ID!, $limit: Int, $after: Cursor) {
-  queryMembers(teamId: $teamId, limit: $limit, after: $after) {
-    edges {
-      ...MemberFragment
-      added
-      __typename
+"},
+{"operationName":"GetMembersQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp"},
+  "query":"query GetMembersQuery($teamId: ID!, $limit: Int, $after: Cursor) {
+    queryMembers(teamId: $teamId, limit: $limit, after: $after) {
+        edges {
+          ...MemberFragment
+          added
+          __typename
+        }
+        pageInfo {
+          ...PageInfoFragment
+          __typename
+        }
+        __typename
+      }
     }
-    pageInfo {
-      ...PageInfoFragment
-      __typename
-    }
-    __typename
-  }
-}
 
 fragment MemberFragment on Member {
   id
@@ -171,7 +175,8 @@ fragment PageInfoFragment on QueryPageInfo {
   more
   __typename
 }
-"},{"operationName":"GetRolesQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp"},"query":"query GetRolesQuery($teamId: ID!, $limit: Int, $after: Cursor) {
+"
+},{"operationName":"GetRolesQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp"},"query":"query GetRolesQuery($teamId: ID!, $limit: Int, $after: Cursor) {
   queryRoles(teamId: $teamId, limit: $limit, after: $after) {
     roles {
       ...RoleFragment

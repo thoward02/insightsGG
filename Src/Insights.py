@@ -95,6 +95,27 @@ class App:
 
         return VodList
 
+    #Grab stats for your primary roster within a vod
+    def GrabPrimaryRosterStats(self, TeamId, VideoId):
+        RequestData = {}
+
+        RequestData["operationName"] = "GetOverwatchPrimaryRosterPlayerStatisticsV2Query"
+        RequestData["variables"]     = {
+            "teamId" : TeamId,
+            "videoId"  : [videoId]
+        }
+        RequestData["query"]         = self.RequestOptions["GetOverwatchPrimaryRosterPlayerStatisticsV2Query"]
+
+        #Convert request to a string because GraphQL will only take a string request
+        RequestData = json.dumps(RequestData)
+
+        Header = {"Authorization" : "Bearer " + self.Token, "content-type" : "application/json"}
+
+        GrabRequest = requests.post(url = self.RequestPath, data=RequestData, headers=Header);
+
+        StatList = {}
+
+        return StatList
 
 
 

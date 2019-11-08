@@ -119,8 +119,8 @@ class App:
 
         return StatList
 
-
-    def GrabTimeLine(self, MatchIds):
+    #Grab the analytics for a set of match IDs and return them
+    def GrabAnalytics(self, MatchIds):
         RequestData = {}
 
         RequestData["operationName"] = "GetMatchesByIdQuery"
@@ -139,10 +139,3 @@ class App:
         Timeline = GrabRequest.json()["data"]
 
         return Timeline
-
-
-
-    def MakeRequest(self, UserRequest):
-        Header = {"Authorization" : "Bearer " + self.Token, "content-type" : "application/json"}
-
-        Request = requests.post(url = self.RequestPath, data=UserRequest, headers=Header)

@@ -25,6 +25,7 @@ print("Running user tasks...")
 
 #Loop in users team, grab list of vods, and grab analysis of vods
 TeamName = "RedtailVods"
+#TeamName = input("What Team do you want to index?: ")
 
 #Fetch vods
 VodList = []
@@ -46,10 +47,52 @@ for Matches in RawMatchList:
 
 
 #Send of match id list to be read
-TimeLine = App.GrabTimeLine(IdList)
+MatchAnalytics = App.GrabAnalytics(IdList)
 
-with open("Outputs/Output.json", "w") as OutputFile:
-    OutputFile.write(json.dumps(TimeLine, indent=4))
+#Create a custom CSV based on what we want
+CSVOutput = "Start, End, Winner, Blue Comp, Red Comp, Blue Ult % Before, Red Ult % Before, Blue Ults Used, Red Ult Used, Blue Ult % After, Red Ult % After, First Ult, First Kill, First Death, Blue Kills, Red Kills,  "
 
+
+for MatchUps in MatchAnalytics["matches"]:
+    for TeamFights in MatchUps["data"]["teamfights"]:
+        #Fetch Heroes
+        BLUEHEROES    = ""
+        for Heroes in TeamFights["blue_heroes"]:
+            BLUEHEROES += Heroes + " "
+
+
+        REDHEROES     = ""
+        for Heroes in TeamFights["blue_heroes"]:
+            REDHEROES += Heroes + " "
+
+        #Fetch Ults
+        BlueUltBefore = ""
+        for Ults in TeamFights["blue_team_ults_before"]:
+            if(Ults["status"] == "ready"):
+                Ults["status"] = "100"
+            BlueUltBefore += Ults["hero"] + "_" + str(Ults["status"]) + "% "
+
+
+        RedUltBefore  = ""
+        for Ults in TeamFights["red_team_ults_before"]:
+            RedUltBefore += Ults["hero"] + "%" + str(Ults["status"]) + " "
+
+
+        BlueUltAfter = ""
+        for Ults in TeamFights["blue_team_ults_after"]:
+            BlueUltAfter += Ults["hero"] + "%" + str(Ults["status"]) + " "
+
+
+        RedUltAfter  = ""
+        for Ults in TeamFights["red_team_ults_after"]:
+            RedUltAfter += Ults["hero"] + "%" + str(Ults["status"]) + " "
+
+
+        #Output
+        CSVOutput += "\n" + str(TeamFights["start_time"]) + "," + str(TeamFights["end_time"])  + "," + TeamFights["winner"]  + "," + BLUEHEROES  + "," + REDHEROES + "," + BlueUltBefore + "," + RedUltBefore + "," + "NULL" + "," + "NULL" + "," + BlueUltAfter + "," + RedUltAfter + ", NULL, NULL, NULL, NULL, NULL"
+
+
+with open("Outputs/Test.csv", "w") as OutputFile:
+    OutputFile.write(CSVOutput)
 
 print("Done...")

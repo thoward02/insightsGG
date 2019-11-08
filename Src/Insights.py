@@ -18,7 +18,7 @@ class App:
 
     #Setup the class constructor
     def __init__(self):
-        with open("Requests.json") as RequestFile:
+        with open("LibAssets/Requests.json") as RequestFile:
             self.RequestOptions = json.load(RequestFile)
 
     def Login(self, Username, Password):

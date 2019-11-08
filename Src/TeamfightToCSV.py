@@ -82,7 +82,7 @@ def StartUserTask():
     MatchAnalytics = App.GrabAnalytics(IdList)
 
     #Create a custom CSV based on what we want
-    CSVOutput = "Start, End, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, Blue Ults Used, Red Ult Used, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Target, Blue Kills, Red Kills,  "
+    CSVOutput = "Start, End, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, Blue Ults Used, Red Ult Used, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills,  "
 
     print("[LOG] Sorting matches...")
     #For each match analyzed
@@ -165,13 +165,15 @@ def StartUserTask():
             #Kills - If there were kills, port them over
             if(TeamFights["first_kill"] != ""):
                 FirstKillTeam   = TeamFights["first_kill"]["team"]
-                FirstKillTarget = TeamFights["first_kill"]["hero"]
+                FirstKillTarget = TeamFights["first_death"]["hero"]
+                FirstKillKiller = TeamFights["first_kill"]["hero"]
             else:
                 FirstKillTeam   = "Null"
-                FirstKillTarget = "None"
+                FirstKillTarget = "Null"
+                FirstKillKiller = "Null"
 
             #Output - TODO, Clean this holy fuck it's messy dude
-            CSVOutput += "\n" + str(TeamFights["start_time"]) + "," + str(TeamFights["end_time"]) + "," + TeamFights["winner"]  + "," + BLUEHEROES  + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed + "," + RedUltsUsed + "," + BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])
+            CSVOutput += "\n" + str(TeamFights["start_time"]) + "," + str(TeamFights["end_time"]) + "," + TeamFights["winner"]  + "," + BLUEHEROES  + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed + "," + RedUltsUsed + "," + BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])
 
     print("[LOG] Done sorting")
 

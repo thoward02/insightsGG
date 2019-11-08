@@ -74,6 +74,8 @@ def StartUserTask():
 
 	for MatchUps in MatchAnalytics["matches"]:
     	for TeamFights in MatchUps["data"]["teamfights"]:
+			#Clean Heroes first 
+			
         	#Fetch Heroes
 			BLUEHEROES    = ""
 			for Heroes in TeamFights["blue_heroes"]:

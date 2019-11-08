@@ -17,15 +17,16 @@ class App:
     RequestPath = "https://insights.gg/graphql"
 
     #Setup the class constructor
-    def __init__(self, Username, Password):
-        self.Username = Username
-        self.Password = Password
-
+    def __init__(self):
         with open("Requests.json") as RequestFile:
             self.RequestOptions = json.load(RequestFile)
 
-    def Login(self):
+    def Login(self, Username, Password):
         #Send login
+        self.Username = Username
+        self.Password = Password
+
+
         LoginRequest = requests.post(url = self.LoginPath, data={"username":self.Username, "password" : self.Password})
 
         #Pull Bearer token out of login request
@@ -101,8 +102,8 @@ class App:
 
         RequestData["operationName"] = "GetOverwatchPrimaryRosterPlayerStatisticsV2Query"
         RequestData["variables"]     = {
-            "teamId"   : TeamId,
-            "videoId"  : [VideoId]
+            "teamId" : TeamId,
+            "videoId"  : [videoId]
         }
         RequestData["query"]         = self.RequestOptions["GetOverwatchPrimaryRosterPlayerStatisticsV2Query"]
 
@@ -119,7 +120,6 @@ class App:
 
         return StatList
 
-    #Grab the analytics for a set of match IDs and return them
     def GrabAnalytics(self, MatchIds):
         RequestData = {}
 

@@ -101,8 +101,8 @@ class App:
 
         RequestData["operationName"] = "GetOverwatchPrimaryRosterPlayerStatisticsV2Query"
         RequestData["variables"]     = {
-            "teamId" : TeamId,
-            "videoId"  : [videoId]
+            "teamId"   : TeamId,
+            "videoId"  : [VideoId]
         }
         RequestData["query"]         = self.RequestOptions["GetOverwatchPrimaryRosterPlayerStatisticsV2Query"]
 
@@ -115,7 +115,30 @@ class App:
 
         StatList = {}
 
+        print(GrabRequest.json())
+
         return StatList
+
+
+    def GrabTimeLine(self, MatchIds):
+        RequestData = {}
+
+        RequestData["operationName"] = "GetMatchesByIdQuery"
+        RequestData["variables"]     = {
+            "ids" : MatchIds,
+        }
+        RequestData["query"]         = self.RequestOptions["GetMatchesByIdQuery"]
+
+        #Convert request to a string because GraphQL will only take a string request
+        RequestData = json.dumps(RequestData)
+
+        Header = {"Authorization" : "Bearer " + self.Token, "content-type" : "application/json"}
+
+        GrabRequest = requests.post(url = self.RequestPath, data=RequestData, headers=Header);
+
+        Timeline = GrabRequest.json()["data"]
+
+        return Timeline
 
 
 

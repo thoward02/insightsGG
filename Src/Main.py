@@ -18,19 +18,10 @@ App = Insights.App(LoginData["username"], LoginData["password"])
 print("Logging in... ")
 App.Login()
 
-print("Logged in, logging your teams\n************************************")
 
-#Loop through each team
-for Teams in App.Teams:
-    print("\n[" + Teams + "]")
-    print("    -- Vods --")
+x = App.GrabTimeLine(["2HyM0p0pgETw5QlTIJ3Ia"])
 
-    #Loop through the team's vods
-    for Vods in App.Teams[Teams]["VodList"]:
-        #Check to see if the vod has been analyzed, say it has been
-        VodAnalyzed = App.Teams[Teams]["VodList"][Vods]["latestAnalysis"]
+with open("Outputs/Output.json", "w") as OutputFile:
+    OutputFile.write(json.dumps(x, indent=4))
 
-        if(VodAnalyzed):
-            print("        " + Vods + " | Analyzed")
-        else:
-            print("        " + Vods + " | Not Analyzed")
+print("done...")

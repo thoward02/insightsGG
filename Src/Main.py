@@ -29,8 +29,19 @@ def Login():
 def StartUserTask():
 	#Define some base functions 
 	def FindRole(Hero):
-		print(Hero)
-	
+		SupportList = ["lucio", "moira", "zenyatta", "brigitte", "mercy", "ana", "baptiste"]
+		DPSList     = ["ashe", "bastion", "doomfist", "genji", "hanzo", "junkrat", "mccree","mei","pharah","reaper","soldier_76","sombra", "symmetra", "torbjorn", "tracer","widowmaker"]
+		TankList    = ["dva","orisa","reinhardt", "roadhog", "winston", "wrecking_ball", "zarya"]
+		
+		if(Hero in SupportList):
+			return "support"
+		if(Hero in DPSList):
+			return "dps"
+		if(Hero in TankList):
+			return "tank"
+		
+		return "error"
+		
 	#Loop in users team, grab list of vods, and grab analysis of vods
 	TeamName = "RedtailVods"
 	#TeamName = input("What Team do you want to index?: ")

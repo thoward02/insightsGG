@@ -8,12 +8,13 @@ class App:
     Password    = None
     Token       = None
 
+    #Setup Teams
     Teams       = {}
 
+
+
+    #Setup paths
     LoginPath   = "https://insights.gg/oauth/token"
-
-
-    #Requests
     RequestPath = "https://insights.gg/graphql"
 
     #Setup the class constructor
@@ -21,12 +22,13 @@ class App:
         with open("LibAssets/Requests.json") as RequestFile:
             self.RequestOptions = json.load(RequestFile)
 
+    #Login Entry point
     def Login(self, Username, Password):
-        #Send login
+        #Setup username and password
         self.Username = Username
         self.Password = Password
 
-
+        #Send the login request to the API
         LoginRequest = requests.post(url = self.LoginPath, data={"username":self.Username, "password" : self.Password})
 
         #Pull Bearer token out of login request

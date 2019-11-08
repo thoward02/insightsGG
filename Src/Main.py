@@ -25,23 +25,27 @@ print("Running user tasks...")
 
 #Loop in users team, grab list of vods, and grab analysis of vods
 TeamName = "RedtailVods"
+
+#Fetch vods
 VodList = []
 for Vods in App.Teams[TeamName]["VodList"]:
     print("[" + str(len(VodList)) + "]: " + Vods)
     VodList.append(Vods)
 
+#Ask user what vod they want
 print("Which one do you wanna fetch the analysis for?")
 
 Analyze = int(input("Vod Num: "))
 
+#Fetch the analysis for that vod
 RawMatchList = App.Teams[TeamName]["VodList"][VodList[Analyze]]["latestAnalysis"]["result"]["matches"]
 IdList   = []
 
 for Matches in RawMatchList:
     IdList.append(Matches["id"])
 
-#Send of match id list to be read
 
+#Send of match id list to be read
 TimeLine = App.GrabTimeLine(IdList)
 
 with open("Outputs/Output.json", "w") as OutputFile:

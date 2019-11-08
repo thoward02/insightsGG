@@ -2,97 +2,110 @@
 import Insights
 import json
 
-print("Welcome to the insights demo C:")
-
-#Grab login data
-try:
-    with open("login.json") as LoginFile:
-        LoginData = json.load(LoginFile)
-except:
-    print("Did you follow the Readme, and add your credentials to login.json?")
-    raise ValueError("Check Login.json")
-
-#Create instance and login
-App = Insights.App(LoginData["username"], LoginData["password"])
-
-#Login
-print("Logging in... ")
-App.Login()
-print("Logged in. ")
-
-#Run user tasks
-print("Running user tasks...")
-
-#Loop in users team, grab list of vods, and grab analysis of vods
-TeamName = "RedtailVods"
-#TeamName = input("What Team do you want to index?: ")
-
-#Fetch vods
-VodList = []
-for Vods in App.Teams[TeamName]["VodList"]:
-    print("[" + str(len(VodList)) + "]: " + Vods)
-    VodList.append(Vods)
-
-#Ask user what vod they want
-print("Which one do you wanna fetch the analysis for?")
-
-Analyze = int(input("Vod Num: "))
-
-#Fetch the analysis for that vod
-RawMatchList = App.Teams[TeamName]["VodList"][VodList[Analyze]]["latestAnalysis"]["result"]["matches"]
-IdList   = []
-
-for Matches in RawMatchList:
-    IdList.append(Matches["id"])
+#GLOBAL VARS 
+App = None #The insights API interface
 
 
-#Send of match id list to be read
-MatchAnalytics = App.GrabAnalytics(IdList)
+def Login():
+	print("Welcome to the example CSV report")	
 
-#Create a custom CSV based on what we want
-CSVOutput = "Start, End, Winner, Blue Comp, Red Comp, Blue Ult % Before, Red Ult % Before, Blue Ults Used, Red Ult Used, Blue Ult % After, Red Ult % After, First Ult, First Kill, First Death, Blue Kills, Red Kills,  "
+	#Grab login data
+	try:
+    	with open("login.json") as LoginFile:
+    	    LoginData = json.load(LoginFile)
+	except:
+    	print("Did you follow the Readme, and add your credentials to login.json?")
+    	raise ValueError("Check Login.json")
+
+	#Create instance and login
+	App = Insights.App(LoginData["username"], LoginData["password"])
+
+	#Login
+	print("Logging in... ")
+	App.Login()
+	print("Logged in. ")
+
+	
+def StartUserTask():
+	#Define some base functions 
+	def FindRole(Hero):
+		print(Hero)
+	
+	#Loop in users team, grab list of vods, and grab analysis of vods
+	TeamName = "RedtailVods"
+	#TeamName = input("What Team do you want to index?: ")
+
+	#Fetch vods
+	VodList = []
+	for Vods in App.Teams[TeamName]["VodList"]:
+		print("[" + str(len(VodList)) + "]: " + Vods)
+		VodList.append(Vods)
+
+	#Ask user what vod they want
+	print("Which one do you wanna fetch the analysis for?")
+
+	Analyze = int(input("Vod Num: "))
+
+	#Fetch the analysis for that vod
+	RawMatchList = App.Teams[TeamName]["VodList"][VodList[Analyze]]["latestAnalysis"]["result"]["matches"]
+	IdList   = []
+
+	for Matches in RawMatchList:
+		IdList.append(Matches["id"])
 
 
-for MatchUps in MatchAnalytics["matches"]:
-    for TeamFights in MatchUps["data"]["teamfights"]:
-        #Fetch Heroes
-        BLUEHEROES    = ""
-        for Heroes in TeamFights["blue_heroes"]:
-            BLUEHEROES += Heroes + " "
+	#Send of match id list to be read
+	MatchAnalytics = App.GrabAnalytics(IdList)
+
+	#Create a custom CSV based on what we want
+	CSVOutput = "Start, End, Winner, Blue Comp, Red Comp, Blue Ult % Before, Red Ult % Before, Blue Ults Used, Red Ult Used, Blue Ult % After, Red Ult % After, First Ult, First Kill, First Death, Blue Kills, Red Kills,  "
 
 
-        REDHEROES     = ""
-        for Heroes in TeamFights["blue_heroes"]:
-            REDHEROES += Heroes + " "
-
-        #Fetch Ults
-        BlueUltBefore = ""
-        for Ults in TeamFights["blue_team_ults_before"]:
-            if(Ults["status"] == "ready"):
-                Ults["status"] = "100"
-            BlueUltBefore += Ults["hero"] + "_" + str(Ults["status"]) + "% "
+	for MatchUps in MatchAnalytics["matches"]:
+    	for TeamFights in MatchUps["data"]["teamfights"]:
+        	#Fetch Heroes
+			BLUEHEROES    = ""
+			for Heroes in TeamFights["blue_heroes"]:
+				BLUEHEROES += Heroes + " "
 
 
-        RedUltBefore  = ""
-        for Ults in TeamFights["red_team_ults_before"]:
-            RedUltBefore += Ults["hero"] + "%" + str(Ults["status"]) + " "
+			REDHEROES     = ""
+			for Heroes in TeamFights["blue_heroes"]:
+				REDHEROES += Heroes + " "
+
+			#Fetch Ults
+			BlueUltBefore = ""
+			for Ults in TeamFights["blue_team_ults_before"]:
+				if(Ults["status"] == "ready"):
+					Ults["status"] = "100"
+				BlueUltBefore += Ults["hero"] + "_" + str(Ults["status"]) + "% "
 
 
-        BlueUltAfter = ""
-        for Ults in TeamFights["blue_team_ults_after"]:
-            BlueUltAfter += Ults["hero"] + "%" + str(Ults["status"]) + " "
+			RedUltBefore  = ""
+			for Ults in TeamFights["red_team_ults_before"]:
+				RedUltBefore += Ults["hero"] + "%" + str(Ults["status"]) + " "
 
 
-        RedUltAfter  = ""
-        for Ults in TeamFights["red_team_ults_after"]:
-            RedUltAfter += Ults["hero"] + "%" + str(Ults["status"]) + " "
+			BlueUltAfter = ""
+			for Ults in TeamFights["blue_team_ults_after"]:
+				BlueUltAfter += Ults["hero"] + "%" + str(Ults["status"]) + " "
 
 
-        #Output
-        CSVOutput += "\n" + str(TeamFights["start_time"]) + "," + str(TeamFights["end_time"])  + "," + TeamFights["winner"]  + "," + BLUEHEROES  + "," + REDHEROES + "," + BlueUltBefore + "," + RedUltBefore + "," + "NULL" + "," + "NULL" + "," + BlueUltAfter + "," + RedUltAfter + ", NULL, NULL, NULL, NULL, NULL"
+			RedUltAfter  = ""
+			for Ults in TeamFights["red_team_ults_after"]:
+				RedUltAfter += Ults["hero"] + "%" + str(Ults["status"]) + " "
 
 
-with open("Outputs/Test.csv", "w") as OutputFile:
-    OutputFile.write(CSVOutput)
+			#Output
+			CSVOutput += "\n" + str(TeamFights["start_time"]) + "," + str(TeamFights["end_time"])  + "," + TeamFights["winner"]  + "," + BLUEHEROES  + "," + REDHEROES + "," + BlueUltBefore + "," + RedUltBefore + "," + "NULL" + "," + "NULL" + "," + BlueUltAfter + "," + RedUltAfter + ", NULL, NULL, NULL, NULL, NULL"
 
-print("Done...")
+	#Push the output
+	with open("Outputs/Test.csv", "w") as OutputFile:
+		OutputFile.write(CSVOutput)
+
+		
+		
+		
+#Starting Point 
+Login()
+StartUserTask()

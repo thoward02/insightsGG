@@ -63,7 +63,7 @@ class App:
         UserInfo = self.SendRequest(RequestData)
 
         #Ok so this is really weird, some times the api return the data in a `me` object and sometimes it doesn't
-        if "me" in UserInfo:
+        if "me" in UserInfo["data"]:
             UserInfo = UserInfo["data"]["me"]
         else:
             Userinfo = UserInfo["data"]

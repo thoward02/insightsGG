@@ -2,22 +2,22 @@
     "matches": [
         {
             "__typename": "GeneratedOverwatchMatch",
-            "id": "6H3ufzSuUeELMGdJCOAMxq",
+            "id": "MATCHID",
             "created": "0001-01-01T00:00:00Z",
             "owner": {
                 "__typename": "Team",
-                "id": "3TgFASLSgVEEGepquSDe95",
-                "name": "RedtailVods",
-                "picture": "https://insightsgg.b-cdn.net/userdata/6ajrxggfp121k9vq89lvl3di91o5xw9tnt2bbg1cqug9567cnitwglws3aq4xcm2.png"
+                "id": "TEAMID",
+                "name": "TEAMNAME",
+                "picture": "https://insightsgg.b-cdn.net/userdata/8937938739837398739873897.png"
             },
             "name": "Match 1",
             "userMetadata": [],
             "gvideo": {
-                "id": "jUNsJivlBFWwT45L6kY3g",
+                "id": "3455455",
                 "__typename": "Video"
             },
             "analysis": {
-                "id": "7bvHIKAd42atZZtJa134lz",
+                "id": "7bvHIKA234d42atZ66545323ZtJa134lz",
                 "__typename": "Analysis"
             },
             "gstartTime": 321,

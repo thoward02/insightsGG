@@ -1,4 +1,5 @@
-[{"operationName":"GetTagsQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp"},"query":"query GetTagsQuery($teamId: ID, $limit: Int, $after: Cursor) {
+[
+{"operationName":"GetTagsQuery","variables":{"teamId":"68ADJyplPEM1EwcV11gfGp"},"query":"query GetTagsQuery($teamId: ID, $limit: Int, $after: Cursor) {
   queryTags(teamId: $teamId, limit: $limit, after: $after) {
     tags {
       ...TagFragment

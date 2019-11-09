@@ -32,8 +32,14 @@ class App:
         #Send the login request to the API
         LoginRequest = requests.post(url = self.LoginPath, data={"username":self.Username, "password" : self.Password})
 
-        #Pull Bearer token out of login request
+        #Check and see if login was right
         Return = LoginRequest.json()
+
+        if "error" in Return:
+            raise ValueError("[Error] Username or password was incorrect")
+
+
+        #Pull Bearer token out of login request
         self.Token = Return["access_token"]
 
         #Grab user information, and store it in user

@@ -1,30 +1,22 @@
-#import class
+#Import insights class
 import Insights
+
+#Import json for dealing with json
 import json
+
+#import math for mathmatical coolness (It's a math lib... like whaddya want me to say?)
 import math
 
+#import sys and os for python functions
+import sys
+import os
+
+#Setup the App object containing the class
 App = Insights.App()
 
-def Login():
-    print(" -- Welcome to the Example CSV Report -- ")
-
-    #Grab login data
-    try:
-        with open("login.json") as LoginFile:
-            LoginData = json.load(LoginFile)
-    except:
-        print("[Error] Did you follow the Readme, and add your credentials to login.json?")
-        raise ValueError("Check Login.json")
-
-    #Create instance and login
-
-    #Login
-    print("[LOG] Logging in... ")
-    App.Login(LoginData["username"], LoginData["password"])
-    print("[LOG] Logged in. ")
-
-def StartUserTask():
-    #Define some base functions
+#Converts data to CSV
+def ConvertToCSV():
+    #Find a heros' role based on their hero | TODO: Move this... It's really odd...
     def FindRole(Hero):
         SupportList = ["lucio", "moira", "zenyatta", "brigitte", "mercy", "ana", "baptiste"]
         DPSList     = ["ashe", "bastion", "doomfist", "genji", "hanzo", "junkrat", "mccree","mei","pharah","reaper","soldier_76","sombra", "symmetra", "torbjorn", "tracer","widowmaker"]
@@ -83,9 +75,6 @@ def StartUserTask():
 
     #Create a custom CSV based on what we want
     CSVOutput = "Start, End, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills,  "
-
-
-
 
     print("[LOG] Sorting matches...")
     #For each match analyzed
@@ -213,7 +202,48 @@ def StartUserTask():
     print("[LOG] Done! Exiting")
 
 
-
 #Starting Point
-Login()
-StartUserTask()
+def Start():
+    #Welcome lol
+    print(" -- Welcome to the Example CSV Report -- ")
+
+    #Check for cred
+    Username = None
+    Password = None
+
+    #Check to see if user included login information in start (Uh this won't work if they have a space in their username or password, but I don't feel like fixing it...)
+    if len(sys.argv) == 3:
+        Username = sys.argv[1]
+        Password = sys.argv[2]
+
+    #If they didn't put their username and password in as parameters, check and see if they've got a login.json
+    elif os.path.exists("Login.json"):
+        #Grab user info from file
+        try:
+            with open("Login.json") as LoginFile:
+                LoginInfo = json.load(LoginFile)
+        except:
+            raise ValueError("[Error] Could not read login.json")
+
+        #Check to see if username and password dicts are there
+        if "username" in LoginInfo and "password" in LoginInfo:
+            Username = LoginInfo["username"]
+            Password = LoginInfo["password"]
+        #If username | password doesn't exist, toss an error
+        else:
+            raise ValueError("[Error] Couldn't find the username or password in login.json, check to see if you formatted it correctly")
+
+    else:
+        raise ValueError("[Error] Did not get a username and password to work with... Check the README and ensure you're following the instructions.")
+
+    #Login - If the code made it this far, then there are some creds to login with
+    print("[LOG] Logging in... ")
+    App.Login(Username, Password)
+    print("[LOG] Logged in. ")
+
+    #Start the user task
+    ConvertToCSV()
+
+
+
+Start()

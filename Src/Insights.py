@@ -50,9 +50,25 @@ class App:
         #Return object
         UserInfo = {}
 
-        #Fetch User info
+        #Build Request to fetch user info
+        RequestData = {}
 
+        RequestData["operationName"] = "GetUserProfileQuery"
+        RequestData["variables"]     = {}
+        RequestData["query"]          = self.RequestOptions["GetUserProfileQuery"]
 
+        RequestData                  = json.dumps(RequestData)
+
+        #Send off the request
+        UserInfo = self.SendRequest(RequestData)
+
+        #Ok so this is really weird, some times the api return the data in a `me` object and sometimes it doesn't
+        if "me" in UserInfo:
+            UserInfo = UserInfo["data"]["me"]
+        else:
+            Userinfo = UserInfo["data"]
+
+        #return the info
         return UserInfo
 
     #Fetch all of the user's teams, return them in JSON object
@@ -98,6 +114,8 @@ class App:
         RequestData = json.dumps(RequestData)
 
         GrabRequest = self.SendRequest(RequestData)
+
+        VodList     = {}
 
         for Vods in GrabRequest["data"]["queryVideos"]["videos"]:
             VodList[Vods["name"]] = Vods

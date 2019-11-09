@@ -8,10 +8,11 @@ class App:
     Password    = None
     Token       = None
 
+    #User information
+    User        = None
+
     #Setup Teams
     Teams       = {}
-
-
 
     #Setup paths
     LoginPath   = "https://insights.gg/oauth/token"
@@ -35,6 +36,9 @@ class App:
         Return = LoginRequest.json()
         self.Token = Return["access_token"]
 
+        #Grab user information, and store it in user
+        self.User  = self.BuildUser()
+
         #Grab and store user's teams
         self.Teams = self.BuildTeams(100)
 
@@ -42,6 +46,14 @@ class App:
         for Teams in self.Teams:
             self.Teams[Teams]["VodList"] = self.GrabTeamVodList(self.Teams[Teams]["id"], 100)
 
+    def BuildUser(self):
+        #Return object
+        UserInfo = {}
+
+        #Fetch User info
+
+
+        return UserInfo
 
     #Fetch all of the user's teams, return them in JSON object
     def BuildTeams(self, TeamLimit):
@@ -55,15 +67,13 @@ class App:
         #Convert request to a string because GraphQL will only take a string request
         RequestData = json.dumps(RequestData)
 
-        Header = {"Authorization" : "Bearer " + self.Token, "content-type" : "application/json"}
-
-        GrabRequest = requests.post(url = self.RequestPath, data=RequestData, headers=Header);
+        GrabRequest = self.SendRequest(RequestData)
 
         #Clean up request, then store it
         TeamList = {}
 
         #Loop through returned teams and store them
-        for Teams in GrabRequest.json()["data"]["queryTeams"]["teamEdges"]:
+        for Teams in GrabRequest["data"]["queryTeams"]["teamEdges"]:
             TeamName = Teams["team"]["name"]
             TeamList[TeamName] = {
                 "id" : Teams["team"]["id"],
@@ -87,13 +97,9 @@ class App:
         #Convert request to a string because GraphQL will only take a string request
         RequestData = json.dumps(RequestData)
 
-        Header = {"Authorization" : "Bearer " + self.Token, "content-type" : "application/json"}
+        GrabRequest = self.SendRequest(RequestData)
 
-        GrabRequest = requests.post(url = self.RequestPath, data=RequestData, headers=Header);
-
-        VodList = {}
-
-        for Vods in GrabRequest.json()["data"]["queryVideos"]["videos"]:
+        for Vods in GrabRequest["data"]["queryVideos"]["videos"]:
             VodList[Vods["name"]] = Vods
 
         return VodList
@@ -112,15 +118,9 @@ class App:
         #Convert request to a string because GraphQL will only take a string request
         RequestData = json.dumps(RequestData)
 
-        Header = {"Authorization" : "Bearer " + self.Token, "content-type" : "application/json"}
+        GrabRequest = self.SendRequest(RequestData)
 
-        GrabRequest = requests.post(url = self.RequestPath, data=RequestData, headers=Header);
-
-        StatList = {}
-
-        print(GrabRequest.json())
-
-        return StatList
+        return GrabRequest
 
     def GrabAnalytics(self, MatchIds):
         RequestData = {}
@@ -141,3 +141,13 @@ class App:
         Timeline = GrabRequest.json()["data"]
 
         return Timeline
+
+    def SendRequest(self, Data):
+        #Login header using user token grabbed in Login()
+        Header = {"Authorization" : "Bearer " + self.Token, "content-type" : "application/json"}
+
+        #Send the post request
+        GrabRequest = requests.post(url = self.RequestPath, data=Data, headers=Header);
+
+        #Return the raw json request
+        return GrabRequest.json()

@@ -16,13 +16,11 @@ App = Insights.App()
 #Program entry point
 def Start():
     #Check for cred
-    Creds    = False
     Username = None
     Password = None
 
     #Check to see if user included login information in start (Uh this won't work if they have a space in their username or password, but I don't feel like fixing it...)
     if len(sys.argv) == 3:
-        Creds    = True
         Username = sys.argv[1]
         Password = sys.argv[2]
 
@@ -46,17 +44,17 @@ def Start():
     else:
         raise ValueError("[Error] Did not get a username and password to work with... Check the README and ensure you're following the instructions.")
 
-    #We've got login data, login
-    App.Login(Username, Password)
 
+    #We've got login data, login
+    print("Got a username and password, logging in...")
+    App.Login(Username, Password)
+    print("Logged in...")
 
     #Fetch the user info
     UserInfo = App.User
 
-    print(UserInfo)
-
     #Print it out
-    print("You're on user:" + str(UserInfo["name"]))
+    print("You're on user: " + str(UserInfo["name"]))
 
 
 #Entry point

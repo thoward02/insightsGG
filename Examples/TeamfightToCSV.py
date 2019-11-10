@@ -1,5 +1,5 @@
 #Import insights class
-import Insights
+import insightsGG
 
 #Import json for dealing with json
 import json
@@ -12,7 +12,7 @@ import sys
 import os
 
 #Setup the App object containing the class
-App = Insights.App()
+App = insightsGG.App()
 
 #Converts data to CSV
 def ConvertToCSV():

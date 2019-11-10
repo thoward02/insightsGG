@@ -1,5 +1,5 @@
 #Import the insights library
-import Insights
+import insightsGG
 
 #Import sys for argument catching
 import sys
@@ -11,7 +11,7 @@ import os
 import json
 
 #Setup the insights interface
-App = Insights.App()
+App = insightsGG.App()
 
 #Program entry point
 def Start():

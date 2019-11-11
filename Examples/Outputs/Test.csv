@@ -1,0 +1,730 @@
+Time, Killer Team, Killer, Target, Ability, Assist Tank, Assist Dps, Assist Heals,
+57,red,sigma,doomfist,accretion,orisaorisa  , ,zenyatta  lucio  
+60,red,symmetra,orisa, , , ,  
+63,blue,reaper,reaper, , , ,  
+64,blue,sigma,sigma, , , ,  
+64,blue,moira,moira, , , ,  
+64,red,symmetra,lucio, ,orisaorisa  , ,  
+95,red,symmetra,orisa, , , ,  
+97,red,symmetra,moira, ,orisaorisa  , ,  
+98,red,symmetra,sigma, ,orisaorisa  , ,  
+98,blue,pharah,lucio, ,mercy , ,zenyatta  mercy  
+106,blue,pharah,moira, ,mercy , ,mercy  
+127,red,symmetra,moira, ,orisasigma  orisa  , ,zenyatta  
+130,red,symmetra,sigma, ,orisaorisa  , ,  
+130,red,symmetra,reaper,sentry_turret,zenyatta , ,zenyatta  
+133,red,moira,orisa,coalescence,orisaorisa  , ,  
+135,red,symmetra,mercy,melee, , ,  
+158,blue,pharah,lucio, ,mercy , ,mercy  
+171,blue,pharah,doomfist,barrage,mercyorisa  , ,mercy  
+172,blue,pharah,moira,barrage,mercy , ,mercy  
+172,blue,pharah,sigma,barrage,mercyorisa  , ,mercy  
+172,blue,pharah,orisa,barrage,mercyorisa  , ,mercy  
+173,blue,orisa,symmetra, ,mercy , ,mercy  
+224,red,sigma,reaper,gravitic_flux,orisaorisa  , ,  
+224,red,symmetra,super_charger, , , ,  
+225,red,doomfist,sigma, ,orisasigma  orisa  , ,  
+226,blue,pharah,doomfist, ,mercy , ,zenyatta  mercy  
+226,red,orisa,orisa, ,sigmasigma  , ,zenyatta  
+228,red,symmetra,pharah, ,zenyatta , ,zenyatta  
+231,red,symmetra,mercy, , , ,  
+235,red,symmetra,moira, ,orisaorisa  , ,  
+244,blue,wrecking_ball,wrecking_ball, , , ,  
+257,red,soldier_76,moira,helix_rockets,zenyatta , ,zenyatta  
+260,red,symmetra,reinhardt, ,orisaorisa  , ,  
+260,red,sigma,reaper, ,zenyatta , ,zenyatta  
+262,blue,pharah,symmetra,barrage, , ,  
+263,red,soldier_76,pharah, , , ,  
+267,red,soldier_76,mercy,helix_rockets,zenyatta , ,zenyatta  
+273,red,lucio,wrecking_ball, ,sigmasigma  , ,  
+333,red,sombra,doomfist, ,mercy , ,mercy  
+343,blue,reaper,orisa, ,orisaorisa  , ,lucio  
+344,blue,orisa,moira, , , ,  
+344,blue,reaper,sigma, ,orisaorisa  , ,lucio  
+354,blue,sigma,mercy, ,orisaorisa  , ,  
+360,red,pharah,pharah, , , ,  
+387,blue,reaper,pharah, , , ,  
+389,red,reaper,orisa, , , ,  
+389,blue,orisa,orisa, , , ,  
+391,blue,reaper,moira, ,orisaorisa  , ,lucio  
+393,blue,moira,lucio,coalescence, , ,  
+395,red,sigma,moira, , , ,  
+397,blue,doomfist,sigma, , , ,  
+398,blue,sigma,reaper, ,lucio , ,lucio  
+428,blue,orisa,doomfist, , , ,  
+433,blue,doomfist,moira,rocket_punch, , ,  
+436,blue,sigma,lucio, ,orisaorisa  , ,  
+437,blue,reaper,orisa, ,orisaorisa  , ,  
+441,blue,doomfist,sigma, , , ,  
+444,blue,sigma,reaper, ,orisaorisa  , ,  
+467,blue,reaper,moira,death_blossom, , ,  
+467,blue,reaper,lucio,death_blossom,orisaorisa  , ,  
+467,blue,reaper,doomfist,death_blossom,orisaorisa  , ,  
+468,blue,orisa,sigma, , , ,  
+471,blue,reaper,orisa, , , ,  
+472,red,reaper,reaper, , , ,  
+484,blue,reaper,reaper, , , ,  
+538,blue,sigma,doomfist, ,orisaorisa  , ,  
+549,red,reaper,doomfist, ,orisaorisa  , ,lucio  
+553,blue,orisa,sigma, ,sigmasigma  , ,  
+561,blue,sigma,doomfist, ,orisaorisa  , ,zenyatta  
+580,blue,sigma,lucio,gravitic_flux, , ,  
+581,blue,reaper,orisa, ,sigmasigma  , ,  
+582,blue,doomfist,reaper, ,lucio , ,lucio  
+585,red,doomfist,orisa,rising_uppercut,orisasigma  zarya  orisa  , ,zenyatta  
+585,blue,doomfist,sigma,rocket_punch,zenyatta , ,zenyatta  
+589,blue,moira,moira, , , ,  
+593,blue,sigma,doomfist,accretion,lucio , ,zenyatta  lucio  
+620,red,reaper,orisa, , , ,  
+623,red,lucio,lucio, ,orisaorisa  , ,  
+629,blue,doomfist,lucio,rocket_punch,zenyatta , ,zenyatta  
+629,red,orisa,sigma,melee,lucio , ,zenyatta  lucio  
+630,red,reaper,moira, , , ,  
+630,blue,doomfist,doomfist, ,zenyatta , ,zenyatta  
+632,red,moira,reaper, ,orisaorisa  , ,  
+633,red,moira,doomfist, ,orisasigma  orisa  , ,  
+656,blue,reaper,moira, ,orisaorisa  , ,  
+656,blue,reaper,sigma,death_blossom,orisaorisa  , ,  
+656,blue,reaper,lucio,death_blossom,orisaorisa  , ,  
+659,blue,orisa,orisa, , , ,  
+659,blue,reaper,doomfist, ,orisasigma  orisa  , ,  
+662,blue,doomfist,reaper,rising_uppercut,orisazarya  orisa  , ,zenyatta  
+689,blue,doomfist,mei,meteor_strike,orisaorisa  , ,  
+690,red,reaper,moira, ,orisasigma  orisa  , ,  
+696,red,orisa,sigma, , , ,  
+698,blue,reaper,super_charger, , , ,  
+707,red,moira,doomfist,coalescence, , ,  
+712,red,reaper,orisa, , , ,  
+714,red,reaper,reaper,death_blossom,orisaorisa  , ,  
+714,red,reaper,moira,death_blossom,orisaorisa  , ,  
+715,red,reaper,lucio,death_blossom,orisaorisa  , ,  
+745,red,reaper,doomfist, , , ,  
+747,red,reaper,orisa, ,meiorisa  ,mei  ,  
+748,red,mei,sigma, ,orisaorisa  , ,  
+748,red,mei,moira, ,orisaorisa  , ,  
+748,red,mei,lucio, ,orisaorisa  , ,  
+751,blue,reaper,reaper, , , ,  
+752,red,sigma,reaper, , , ,  
+781,blue,lucio,mei, ,orisaorisa  , ,  
+785,red,reaper,sigma, ,meiorisa  ,mei  ,  
+785,red,reaper,lucio, ,meiorisa  ,mei  ,  
+786,blue,doomfist,orisa,rising_uppercut,zenyatta , ,zenyatta  
+787,blue,reaper,lucio,death_blossom, , ,  
+787,red,reaper,orisa, ,mei ,mei  ,  
+790,red,reaper,reaper, , , ,  
+793,red,moira,moira,coalescence,sigmasigma  , ,  
+796,red,sigma,doomfist, , , ,  
+820,red,tracer,reinhardt, ,orisaorisa  , ,lucio  
+821,red,sigma,doomfist,accretion,orisaorisa  , ,  
+821,blue,lucio,super_charger,melee, , ,  
+822,red,tracer,moira, ,orisaorisa  , ,  
+824,blue,reaper,sigma, , , ,  
+825,red,moira,reaper, ,orisaorisa  , ,lucio  
+831,red,lucio,lucio,soundwave, , ,  
+836,red,reaper,wrecking_ball, ,orisaorisa  , ,  
+1017,red,reaper,sigma, ,meisigma  ,mei  ,  
+1020,blue,orisa,reaper, , , ,  
+1030,red,moira,doomfist,coalescence,lucio , ,lucio  
+1031,red,mei,lucio, ,orisaorisa  , ,  
+1037,blue,reaper,orisa, , , ,  
+1038,red,sigma,reaper,melee, , ,  
+1040,red,lucio,moira, ,mei ,mei  ,  
+1040,red,sigma,orisa,accretion,zenyatta , ,zenyatta  
+1073,blue,doomfist,reaper,rocket_punch,zenyatta , ,zenyatta  
+1083,blue,reaper,sigma, ,orisaorisa  , ,  
+1088,blue,reaper,mei,death_blossom,orisasigma  orisa  , ,  
+1088,blue,reaper,lucio,death_blossom,orisaorisa  , ,  
+1089,blue,orisa,orisa, ,zenyatta , ,zenyatta  
+1089,blue,reaper,moira,death_blossom,orisaorisa  , ,  
+1123,red,reaper,sigma,death_blossom,orisasigma  orisa  , ,  
+1123,red,reaper,orisa,death_blossom, , ,  
+1123,red,orisa,doomfist, ,sigmasigma  , ,  
+1123,red,mei,super_charger, , , ,  
+1127,red,reaper,moira, ,orisaorisa  , ,  
+1131,red,orisa,lucio, , , ,  
+1167,red,reaper,orisa, , , ,  
+1172,red,lucio,sigma, ,mei ,mei  ,  
+1173,red,reaper,moira, , , ,  
+1178,red,lucio,reaper, ,meiorisa  ,mei  ,  
+1179,red,reaper,lucio, ,meiorisa  ,mei  ,  
+1181,red,sigma,doomfist, ,orisaorisa  , ,lucio  
+1217,red,mei,moira, ,orisaorisa  , ,  
+1217,red,lucio,orisa, ,meiorisa  ,mei  ,  
+1217,red,mei,sigma, ,orisaorisa  , ,  
+1219,blue,reaper,moira,death_blossom, , ,  
+1220,red,orisa,reaper, ,sigmasigma  , ,  
+1223,blue,doomfist,orisa, , , ,  
+1223,red,reaper,doomfist, , , ,  
+1226,red,lucio,lucio, , , ,  
+1251,red,orisa,doomfist, ,mei ,mei  ,  
+1253,blue,orisa,reaper, ,lucio , ,lucio  
+1259,red,lucio,reaper, ,orisaorisa  , ,  
+1260,blue,lucio,mei,melee,orisaorisa  , ,zenyatta  
+1265,blue,orisa,super_charger, , , ,  
+1272,blue,orisa,lucio, ,sigmasigma  , ,  
+1278,red,sigma,sigma, , , ,  
+1279,blue,sigma,orisa, , , ,  
+1307,blue,sigma,lucio,accretion,orisaorisa  , ,zenyatta  lucio  
+1307,blue,sigma,reaper,accretion,orisaorisa  , ,zenyatta  lucio  
+1308,blue,orisa,sigma,melee,lucio , ,zenyatta  lucio  
+1312,red,orisa,orisa, , , ,  
+1344,blue,doomfist,lucio,rocket_punch,orisaorisa  , ,zenyatta  
+1344,red,orisa,doomfist, ,lucio , ,lucio  
+1344,blue,sigma,sigma, ,orisaorisa  , ,  
+1348,blue,sigma,reaper, , , ,  
+1353,red,orisa,orisa, , , ,  
+1356,blue,sigma,mei, ,orisaorisa  , ,lucio  
+1385,blue,reaper,lucio,death_blossom,orisasigma  orisa  , ,  
+1390,red,moira,reaper,coalescence, , ,  
+1393,blue,lucio,mei,soundwave,zenyatta , ,zenyatta  
+1393,red,reaper,lucio, ,mei ,mei  ,  
+1402,red,orisa,doomfist, , , ,  
+1410,blue,orisa,orisa, , , ,  
+1411,blue,sigma,reaper, ,orisaorisa  , ,  
+1416,red,lucio,lucio,soundwave, , ,  
+1420,red,doomfist,sigma,rocket_punch,orisaorisa  , ,zenyatta  
+1425,red,sigma,reaper, ,lucio , ,lucio  
+1433,red,sigma,bastion, ,orisaorisa  , ,  
+1439,red,doomfist,super_charger,seismic_slam, , ,  
+1440,red,reaper,orisa, ,orisasigma  orisa  , ,lucio  
+1441,red,sigma,lucio,gravitic_flux,orisaorisa  , ,  
+1441,red,lucio,moira, ,orisasigma  orisa  , ,  
+1444,red,sigma,sigma, , , ,  
+1446,red,moira,reaper,coalescence,lucio , ,lucio  
+1450,blue,bastion,bastion, , , ,  
+1564,red,reaper,doomfist, , , ,  
+1601,red,reaper,lucio, , , ,  
+1608,blue,moira,doomfist,biotic_orb,orisasigma  orisa  , ,zenyatta  
+1609,red,reaper,doomfist, ,zenyatta , ,zenyatta  
+1609,red,moira,reaper,coalescence,orisaorisa  , ,  
+1614,red,moira,orisa, , , ,  
+1617,red,reaper,sigma, ,orisaorisa  , ,lucio  
+1669,blue,reaper,doomfist, ,orisaorisa  , ,  
+1669,red,moira,super_charger,coalescence, , ,  
+1673,blue,reaper,orisa, ,orisasigma  orisa  , ,  
+1673,red,reaper,moira,death_blossom,orisaorisa  , ,  
+1674,red,reaper,orisa,death_blossom,orisaorisa  , ,  
+1676,red,sigma,sigma,accretion,orisaorisa  , ,  
+1678,red,lucio,reaper, ,orisaorisa  , ,  
+1678,blue,doomfist,reaper,meteor_strike,luciosigma  , ,lucio  
+1679,red,moira,doomfist, ,orisaorisa  , ,  
+1681,red,moira,lucio, ,orisaorisa  , ,  
+1716,blue,sigma,reaper, ,orisaorisa  , ,  
+1717,red,doomfist,orisa,rocket_punch,orisaorisa  , ,zenyatta  
+1720,blue,reaper,orisa, ,orisaorisa  , ,  
+1721,blue,reaper,lucio, ,orisaorisa  , ,  
+1721,blue,moira,sigma,coalescence,orisasigma  orisa  , ,  
+1723,blue,reaper,moira, , , ,  
+1726,blue,sigma,doomfist,melee,zenyatta , ,zenyatta  
+1761,blue,doomfist,reaper, ,lucio , ,lucio  
+1762,red,moira,orisa, ,orisasigma  orisa  , ,  
+1796,blue,reaper,doomfist, ,orisaorisa  , ,lucio  
+1802,blue,orisa,reaper, ,zenyatta , ,zenyatta  
+1803,blue,reaper,orisa, ,orisaorisa  , ,zenyatta  
+1804,blue,doomfist,lucio,seismic_slam,orisaorisa  , ,zenyatta  
+1806,blue,sigma,moira,melee,orisaorisa  , ,  
+1806,blue,doomfist,sigma,rocket_punch,orisaorisa  , ,zenyatta  
+1840,blue,orisa,reaper, , , ,  
+1842,red,orisa,reaper, , , ,  
+1845,blue,doomfist,doomfist,rocket_punch,orisaorisa  , ,zenyatta  lucio  
+1850,red,orisa,orisa, , , ,  
+1867,blue,sigma,sigma, , , ,  
+1868,red,reaper,lucio,death_blossom,orisaorisa  , ,  
+1873,red,doomfist,doomfist, ,orisaorisa  , ,lucio  
+1873,red,reaper,sigma, ,orisaorisa  , ,  
+1873,red,reaper,moira, , , ,  
+1875,red,reaper,reaper, , , ,  
+1913,red,orisa,orisa, , , ,  
+1914,blue,reaper,doomfist, ,lucio , ,zenyatta  lucio  
+1918,blue,reaper,reaper, , , ,  
+1923,blue,doomfist,moira,rocket_punch, , ,  
+1927,blue,reaper,lucio, , , ,  
+1930,blue,lucio,sigma,soundwave,zenyatta , ,zenyatta  
+1932,blue,reaper,orisa, , , ,  
+1972,red,orisa,super_charger, , , ,  
+1974,blue,reaper,moira,death_blossom,orisaorisa  , ,lucio  
+1975,blue,reaper,lucio,death_blossom,orisaorisa  , ,lucio  
+1975,blue,reaper,reaper,death_blossom, , ,  
+1975,blue,reaper,sigma,death_blossom,orisaorisa  , ,  
+1976,blue,orisa,orisa, ,lucio , ,lucio  
+1994,blue,sigma,reaper, , , ,  
+2001,red,sigma,mei, ,orisaorisa  , ,lucio  
+2005,red,moira,orisa,coalescence,orisaorisa  , ,  
+2006,red,sigma,reaper, ,orisaorisa  , ,lucio  
+2007,blue,sigma,super_charger, , , ,  
+2008,red,sigma,lucio, ,sombraorisa  ,sombra  ,  
+2010,blue,moira,moira, , , ,  
+2011,red,sigma,sigma, ,orisaorisa  , ,  
+2033,red,reaper,reaper, ,orisaorisa  , ,  
+2038,red,sombra,reinhardt, , , ,  
+2043,red,reaper,mercy,death_blossom,sombra ,sombra  ,  
+2047,red,sigma,sigma, ,sombra ,sombra  ,  
+2047,red,lucio,lucio,soundwave,sombraorisa  ,sombra  ,  
+2047,red,reaper,mei, , , ,  
+2338,red,pharah,reaper, ,mercy , ,mercy  
+2341,blue,sigma,zenyatta,accretion,orisaorisa  , ,  
+2343,red,sigma,moira,accretion,orisaorisa  , ,mercy  zenyatta  
+2347,red,pharah,orisa, ,mercy , ,zenyatta  mercy  
+2349,red,orisa,sigma, , , ,  
+2350,red,pharah,mei, , , ,  
+2353,red,hanzo,lucio, , , ,  
+2380,red,pharah,moira, ,mercy , ,mercy  
+2382,red,zenyatta,orisa, ,mercy , ,mercy  
+2389,red,pharah,lucio,barrage,mercy , ,mercy  
+2390,blue,reaper,zenyatta, , , ,  
+2390,red,hanzo,sigma, ,orisaorisa  , ,  
+2394,red,hanzo,reaper, ,zenyatta , ,zenyatta  
+2394,red,mercy,zenyatta,resurrect, , ,  
+2397,red,sigma,mei, ,zenyatta , ,zenyatta  
+2415,blue,mei,hanzo, ,orisaorisa  , ,  
+2439,blue,moira,zenyatta,coalescence,orisaorisa  , ,  
+2441,blue,moira,hanzo,coalescence,orisaorisa  , ,  
+2443,blue,moira,orisa,coalescence,orisaorisa  , ,  
+2443,blue,moira,sigma,coalescence,lucio , ,lucio  
+2446,blue,orisa,pharah, , , ,  
+2447,blue,orisa,mercy, , , ,  
+2479,blue,mccree,pharah, , , ,  
+2484,blue,sigma,zenyatta, ,mei ,mei  ,  
+2485,blue,orisa,orisa, ,mei ,mei  ,  
+2486,blue,mccree,sigma, ,mei ,mei  ,lucio  
+2490,blue,orisa,hanzo, , , ,  
+2521,blue,moira,reaper,coalescence,orisaorisa  , ,lucio  
+2521,red,reaper,super_charger, , , ,  
+2525,red,hanzo,lucio, ,orisaorisa  , ,  
+2528,blue,mccree,orisa,deadeye,lucio , ,lucio  
+2534,blue,mccree,sigma, , , ,  
+2546,red,orisa,mccree, , , ,  
+2558,red,reaper,moira, , , ,  
+2563,red,hanzo,lucio,dragon_strike,orisaorisa  , ,  
+2565,red,reaper,orisa, ,orisaorisa  , ,  
+2566,red,moira,sigma,coalescence, , ,  
+2569,red,moira,mei,coalescence, , ,  
+2604,red,sigma,lucio, ,orisaorisa  , ,  
+2604,red,reaper,sigma,death_blossom,orisasigma  orisa  , ,  
+2606,red,reaper,orisa, ,orisaorisa  , ,  
+2607,blue,mei,reaper, ,orisaorisa  , ,lucio  
+2612,red,sigma,mei, ,orisaorisa  , ,  
+2621,red,hanzo,moira,storm_arrows,orisaorisa  , ,zenyatta  
+2622,red,lucio,reaper,soundwave,orisaorisa  , ,  
+2646,red,hanzo,reaper, , , ,  
+2654,blue,sigma,sigma, ,meiorisa  ,mei  ,  
+2655,blue,mei,lucio, ,orisaorisa  , ,  
+2665,blue,lucio,orisa, , , ,  
+2671,red,hanzo,moira, , , ,  
+2672,blue,reaper,hanzo, , , ,  
+2674,red,reaper,sigma, , , ,  
+2682,blue,reaper,lucio, ,orisaorisa  , ,  
+2683,blue,orisa,sigma, ,mei ,mei  ,  
+2687,red,reaper,orisa, ,sigmasigma  , ,  
+2688,blue,reaper,reaper, ,orisaorisa  , ,lucio  
+2720,blue,reaper,super_charger,death_blossom, , ,  
+2721,blue,reaper,moira,death_blossom,orisaorisa  , ,  
+2722,red,mccree,reaper, , , ,  
+2728,red,reaper,sigma,death_blossom,lucio , ,lucio  
+2731,blue,lucio,reaper, ,sigmasigma  , ,  
+2733,red,mccree,mei, ,orisasigma  orisa  , ,  
+2738,red,orisa,lucio, ,mccree ,mccree  ,lucio  
+2738,red,orisa,orisa, , , ,  
+2741,red,sigma,moira, , , ,  
+2764,red,mccree,reaper, , , ,  
+2772,blue,mei,lucio, ,orisaorisa  , ,  
+2784,red,reaper,orisa, ,mccreeorisa  ,mccree  ,  
+2786,blue,lucio,reaper, ,meiorisa  ,mei  ,  
+2791,blue,reaper,moira, , , ,  
+2792,blue,moira,sigma,coalescence, , ,  
+2797,blue,reaper,orisa, ,zenyatta , ,zenyatta  
+2809,red,mccree,reaper, , , ,  
+2814,blue,mei,lucio, , , ,  
+2816,blue,sigma,moira, ,orisaorisa  , ,  
+2816,blue,orisa,reaper, , , ,  
+2818,blue,sigma,mccree,melee,orisaorisa  , ,zenyatta  
+2820,red,wrecking_ball,super_charger, , , ,  
+2823,blue,lucio,wrecking_ball,melee,meiorisa  ,mei  ,zenyatta  
+2825,blue,moira,sigma, ,zenyatta , ,zenyatta  
+2954,blue,pharah,ana,concussive_blast, , ,  
+2962,blue,hanzo,orisa, ,mercy , ,zenyatta  mercy  
+2965,blue,pharah,bastion,concussive_blast, , ,  
+2968,red,sigma,sigma, , , ,  
+3020,red,lucio,hanzo, ,orisaorisa  , ,  
+3024,red,moira,orisa,coalescence, , ,  
+3025,red,moira,sigma,coalescence, , ,  
+3025,blue,pharah,moira,barrage, , ,  
+3025,red,orisa,pharah, ,lucio , ,zenyatta  lucio  
+3025,blue,pharah,doomfist,barrage,zenyatta , ,zenyatta  
+3031,red,lucio,mercy, ,mccree ,mccree  ,  
+3046,red,moira,zenyatta, , , ,  
+3059,red,doomfist,orisa,rising_uppercut,orisaorisa  , ,zenyatta  
+3060,red,doomfist,sigma, ,orisaorisa  , ,  
+3063,red,mccree,pharah, ,lucio , ,zenyatta  lucio  
+3066,red,mccree,mercy, , , ,  
+3066,red,mccree,hanzo, , , ,  
+3112,red,sigma,super_charger, , , ,  
+3114,red,doomfist,pharah,rocket_punch,zenyatta , ,zenyatta  
+3124,red,orisa,reaper, ,lucio , ,lucio  
+3126,red,sigma,sigma, ,orisaorisa  , ,lucio  
+3127,red,mccree,orisa, , , ,  
+3130,red,moira,moira, ,orisaorisa  , ,  
+3131,red,lucio,mercy,soundwave,mccreeorisa  ,mccree  ,zenyatta  
+3165,blue,doomfist,sigma,rocket_punch,orisaorisa  , ,  
+3173,blue,reaper,doomfist, ,orisaorisa  , ,  
+3175,blue,orisa,mccree, , , ,  
+3208,red,mccree,doomfist, ,orisaorisa  , ,zenyatta  lucio  
+3212,blue,orisa,doomfist, ,lucio , ,lucio  
+3215,blue,reaper,moira,death_blossom, , ,  
+3216,blue,reaper,sigma,death_blossom, , ,  
+3218,blue,reaper,lucio, ,orisaorisa  , ,  
+3220,blue,moira,mccree, , , ,  
+3244,red,doomfist,lucio,rocket_punch,zenyatta , ,zenyatta  
+3248,blue,doomfist,lucio,seismic_slam,orisaorisa  , ,  
+3248,blue,moira,sigma,coalescence,orisaorisa  , ,  
+3256,blue,sigma,doomfist, ,orisaorisa  , ,  
+3284,blue,reaper,super_charger, , , ,  
+3287,red,doomfist,lucio,meteor_strike,orisaorisa  , ,  
+3288,red,doomfist,sigma,rocket_punch,orisaorisa  , ,zenyatta  
+3289,blue,reaper,doomfist, ,lucio , ,lucio  
+3295,blue,doomfist,reaper,rocket_punch,orisaorisa  , ,  
+3298,red,moira,doomfist, ,orisaorisa  , ,lucio  
+3306,red,moira,reaper, ,orisasigma  orisa  , ,lucio  
+3318,red,doomfist,lucio,rising_uppercut,zenyatta , ,zenyatta  
+3320,red,reaper,moira, ,orisaorisa  , ,  
+3320,red,doomfist,sigma,rocket_punch,orisaorisa  , ,zenyatta  lucio  
+3322,red,reaper,orisa, ,orisasigma  orisa  , ,  
+3325,red,doomfist,doomfist,rising_uppercut,orisaorisa  , ,zenyatta  lucio  
+3354,red,lucio,doomfist, ,orisaorisa  , ,  
+3363,red,moira,orisa, ,zenyatta , ,zenyatta  
+3364,red,moira,lucio,biotic_orb,orisaorisa  , ,zenyatta  
+3366,red,doomfist,moira,rocket_punch, , ,  
+3367,red,reaper,reaper, ,orisaorisa  , ,lucio  
+3370,red,doomfist,sigma, ,orisaorisa  , ,  
+3375,red,doomfist,doomfist, ,orisaorisa  , ,  
+3639,blue,pharah,moira, ,mercyorisa  , ,mercy  
+3645,blue,moira,orisa, ,mercyorisa  , ,mercy  
+3649,blue,sigma,sigma,accretion,orisaorisa  , ,  
+3651,blue,reaper,lucio, ,orisaorisa  , ,  
+3654,blue,pharah,sombra, ,mercy , ,mercy  
+3654,blue,orisa,doomfist, , , ,  
+3685,red,doomfist,reaper, ,orisaorisa  , ,  
+3694,blue,pharah,mccree, , , ,  
+3696,blue,pharah,orisa,barrage,orisaorisa  , ,  
+3696,blue,pharah,lucio,barrage,orisaorisa  , ,  
+3697,red,doomfist,mercy, ,zenyatta , ,zenyatta  
+3698,red,moira,pharah,coalescence, , ,  
+3702,red,doomfist,moira,meteor_strike, , ,  
+3709,red,moira,sigma,biotic_orb,zenyatta , ,zenyatta  
+3711,red,doomfist,orisa,rising_uppercut,zenyatta , ,zenyatta  
+3712,blue,reaper,moira, , , ,  
+3718,red,sigma,reaper, , , ,  
+3744,red,mccree,pharah, , , ,  
+3752,blue,mercy,pharah,resurrect,zenyatta , ,zenyatta  
+3754,red,lucio,orisa, , , ,  
+3755,red,mccree,mercy, , , ,  
+3758,red,sigma,pharah, , , ,  
+3761,red,sigma,sigma, ,orisaorisa  , ,  
+3780,red,mccree,reaper, , , ,  
+3810,red,doomfist,sigma,rising_uppercut,orisasigma  orisa  , ,zenyatta  
+3810,red,doomfist,lucio,rising_uppercut,orisasigma  orisa  , ,zenyatta  
+3813,red,doomfist,moira,rocket_punch,sigmasigma  , ,  
+3813,red,orisa,reaper, , , ,  
+3814,blue,doomfist,doomfist, ,orisaorisa  , ,  
+3817,red,mccree,doomfist, ,orisaorisa  , ,  
+3819,red,orisa,orisa, , , ,  
+3842,red,doomfist,moira,rising_uppercut,orisazarya  orisa  , ,  
+3842,blue,moira,super_charger,coalescence, , ,  
+3845,blue,lucio,moira, ,zenyatta , ,zenyatta  
+3847,red,sigma,doomfist, ,mccreeorisa  ,mccree  ,lucio  
+3847,red,orisa,reaper, , , ,  
+3850,red,mccree,lucio,deadeye,orisaorisa  , ,  
+3851,red,doomfist,sigma,rocket_punch,orisaorisa  , ,zenyatta  
+3853,red,doomfist,wrecking_ball,rising_uppercut,zenyatta , ,zenyatta  
+3917,red,wrecking_ball,reaper,piledriver,mercy , ,zenyatta  mercy  
+3921,blue,mercy,reaper,resurrect, , ,  
+3926,red,pharah,sigma, ,mercy , ,mercy  
+3931,blue,pharah,pharah, ,mercy , ,mercy  
+3934,blue,orisa,wrecking_ball, ,mercy , ,mercy  
+3939,blue,pharah,mercy, ,mercy , ,mercy  
+3942,blue,pharah,moira, ,mercy , ,zenyatta  mercy  
+3942,red,mei,reaper, , , ,  
+3953,blue,mercy,reaper,resurrect, , ,  
+3955,blue,moira,mei, , , ,  
+3956,blue,pharah,orisa, , , ,  
+3990,blue,pharah,mei,barrage,mercyorisa  , ,mercy  
+3991,red,pharah,pharah, ,mercy , ,mercy  
+3992,blue,reaper,orisa, ,mercy , ,mercy  
+3994,blue,reaper,sigma, ,mercy , ,mercy  
+3996,blue,orisa,pharah, ,mercy , ,mercy  
+3997,blue,moira,mercy,coalescence,mercy , ,mercy  
+4000,blue,moira,moira, , , ,  
+4002,blue,mercy,pharah,resurrect, , ,  
+4034,red,pharah,super_charger, , , ,  
+4043,blue,pharah,pharah, ,mercy , ,mercy  
+4046,red,orisa,reaper,melee,sigmasigma  , ,mercy  zenyatta  
+4047,blue,pharah,mei, ,mercyorisa  , ,mercy  
+4048,blue,moira,orisa, ,mercy , ,mercy  
+4057,blue,mercy,reaper,resurrect, , ,  
+4083,red,mccree,sigma, ,orisaorisa  , ,  
+4084,blue,reaper,super_charger, , , ,  
+4085,red,pharah,orisa, ,mercyorisa  , ,mercy  
+4087,red,orisa,reaper, ,mercy ,mccree  ,mercy  
+4090,red,mccree,mercy, ,orisaorisa  , ,  
+4093,red,mccree,pharah, , , ,  
+4094,red,orisa,moira, , , ,  
+4128,red,mccree,pharah, ,mercy , ,mercy  
+4129,red,pharah,orisa,barrage,mercyorisa  , ,mercy  
+4129,red,pharah,moira,barrage,mercyorisa  , ,mercy  
+4129,red,pharah,mercy,barrage,mercyorisa  , ,mercy  
+4133,red,mccree,reaper,flashbang,mercy , ,zenyatta  mercy  
+4137,red,mccree,sigma, ,mercyorisa  , ,mercy  
+4176,blue,pharah,orisa,barrage,mercy , ,mercy  
+4177,red,pharah,pharah, ,mercy , ,mercy  
+4179,red,mccree,mercy,deadeye, , ,  
+4179,red,mccree,moira,deadeye, , ,  
+4181,red,moira,orisa, ,mercy , ,mercy  
+4184,red,moira,reaper, , , ,  
+4186,red,pharah,sigma, , , ,  
+4187,red,mercy,orisa,resurrect, , ,  
+4206,red,sigma,pharah, ,mercy , ,mercy  
+4212,red,pharah,orisa, ,mercyorisa  , ,mercy  
+4213,red,pharah,mercy,barrage,mercyorisa  , ,mercy  
+4217,red,orisa,sigma, ,mercy , ,mercy  
+4219,red,mccree,reaper, ,mercyorisa  , ,mercy  
+4222,red,pharah,moira, ,mercyorisa  , ,mercy  
+4297,red,mei,reaper, ,orisaorisa  , ,  
+4302,red,mei,doomfist, ,orisaorisa  , ,  
+4314,red,reaper,orisa, ,orisaorisa  , ,lucio  
+4317,red,orisa,sigma, ,meisigma  ,mei  ,zenyatta  
+4319,red,lucio,moira, ,orisaorisa  , ,  
+4322,red,sigma,reaper, , , ,  
+4323,red,sigma,lucio,melee,orisaorisa  , ,zenyatta  
+4358,blue,doomfist,reaper,rocket_punch,orisaorisa  , ,zenyatta  
+4358,blue,reaper,super_charger, , , ,  
+4373,blue,doomfist,sigma, , , ,  
+4376,blue,doomfist,moira,rocket_punch,zenyatta , ,zenyatta  
+4377,red,orisa,sigma, ,mei ,mei  ,zenyatta  
+4377,blue,moira,orisa, ,sigmasigma  , ,  
+4379,blue,doomfist,lucio, , , ,  
+4381,blue,reaper,mei,melee,zenyatta , ,zenyatta  
+4386,blue,doomfist,reaper, , , ,  
+4420,red,reaper,lucio,death_blossom, , ,  
+4422,red,mei,moira, ,orisaorisa  , ,  
+4426,red,reaper,sigma, ,orisaorisa  , ,  
+4429,red,lucio,doomfist, , , ,  
+4429,red,moira,reaper,coalescence, , ,  
+4431,red,reaper,orisa, , , ,  
+4462,blue,doomfist,mei, , , ,  
+4465,blue,moira,orisa,coalescence,orisaorisa  , ,  
+4465,blue,moira,lucio,coalescence,orisaorisa  , ,  
+4467,blue,doomfist,reaper,rocket_punch, , ,  
+4470,blue,reaper,sigma, ,orisaorisa  , ,  
+4471,blue,moira,moira, , , ,  
+4496,blue,reaper,super_charger, , , ,  
+4501,blue,reaper,sigma,death_blossom,orisaorisa  , ,  
+4503,blue,orisa,orisa, , , ,  
+4505,blue,reaper,moira, ,orisaorisa  , ,  
+4506,blue,doomfist,mei, , , ,  
+4509,blue,doomfist,lucio,melee,orisaorisa  , ,  
+4510,blue,moira,reaper, , , ,  
+4537,blue,doomfist,moira,meteor_strike,orisaorisa  , ,  
+4540,blue,sigma,sigma, ,orisaorisa  , ,  
+4545,blue,doomfist,lucio, , , ,  
+4547,red,mei,sigma, , , ,  
+4549,blue,orisa,orisa, , , ,  
+4550,blue,doomfist,mei,rising_uppercut,zenyatta , ,zenyatta  
+4552,blue,orisa,reaper, , , ,  
+4965,red,hanzo,bastion,storm_arrows,mercy , ,zenyatta  mercy  
+4972,blue,mercy,bastion,resurrect,zenyatta , ,zenyatta  
+4977,red,pharah,mercy, ,mercy , ,mercy  
+4979,red,pharah,pharah, ,mercy , ,mercy  
+4985,red,pharah,baptiste, ,mercy , ,mercy  
+4985,red,sigma,orisa, , , ,  
+4985,red,baptiste,sigma, ,orisasigma  orisa  , ,  
+4987,red,pharah,bastion, ,mercy , ,mercy  
+5000,blue,pharah,hanzo, ,mercy , ,zenyatta  mercy  
+5038,red,pharah,baptiste,barrage,mercyorisa  , ,mercy  
+5038,red,mccree,pharah, , , ,  
+5039,red,baptiste,orisa, ,mercyorisa  , ,mercy  
+5039,blue,sigma,pharah, , , ,  
+5045,red,mercy,pharah,resurrect, , ,  
+5046,blue,mercy,pharah,resurrect, , ,  
+5052,red,baptiste,pharah, , , ,  
+5055,red,orisa,sigma, , , ,  
+5056,red,sigma,mercy,accretion,mercy , ,zenyatta  mercy  
+5059,red,mccree,tracer, ,orisaorisa  , ,zenyatta  
+5101,blue,pharah,pharah, , , ,  
+5104,red,mccree,mercy, ,baptiste , ,baptiste  
+5113,red,orisa,sigma, ,zenyatta , ,zenyatta  
+5122,red,pharah,mccree, ,orisaorisa  , ,  
+5132,red,baptiste,reaper, , , ,  
+5133,red,pharah,ana, , , ,  
+5135,red,pharah,super_charger, , , ,  
+5136,red,pharah,orisa, ,mercysigma  , ,mercy  
+5142,red,sigma,lucio, , , ,  
+5145,blue,sigma,sigma, , , ,  
+5145,red,orisa,mccree,melee,zenyatta , ,zenyatta  
+5278,blue,pharah,baptiste, ,mercy , ,mercy  
+5279,blue,pharah,bastion, ,mercy , ,mercy  
+5279,red,bastion,dva_mech, , , ,  
+5281,red,pharah,ana, ,mercy , ,mercy  
+5283,red,sigma,winston,melee,mercy , ,zenyatta  mercy  
+5284,blue,pharah,sigma, ,mercy , ,mercy  
+5285,blue,pharah,orisa, ,mercy , ,mercy  
+5286,blue,genji,mercy, ,mercy , ,mercy  
+5288,red,pharah,dva, , , ,  
+5291,blue,mercy,winston,resurrect, , ,  
+5294,blue,winston,pharah, , , ,  
+5338,red,lucio,dva_mech, , , ,  
+5339,red,moira,dva, , , ,  
+5375,blue,pharah,doomfist, ,mercyorisa  , ,mercy  
+5376,blue,genji,reaper,swift_strike,orisaorisa  , ,ana  
+5379,blue,genji,moira,dragon_blade,orisaorisa  , ,ana  
+5381,blue,ana,sigma, ,orisasigma  orisa  , ,mercy  
+5382,red,orisa,orisa,melee,zenyatta , ,zenyatta  
+5383,blue,pharah,orisa, ,ana , ,ana  
+5386,blue,pharah,lucio, ,ana , ,ana  
+5388,blue,mercy,orisa,resurrect, , ,  
+5423,red,sigma,mercy, ,orisaorisa  , ,  
+5433,blue,genji,doomfist, ,ana , ,ana  
+5440,red,sigma,genji, , , ,  
+5448,blue,mercy,genji,resurrect, , ,  
+5457,blue,pharah,sigma,barrage,mercy , ,mercy  
+5458,red,doomfist,pharah, , , ,  
+5477,red,reaper,orisa, , , ,  
+5477,red,doomfist,mercy,melee,zenyatta , ,zenyatta  
+5478,red,reaper,super_charger, , , ,  
+5481,red,orisa,genji,melee,zenyatta , ,zenyatta  
+5482,red,reaper,sigma, , , ,  
+5512,red,sigma,lucio,gravitic_flux,orisaorisa  , ,  
+5513,red,reaper,sigma, ,orisasigma  orisa  , ,  
+5514,blue,reaper,orisa, ,orisasigma  orisa  , ,  
+5515,red,doomfist,orisa,rocket_punch,sigmasigma  , ,zenyatta  
+5527,red,moira,reaper, , , ,  
+5531,red,reaper,doomfist, ,lucio , ,lucio  
+5558,red,reaper,lucio,death_blossom,zenyatta , ,zenyatta  
+5560,red,moira,sigma,coalescence,orisaorisa  , ,lucio  
+5560,red,reaper,orisa, , , ,  
+5562,red,sigma,reaper, , , ,  
+5563,red,sigma,moira, , , ,  
+5567,red,doomfist,doomfist,rising_uppercut,zaryazarya  , ,zenyatta  
+5590,blue,doomfist,super_charger, , , ,  
+5592,red,reaper,sigma, ,orisaorisa  , ,  
+5594,blue,reaper,sigma, ,orisaorisa  , ,  
+5603,blue,doomfist,doomfist, ,lucio , ,zenyatta  lucio  
+5607,blue,reaper,lucio,death_blossom, , ,  
+5607,blue,reaper,moira,death_blossom,orisaorisa  , ,  
+5608,blue,reaper,orisa,death_blossom, , ,  
+5608,blue,reaper,reaper,death_blossom, , ,  
+5643,red,sigma,reaper, ,lucio , ,lucio  
+5651,red,orisa,orisa, , , ,  
+5654,red,lucio,doomfist, ,orisaorisa  , ,  
+5665,blue,reaper,doomfist, , , ,  
+5695,blue,orisa,orisa, , , ,  
+5698,red,reaper,super_charger, , , ,  
+5701,red,reaper,orisa, ,sigmasigma  , ,  
+5702,red,doomfist,moira,rising_uppercut,zaryasigma  zarya  , ,  
+5705,blue,doomfist,doomfist, , , ,  
+5707,red,reaper,lucio, , , ,  
+5709,red,lucio,reaper, , , ,  
+5711,blue,doomfist,moira, , , ,  
+5713,red,reaper,sigma, ,lucio , ,lucio  
+5715,red,reinhardt,doomfist,fire_strike,zenyatta , ,zenyatta  
+5933,red,mccree,pharah, ,orisaorisa  , ,zenyatta  
+5937,red,doomfist,orisa, ,zenyatta , ,zenyatta  
+5941,red,doomfist,moira, , , ,  
+5945,red,moira,sigma,coalescence,orisaorisa  , ,  
+5947,blue,mercy,mercy, , , ,  
+5948,red,mccree,reaper, ,orisaorisa  , ,lucio  
+5976,blue,orisa,mccree, , , ,  
+5976,red,doomfist,lucio,rocket_punch,zenyatta , ,zenyatta  
+5983,red,doomfist,reaper,rocket_punch,orisaorisa  , ,zenyatta  lucio  
+5988,red,moira,doomfist, ,lucio , ,lucio  
+5989,red,doomfist,orisa, , , ,  
+5992,red,doomfist,sigma, , , ,  
+5994,blue,moira,moira, , , ,  
+6023,red,doomfist,doomfist,rocket_punch,zenyatta , ,zenyatta  
+6027,red,reaper,orisa, ,orisaorisa  , ,  
+6027,red,doomfist,lucio,meteor_strike,orisaorisa  , ,  
+6031,blue,reaper,reaper, , , ,  
+6033,red,doomfist,sigma,rising_uppercut,orisazarya  orisa  , ,zenyatta  
+6060,red,reaper,moira, , , ,  
+6064,red,moira,lucio,coalescence,orisaorisa  , ,  
+6066,red,reaper,sigma, ,orisaorisa  , ,  
+6066,blue,doomfist,lucio, , , ,  
+6068,red,orisa,reaper, , , ,  
+6069,red,reaper,orisa, , , ,  
+6073,red,sigma,doomfist,gravitic_flux, , ,  
+6155,red,doomfist,lucio,rocket_punch,orisaorisa  , ,zenyatta  
+6161,red,moira,symmetra,coalescence,orisaorisa  , ,  
+6165,red,reaper,reaper, ,orisaorisa  , ,lucio  
+6171,red,lucio,orisa, ,orisaorisa  , ,  
+6171,red,reaper,sigma, ,orisaorisa  , ,lucio  
+6173,blue,moira,moira, , , ,  
+6204,red,doomfist,reaper,rocket_punch,zenyatta , ,zenyatta  
+6209,red,moira,orisa, ,orisaorisa  , ,  
+6210,red,doomfist,lucio,meteor_strike,orisaorisa  , ,  
+6211,red,reaper,doomfist, , , ,  
+6213,red,sigma,sigma, ,orisaorisa  , ,  
+6248,blue,orisa,doomfist, , , ,  
+6249,red,reaper,doomfist, ,orisaorisa  , ,  
+6250,blue,orisa,super_charger, , , ,  
+6251,red,reaper,super_charger,death_blossom, , ,  
+6252,red,orisa,reaper, , , ,  
+6263,red,moira,orisa,coalescence,orisasigma  orisa  , ,lucio  
+6267,red,sigma,moira, ,lucio , ,lucio  
+6268,blue,lucio,lucio, , , ,  
+6271,red,reaper,sigma, , , ,  
+6297,red,doomfist,moira,rocket_punch, , ,  
+6297,blue,doomfist,moira,rocket_punch,zenyatta , ,zenyatta  
+6298,blue,reaper,orisa,death_blossom,orisaorisa  , ,  
+6303,red,doomfist,wrecking_ball, , , ,  
+6303,blue,reaper,doomfist, , , ,  
+6304,red,reaper,doomfist, ,orisaorisa  , ,lucio  
+6305,blue,doomfist,sigma,rocket_punch,orisaorisa  , ,  
+6306,blue,lucio,reaper, , , ,  
+6340,red,orisa,doomfist, , , ,  
+6345,red,doomfist,lucio,rising_uppercut,zaryazarya  , ,zenyatta  
+6347,red,doomfist,sigma,rocket_punch,lucio , ,zenyatta  lucio  
+6351,red,reaper,moira, , , ,  
+6353,blue,moira,doomfist,biotic_orb,orisaorisa  , ,zenyatta  
+6353,red,moira,reaper,biotic_orb,zenyatta , ,zenyatta  
+6354,red,reaper,orisa, , , ,  
+6361,blue,doomfist,lucio,rocket_punch, , ,  
+6364,red,moira,doomfist, ,orisaorisa  , ,  
+6369,red,moira,lucio, ,orisaorisa  , ,  
+6369,blue,wrecking_ball,super_charger, , , ,  
+6371,red,reaper,wrecking_ball, ,orisasigma  orisa  , ,zenyatta  
+6376,red,reaper,moira, , , ,  
+6377,blue,reaper,sigma, , , ,  
+6382,blue,orisa,orisa, , , ,  
+6455,blue,lucio,doomfist, ,zenyatta , ,zenyatta  
+6460,red,reaper,reaper, ,orisaorisa  , ,lucio  
+6466,blue,doomfist,orisa, , , ,  
+6468,red,reaper,doomfist, , , ,  
+6478,red,doomfist,moira,rising_uppercut,zaryazarya  , ,zenyatta  
+6481,red,sigma,sigma,melee,lucio , ,zenyatta  lucio  
+6481,red,sigma,lucio,melee,lucio , ,zenyatta  lucio  
+6486,red,sigma,orisa, ,lucio , ,lucio  
+6488,red,orisa,reaper, , , ,  
+6516,blue,doomfist,reaper, , , ,  
+6520,blue,orisa,orisa, ,sigmasigma  , ,  
+6523,blue,doomfist,sigma,rising_uppercut,orisazarya  orisa  , ,zenyatta  
+6525,blue,orisa,moira, , , ,  
+6527,red,doomfist,doomfist, , , ,  
+6529,blue,reaper,lucio, ,lucio , ,zenyatta  lucio  
+6560,red,reaper,orisa,death_blossom, , ,  
+6561,red,reaper,lucio,death_blossom,orisaorisa  , ,  
+6562,red,doomfist,reaper,seismic_slam,zenyatta , ,zenyatta  
+6564,blue,sigma,reaper,accretion, , ,  
+6566,red,orisa,doomfist, ,luciosigma  , ,lucio  
+6570,red,lucio,sigma,melee,orisaorisa  , ,zenyatta  
+6575,red,lucio,moira, ,orisaorisa  , ,  
+6613,red,doomfist,lucio,seismic_slam,orisasigma  orisa  , ,zenyatta  
+6614,red,doomfist,doomfist, ,orisaorisa  , ,lucio  
+6614,blue,reaper,super_charger, , , ,  
+6616,red,reaper,sigma, ,orisasigma  orisa  , ,  
+6618,blue,reaper,doomfist, ,orisaorisa  , ,  
+6619,red,reaper,orisa, ,orisaorisa  , ,  
+6622,red,orisa,super_charger, , , ,  
+6651,red,doomfist,lucio,meteor_strike,orisaorisa  , ,  
+6651,red,doomfist,doomfist,meteor_strike,orisaorisa  , ,  
+6654,blue,reaper,doomfist, ,lucio , ,lucio  
+6656,red,reaper,moira, , , ,  
+6657,red,reaper,orisa, ,orisaorisa  , ,  

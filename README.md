@@ -3,8 +3,11 @@ This is the unofficial python API for [Insights.gg](https://insights.gg/)
 
 # Credits
 All of the code is being written currently by Aud, who is currently pursuing a career in esports coaching, and works in the OW Collegiate scene and does pick up coaching.
-A lot of the API guidance has been from [HSL's Aplox](https://twitter.com/_aplox?lang=en) and [HSL's Josh](https://twitter.com/tschoschi90?lang=en). Huge thanks to those two who came to me looking to pump out this API for the entire scene, they've been here every step of the way and have offered so much guidance.
+
+A lot of the API guidance has been from [HSL's Aplox](https://twitter.com/_aplox?lang=en) and [HSL's Josh](https://twitter.com/tschoschi90?lang=en). Huge thanks to those two, who came to me looking to pump out this API for the entire scene. They've been here every step of the way and have offered so much guidance.
+
 As for the API itself, while written all by Aud, there has been massive help from Norapuro at insights for answering the THOUSANDS of questions I've had about the program as a whole.  
+
 If you have any questions at all feel free to hit the HSL boys or I up:
 ```Javascript
 //Aud

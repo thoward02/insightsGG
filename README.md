@@ -1,13 +1,13 @@
 # InsightsGG
 This is the unofficial python API for [Insights.gg](https://insights.gg/)
-The API is written around the idea that you do have an account with the site that has [PRO access](https://insights.gg/insights-pro), and are using this API for Overwatch. If you"re looking to pull stats from smash, I"m sorry but I haven"t dove into that section yet, but if you want me to, feel free to contact me C:
+The API is written around the idea that you do have an account with the site that has [PRO access](https://insights.gg/insights-pro), and are using this API for Overwatch. If you're looking to pull stats from smash, I'm sorry but I haven't dove into that section yet, but if you want me to, feel free to contact me C:
 
 # Credits
 All of the code is being written currently by Aud, who is currently pursuing a career in esports coaching, and works in the OW Collegiate scene and does pick up coaching.
 
-A lot of the API guidance has been from [HSL"s Aplox](https://twitter.com/_aplox?lang=en) and [HSL"s Josh](https://twitter.com/tschoschi90?lang=en). Huge thanks to those two, who came to me looking to pump out this API for the entire scene. They"ve been here every step of the way and have offered so much guidance.
+A lot of the API guidance has been from [HSL's Aplox](https://twitter.com/_aplox?lang=en) and [HSL's Josh](https://twitter.com/tschoschi90?lang=en). Huge thanks to those two, who came to me looking to pump out this API for the entire scene. They've been here every step of the way and have offered so much guidance.
 
-As for the API itself, while written all by Aud, there has been massive help from Norapuro at insights for answering the THOUSANDS of questions I"ve had about the program as a whole.  
+As for the API itself, while written all by Aud, there has been massive help from Norapuro at insights for answering the THOUSANDS of questions I've had about the program as a whole.  
 
 If you have any questions at all feel free to hit the HSL boys or I up:
 ```Javascript
@@ -25,10 +25,10 @@ https://twitter.com/tschoschi90
 # Before you get started
 
 ## Basic install
-You can easily install via the pip system, by going into your terminal and running `python3 -m pip install insightsGG` or `py -m pip install insightsGG` if you"re on windows
+You can easily install via the pip system, by going into your terminal and running `python3 -m pip install insightsGG` or `py -m pip install insightsGG` if you're on windows
 
 ## Python Requirements
-The only library you"ll need is `requests`, which can be pip installed by `python3 -m pip install requests` on Linux, or `py -m pip install requests` on windows *Note this should install when you install via pip, but if you are manually installing you"ll need to hand install the dependencies*
+The only library you'll need is `requests`, which can be pip installed by `python3 -m pip install requests` on Linux, or `py -m pip install requests` on windows *Note this should install when you install via pip, but if you are manually installing you'll need to hand install the dependencies*
 
 ## Login Requirements
 All of the examples can be ran by inputting your username and password as parameters, for example: `python3 filename.py rawxd@ihatemyself.com OkBoomer`, where `rawrxd@ihatemyself.com` is the your login email, and `OkBoomer` is your login password.
@@ -48,11 +48,11 @@ Modify the example files and hand input your login information into the `Login` 
 
 
 # The API
-The api is a reversed engineered product of the insights.gg website, that is still in development big time. `App.py` is the main library file, and contains everything you need to know about the API. If you understand python this shouldn"t be too hard to understand.
+The api is a reversed engineered product of the insights.gg website, that is still in development big time. `App.py` is the main library file, and contains everything you need to know about the API. If you understand python this shouldn't be too hard to understand.
 
-That being said I"ll go ahead and lay out some specifics as of right now.
-## Oh dear god it"s written awfully
-So this current version was written in about 18 hours, give or take 4 hours, so go easy on me. I wrote fast and sloppy in order to get out a basic version **that"s useable**. At this moment you can get all of the data you want out of insights using the API, thus it"s technically finished. That being said, I plan on fixing all the messy code, and making things easier on you. As of right now everything is stored in one file, and is not documented as well as it needs to be, so don"t fret I will be updating things C:
+That being said I'll go ahead and lay out some specifics as of right now.
+## Oh dear god it's written awfully
+So this current version was written in about 18 hours, give or take 4 hours, so go easy on me. I wrote fast and sloppy in order to get out a basic version **that's useable**. At this moment you can get all of the data you want out of insights using the API, thus it's technically finished. That being said, I plan on fixing all the messy code, and making things easier on you. As of right now everything is stored in one file, and is not documented as well as it needs to be, so don't fret I will be updating things C:
 
 # How the API works
 ## Connecting with insights.gg
@@ -74,7 +74,7 @@ If the username and password were both correct, the site will then return a bear
   "access_token" : "key"
 }
 ```
-The access token is how you"ll make requests to insights.gg so if you"re not following my API, ensure you save that globally, for you"ll need it to authenticate every request you make.
+The access token is how you'll make requests to insights.gg so if you're not following my API, ensure you save that globally, for you'll need it to authenticate every request you make.
 
 
 Thankfully this is all taken care of in `App.py` during the `Login(Username, Password)` function, and the token is saved in the `Token` variable inside of `App`. The login function then takes that token and then requests for your user information, which is stored in `User` inside of `App` in the following json format:

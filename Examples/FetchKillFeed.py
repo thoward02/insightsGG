@@ -96,7 +96,7 @@ def Start():
     #Write raw Analytics to a file
     with open("Outputs/Matches.json", "w") as File:
         json.dump(MatchAnalytics, File, sort_keys=True, indent=4)
-        """
+    """
 
 
     #Create base csv
@@ -132,23 +132,25 @@ def Start():
 
             #Loop through the assists, and organize them into role
             Assists = ""
+
             #Check and see if there are any assists
             if KillBlocks["assists"] is None:
                 Assists = ""
             else:
-                for Assists in KillBlocks["assists"]:
-                    Role = FindRole(Assists)
+                for Heros in KillBlocks["assists"]:
+                    Role = FindRole(Heros)
 
                     if(Role == "tank"):
-                        TankAssists.append(Assists + " ")
+                        TankAssists.append(Heros + " ")
 
-                    if(Role == "support"):
-                        SupportAssists.append(Assists + " ")
+                    elif(Role == "support"):
+                        SupportAssists.append(Heros + " ")
 
-                    if(Role == "dps"):
-                        DPSAssists.append(Assists + " ")
+                    elif(Role == "dps"):
+                        DPSAssists.append(Heros + " ")
 
-
+            #If there are assists, add them
+            
             #Tanks
             if len(TankAssists) == 0:
                 Assists += " "
@@ -169,10 +171,11 @@ def Start():
 
             #Supports
             if len(SupportAssists) == 0:
-                Assists += " " + " "
+                Assists += " "
             else:
                 for Hero in SupportAssists:
                     Assists += Hero + " "
+
 
             #Test for suicide
             if KillerTeam == None:

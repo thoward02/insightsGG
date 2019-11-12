@@ -34,7 +34,7 @@ def Login():
 def Start():
     #Login
     Login()
-    
+
     #Get Users teams  - Check and see if team exists, loop until right team name has been input
     print("[LOG] Here are your teams...")
     for Names in App.Teams:
@@ -85,7 +85,7 @@ def Start():
 
 
     #Create base csv
-    CSVOutput = "Time, Killer Team, Killer, Target, Ability, Assist Tank, Assist Dps, Assist Heals,"
+    CSVOutput = "Time, Killer Team, Killer, Target, Ability, Assist Hero 1, Assist Hero 2, Assist Hero 3, Assist Hero 4, Assist Hero 5, Assist Hero 6"
 
     #Loop through all of the kills
     for Matches in MatchAnalytics["matches"]:
@@ -115,7 +115,7 @@ def Start():
             DPSAssists     = []
             SupportAssists = []
 
-            
+
             #Loop through the assists, and organize them into role
             Assists = ""
 
@@ -133,7 +133,7 @@ def Start():
                 #For all the missing heroes, fill in blank spots
                 for MissingHeros in range(6 - AssistCount):
                   Assists += ", "
-                  
+
 
             #Test for suicide
             if KillerTeam == None:
@@ -145,9 +145,12 @@ def Start():
             #Add to output
             CSVOutput += "\n" + str(KillBlocks["start_time"]) + "," + KillerTeam + "," + Killer + "," + Target + "," + Ability + "," + Assists
 
+    FileName = input("What file do you want to save it to?: ")
 
-    with open("Outputs/Test.csv", "w") as File:
+    with open("Outputs/" + FileName + ".csv", "w") as File:
+        print("Saving to Outputs/" + FileName + ".csv")
         File.write(CSVOutput)
 
+    print("Done...")
 
 Start()

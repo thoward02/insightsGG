@@ -34,22 +34,7 @@ def Login():
 def Start():
     #Login
     Login()
-
-    def FindRole(Hero):
-        SupportList = ["lucio", "moira", "zenyatta", "brigitte", "mercy", "ana", "baptiste"]
-        DPSList     = ["ashe", "bastion", "doomfist", "genji", "hanzo", "junkrat", "mccree","mei","pharah","reaper","soldier_76","sombra", "symmetra", "torbjorn", "tracer","widowmaker"]
-        TankList    = ["dva","orisa","reinhardt", "roadhog", "winston", "wrecking_ball", "zarya", "sigma"]
-
-        if(Hero in SupportList):
-            return "support"
-        if(Hero in DPSList):
-            return "dps"
-        if(Hero in TankList):
-            return "tank"
-
-        return "error"
-
-
+    
     #Get Users teams  - Check and see if team exists, loop until right team name has been input
     print("[LOG] Here are your teams...")
     for Names in App.Teams:
@@ -130,52 +115,25 @@ def Start():
             DPSAssists     = []
             SupportAssists = []
 
+            
             #Loop through the assists, and organize them into role
             Assists = ""
 
-            #Check and see if there are any assists
+            #If there are no assists, leave it blank
             if KillBlocks["assists"] is None:
-                Assists = ""
+                Assists = " , , , , , ,"
+
+            #There are assists, loop through them and document them
             else:
-                for Heros in KillBlocks["assists"]:
-                    Role = FindRole(Heros)
+                AssistCount = 0
+                for AssistHero in KillBlocks["assists"]:
+                  Assists += AssistHero + ","
+                  AssistCount += 1
 
-                    if(Role == "tank"):
-                        TankAssists.append(Heros + " ")
-
-                    elif(Role == "support"):
-                        SupportAssists.append(Heros + " ")
-
-                    elif(Role == "dps"):
-                        DPSAssists.append(Heros + " ")
-
-            #If there are assists, add them
-            
-            #Tanks
-            if len(TankAssists) == 0:
-                Assists += " "
-            else:
-                for Hero in TankAssists:
-                    Assists += Hero + " "
-
-            Assists += ","
-
-            #DPS
-            if len(DPSAssists) == 0:
-                Assists += " "
-            else:
-                for Hero in DPSAssists:
-                    Assists += Hero + " "
-
-            Assists += ","
-
-            #Supports
-            if len(SupportAssists) == 0:
-                Assists += " "
-            else:
-                for Hero in SupportAssists:
-                    Assists += Hero + " "
-
+                #For all the missing heroes, fill in blank spots
+                for MissingHeros in range(6 - AssistCount):
+                  Assists += ", "
+                  
 
             #Test for suicide
             if KillerTeam == None:

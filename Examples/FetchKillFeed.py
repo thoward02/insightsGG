@@ -108,14 +108,7 @@ def Start():
 
             else:
                 Ability = KillBlocks["ability"]
-
-
-            #Assists
-            TankAssists    = []
-            DPSAssists     = []
-            SupportAssists = []
-
-
+                
             #Loop through the assists, and organize them into role
             Assists = ""
 

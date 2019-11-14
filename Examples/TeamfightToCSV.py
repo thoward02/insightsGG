@@ -1,5 +1,5 @@
 #Import insights class
-import insightsGG
+import App
 
 #Import json for dealing with json
 import json
@@ -12,7 +12,7 @@ import sys
 import os
 
 #Setup the App object containing the class
-App = insightsGG.App()
+App = App.App()
 
 #Converts data to CSV
 def ConvertToCSV():
@@ -74,7 +74,7 @@ def ConvertToCSV():
     MatchAnalytics = App.GrabAnalytics(IdList)
 
     #Create a custom CSV based on what we want
-    CSVOutput = "Start, End, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills,  "
+    CSVOutput = "Start, End, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, Total Blue Ults, Total Red Ults, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills,  "
 
     print("[LOG] Sorting matches...")
     #For each match analyzed
@@ -96,12 +96,12 @@ def ConvertToCSV():
 
             BluUltUsage      = [0, 0, 0, 0, 0, 0]
             RedUltUsage      = [0, 0, 0, 0, 0, 0]
-
+			
             for Ults in TeamFights["blue_team_ults_used"]:
                 BlueTempUltUsage.append(Ults["hero"])
 
-            for Ults in TeamFights["blue_team_ults_used"]:
-                BlueTempUltUsage.append(Ults["hero"])
+            for Ults in TeamFights["red_team_ults_used"]:
+                RedTempUltUsage.append(Ults["hero"])
 
             #Easy organization of teams
             for Role in roles:
@@ -118,7 +118,6 @@ def ConvertToCSV():
             for Heroes in BluTemp:
                 if Heroes in BlueTempUltUsage:
                     BluUltUsage[Counter] = 1
-
                 BLUEHEROES += Heroes + ", "
                 Counter += 1
 
@@ -126,12 +125,10 @@ def ConvertToCSV():
 
             for Heroes in RedTemp:
                 if Heroes in RedTempUltUsage:
-                    RedUltUsage[Counter] = 0
+                    RedUltUsage[Counter] = 1
                 REDHEROES += Heroes + ", "
                 Counter += 1
-
-
-
+	
             #Fetch Ults
             BlueUltBefore = ""
             for Ults in TeamFights["blue_team_ults_before"]:
@@ -163,7 +160,10 @@ def ConvertToCSV():
             #Ults used
             BlueUltsUsed = ""
             RedUltsUsed  = ""
-
+			
+            TotalUltsBlu = sum(BluUltUsage)
+            TotalUltsRed = sum(RedUltUsage)
+			
             for Ults in BluUltUsage:
                 BlueUltsUsed += str(Ults) + ", "
 
@@ -190,7 +190,7 @@ def ConvertToCSV():
                 FirstKillKiller = "Null"
 
             #Output - TODO, Clean this holy fuck it's messy dude
-            CSVOutput += "\n" + str(TeamFights["start_time"]) + "," + str(TeamFights["end_time"]) + "," + TeamFights["winner"]  + "," + BLUEHEROES  + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])
+            CSVOutput += "\n" + str(TeamFights["start_time"]) + "," + str(TeamFights["end_time"]) + "," + TeamFights["winner"]  + "," + BLUEHEROES  + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])
 
     print("[LOG] Done sorting")
 

@@ -3,7 +3,7 @@ This is the unofficial python API for [Insights.gg](https://insights.gg/)
 The API is written around the idea that you do have an account with the site that has [PRO access](https://insights.gg/insights-pro), and are using this API for Overwatch. If you're looking to pull stats from smash, I'm sorry but I haven't dove into that section yet, but if you want me to, feel free to contact me C:
 
 # Credits
-All of the code is being written currently by Aud, who is currently pursuing a career in esports coaching, and works in the OW Collegiate scene and does pick up coaching.
+All of the code is being written currently by Aud (with some fixes by Aplox), who is currently pursuing a career in esports coaching, and works in the OW Collegiate scene and does pick up coaching.
 
 A lot of the API guidance has been from [HSL's Aplox](https://twitter.com/_aplox?lang=en) and [HSL's Josh](https://twitter.com/tschoschi90?lang=en). Huge thanks to those two, who came to me looking to pump out this API for the entire scene. They've been here every step of the way and have offered so much guidance.
 

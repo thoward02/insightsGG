@@ -38,7 +38,7 @@ def ConvertToCSV():
         HitscanList     = ["ashe","mccree" , "reaper", "soldier_76", "widowmaker","bastion"]
         ProjList     = ["genji", "pharah", "junkrat"]
         MainTankList    = ["reinhardt", "winston"]
-        OffTankList    = ["dva","orisa", "roadhog", "zarya", "sigma"]
+        OffTankList    = ["dva", "roadhog", "zarya", "sigma"]
         
         #supports
         if Hero in BluTempSupp:
@@ -188,7 +188,7 @@ def ConvertToCSV():
         HitscanList     = ["ashe","mccree" , "reaper", "soldier_76", "widowmaker"]
         ProjList     = ["genji", "pharah", "junkrat"]
         MainTankList    = ["reinhardt", "winston"]
-        OffTankList    = ["dva","orisa", "roadhog", "zarya", "sigma"]
+        OffTankList    = ["dva", "roadhog", "zarya", "sigma"]
         
         #supports
         if Hero in RedTempSupp:

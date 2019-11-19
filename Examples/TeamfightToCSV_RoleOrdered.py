@@ -375,7 +375,7 @@ def ConvertToCSV():
     MatchAnalytics = App.GrabAnalytics(IdList)
 
     #Create a custom CSV based on what we want
-    CSVOutput = "Map ,Start, End, Duration, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, Total Blue Ults, Total Red Ults, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills,  "
+    CSVOutput = "Map ,Stage, Start, End, Duration, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, Total Blue Ults, Total Red Ults, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills,  "
 
     print("[LOG] Sorting matches...")
     #For each match analyzed
@@ -527,8 +527,86 @@ def ConvertToCSV():
                 FirstKillTarget = "Null"
                 FirstKillKiller = "Null"
 
+                
+            map = ""
+            stage = ""
+            
+            if "hanamura" in str(MatchUps["data"]["map"]):
+                map = "Hanamura"
+            if "lunar" in str(MatchUps["data"]["map"]):
+                map = "Lunar" 
+            if "temple" in str(MatchUps["data"]["map"]):
+                map = "Temple of Anubis"
+            if "volskaya" in str(MatchUps["data"]["map"]):
+                map = "Volskaya" 
+            if "paris" in str(MatchUps["data"]["map"]):
+                map = "Paris"
+            if "dorado" in str(MatchUps["data"]["map"]):
+                map = "Dorado" 
+            if "junkertown" in str(MatchUps["data"]["map"]):
+                map = "Junkertown"
+            if "rialto" in str(MatchUps["data"]["map"]):
+                map = "Rialto"
+            if "route" in str(MatchUps["data"]["map"]):
+                map = "Route 66"
+            if "gibraltar" in str(MatchUps["data"]["map"]):
+                map = "Gibraltar" 
+            if "havana" in str(MatchUps["data"]["map"]):
+                map = "Havana"
+            if "blizz" in str(MatchUps["data"]["map"]):
+                map = "Blizzard World" 
+            if "eichen" in str(MatchUps["data"]["map"]):
+                map = "Eichenwalde"
+            if "hollywood" in str(MatchUps["data"]["map"]):
+                map = "Hollywood" 
+            if "kings" in str(MatchUps["data"]["map"]):
+                map = "Kings Row"
+            if "numbani" in str(MatchUps["data"]["map"]):
+                map = "Numbani"
+
+            if "lijiang" in str(MatchUps["data"]["map"]):
+                map = "Lijiang" 
+                if "arket" in str(MatchUps["data"]["map"]):
+                    stage = "Night Market"
+                if "arden" in str(MatchUps["data"]["map"]):
+                    stage = "Gardens"
+                if "ontrol" in str(MatchUps["data"]["map"]):
+                    stage = "Control Center"
+            if "oasis" in str(MatchUps["data"]["map"]):
+                map = "Oasis" 
+                if "ity" in str(MatchUps["data"]["map"]):
+                    stage = "City Center"
+                if "arden" in str(MatchUps["data"]["map"]):
+                    stage = "Gardens"
+                if "niversity" in str(MatchUps["data"]["map"]):
+                    stage = "University"
+            if "ilios" in str(MatchUps["data"]["map"]):
+                map = "Illios" 
+                if "uin" in str(MatchUps["data"]["map"]):
+                    stage = "Runis"
+                if "ell" in str(MatchUps["data"]["map"]):
+                    stage = "Well"
+                if "ight" in str(MatchUps["data"]["map"]):
+                    stage = "Lighthouse" 
+            if "nepal" in str(MatchUps["data"]["map"]):
+                map = "Nepal" 
+                if "illage" in str(MatchUps["data"]["map"]):
+                    stage = "Village"
+                if "hrine" in str(MatchUps["data"]["map"]):
+                    stage = "Shrine"
+                if "anctum" in str(MatchUps["data"]["map"]):
+                    stage = "Sanctum"
+            if "busan" in str(MatchUps["data"]["map"]):
+                map = "Busan" 
+                if "own" in str(MatchUps["data"]["map"]):
+                    stage = "Downtown"
+                if "eka" in str(MatchUps["data"]["map"]):
+                    stage = "Mekabase"
+                if "anct" in str(MatchUps["data"]["map"]):
+                    stage = "Santuary" 
+
             #Output - TODO, Clean this holy fuck it's messy dude
-            CSVOutput += "\n" + str(MatchUps["data"]["map"]) + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])
+            CSVOutput += "\n" + map + "," + stage + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])
 
     print("[LOG] Done sorting")
 

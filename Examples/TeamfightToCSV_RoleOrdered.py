@@ -429,7 +429,6 @@ def ConvertToCSV():
                 elif(FindRole(Hero) == "dps"):
                     RedTempDPS.append(Hero)
             
-            print (str(BluTempDPS))
             #Seperate Heros in each character type into roles
             for Role in roles:
                 for Hero in BluTempSupp:
@@ -529,7 +528,7 @@ def ConvertToCSV():
                 FirstKillKiller = "Null"
 
             #Output - TODO, Clean this holy fuck it's messy dude
-            CSVOutput += "\n" + str(MatchUps["data"]["map"]) + "," + str(TeamFights["start_time"]) + "," + str(TeamFights["end_time"]) + "," + str(TeamFights["end_time"] - TeamFights["start_time"]) + "," + TeamFights["winner"]  + "," + BLUEHEROES  + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])
+            CSVOutput += "\n" + str(MatchUps["data"]["map"]) + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])
 
     print("[LOG] Done sorting")
 

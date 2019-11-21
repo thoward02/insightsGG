@@ -47,5 +47,6 @@ or
 
 Modify the example files and hand input your login information into the `Login` function.
 
-
+### The examples 
+All of code can be found in `/Examples`, if you want to see how we're using the API, take a gander at those
 

@@ -37,7 +37,7 @@ def ConvertToCSV():
         OffSuppList = ["moira","zenyatta"]
         HitscanList     = ["ashe","mccree" , "reaper", "soldier_76", "widowmaker","bastion"]
         ProjList     = ["genji", "pharah", "junkrat"]
-        MainTankList    = ["reinhardt", "winston"]
+        MainTankList    = ["reinhardt", "winston", "orisa"]
         OffTankList    = ["dva", "roadhog", "zarya", "sigma"]
         
         #supports
@@ -91,7 +91,13 @@ def ConvertToCSV():
             elif (Hero == BluTempTank[1]) and (BluTempTank[0] in MainTankList):
                 return "offtank"
             elif (Hero == "wrecking_ball") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "winston"):
-                return "offtank" 
+                return "offtank"  
+            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "winston"):
+                return "offtank"
+            elif (Hero == "reinhardt") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "orisa"):
+                return "offtank"  
+            elif (Hero == "reinhardt") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "orisa"):
+                return "offtank"
     
         #DPS
         if Hero in BluTempDPS:
@@ -179,6 +185,14 @@ def ConvertToCSV():
                 return "hitscan"
             elif (Hero == "symmetra") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
                 return "hitscan"
+            elif (Hero == "doomfist") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "hanzo"):
+                return "proj"
+            elif (Hero == "doomfist") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "hanzo"):
+                return "proj"
+            elif (Hero == "hanzo") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "doomfist"):
+                return "hitscan"
+            elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "doomfist"):
+                return "hitscan"
         return "error"
 
     def FindRedSecondaryRole(Hero):  
@@ -187,7 +201,7 @@ def ConvertToCSV():
         OffSuppList = ["moira","zenyatta"]
         HitscanList     = ["ashe","mccree" , "reaper", "soldier_76", "widowmaker"]
         ProjList     = ["genji", "pharah", "junkrat"]
-        MainTankList    = ["reinhardt", "winston"]
+        MainTankList    = ["reinhardt", "winston","orisa"]
         OffTankList    = ["dva", "roadhog", "zarya", "sigma"]
         
         #supports
@@ -241,7 +255,11 @@ def ConvertToCSV():
             elif (Hero == RedTempTank[1]) and (RedTempTank[0] in MainTankList):
                 return "offtank"
             elif (Hero == "wrecking_ball") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "winston"):
-                return "offtank" 
+                return "offtank"
+            elif (Hero == "reinhardt") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
+                return "offtank"  
+            elif (Hero == "reinhardt") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
+                return "offtank"
     
         #DPS
         if Hero in RedTempDPS:
@@ -328,6 +346,14 @@ def ConvertToCSV():
             elif (Hero == "symmetra") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "mei"):
                 return "hitscan"
             elif (Hero == "symmetra") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
+                return "hitscan"
+            elif (Hero == "doomfist") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "hanzo"):
+                return "proj"
+            elif (Hero == "doomfist") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "hanzo"):
+                return "proj"
+            elif (Hero == "hanzo") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "doomfist"):
+                return "hitscan"
+            elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "doomfist"):
                 return "hitscan"
         return "error"            
     
@@ -560,7 +586,7 @@ def ConvertToCSV():
             if "hollywood" in str(MatchUps["data"]["map"]):
                 map = "Hollywood" 
             if "kings" in str(MatchUps["data"]["map"]):
-                map = "Kings Row"
+                map = "King's Row"
             if "numbani" in str(MatchUps["data"]["map"]):
                 map = "Numbani"
 
@@ -583,7 +609,7 @@ def ConvertToCSV():
             if "ilios" in str(MatchUps["data"]["map"]):
                 map = "Illios" 
                 if "uin" in str(MatchUps["data"]["map"]):
-                    stage = "Runis"
+                    stage = "Ruins"
                 if "ell" in str(MatchUps["data"]["map"]):
                     stage = "Well"
                 if "ight" in str(MatchUps["data"]["map"]):
@@ -603,7 +629,7 @@ def ConvertToCSV():
                 if "eka" in str(MatchUps["data"]["map"]):
                     stage = "Mekabase"
                 if "anct" in str(MatchUps["data"]["map"]):
-                    stage = "Santuary" 
+                    stage = "Sanctuary" 
 
             #Output - TODO, Clean this holy fuck it's messy dude
             CSVOutput += "\n" + map + "," + stage + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])

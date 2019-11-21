@@ -25,7 +25,8 @@ https://twitter.com/tschoschi90
 # Before you get started
 
 ## Basic install
-You can easily install via the pip system, by going into your terminal and running `python3 -m pip install insightsGG` or `py -m pip install insightsGG` if you're on windows
+First off you'll need python which can be aqquired through `apt` (for debian linux users) or [Here](https://www.python.org/downloads/)
+After that you'll need to install the API via the pip system by going into your terminal and running `python3 -m pip install insightsGG` or `py -m pip install insightsGG` if you're on windows
 
 ## Python Requirements
 The only library you'll need is `requests`, which can be pip installed by `python3 -m pip install requests` on Linux, or `py -m pip install requests` on windows *Note this should install when you install via pip, but if you are manually installing you'll need to hand install the dependencies*

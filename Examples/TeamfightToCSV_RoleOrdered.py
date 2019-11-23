@@ -786,64 +786,65 @@ def ConvertToCSV():
             
                     #Target
                     Target      = KillBlocks["killee"]["hero"]
-                    
+
                     #BlueTeam                    
                     #kills
-                    if KillerTeam == "blue":
-                        if Killer == BluMainTank:
-                            BluMainTankKills +=1
-                        if Killer == BluOffTank:
-                            BluOffTankKills +=1
-                        if Killer == BluHitscan:
-                            BluHitscanKills +=1
-                        if Killer == BluProj:
-                            BluProjKills +=1
-                        if Killer == BluMainSupp:
-                            BluMainSuppKills +=1
-                        if Killer == BluOffSupp:
-                            BluOffSuppKills +=1
-                        #Killees
-                        if Target == RedMainTank:
-                            RedMainTankDeaths +=1
-                        if Target == RedOffTank:
-                            RedOffTankDeaths +=1
-                        if Target == RedHitscan:
-                            RedHitscanDeaths +=1
-                        if Target == RedProj:
-                            RedProjDeaths +=1
-                        if Target == RedMainSupp:
-                            RedMainSuppDeaths +=1
-                        if Target == RedOffSupp:
-                            RedOffSuppDeaths +=1
-    
-                    #RedTeam
-                    #kills
-                    if KillerTeam == "red":
-                        if Killer == RedMainTank:
-                            RedMainTankKills +=1
-                        if Killer == RedOffTank:
-                            RedOffTankKills +=1
-                        if Killer == RedHitscan:
-                            RedHitscanKills +=1
-                        if Killer == RedProj:
-                            RedProjKills +=1
-                        if Killer == RedMainSupp:
-                            RedMainSuppKills +=1
-                        if Killer == RedOffSupp:
-                            RedOffSuppKills +=1  
-                        #killees
-                        if Target == BluMainTank:
-                            BluMainTankDeaths +=1
-                        if Target == BluOffTank:
-                            BluOffTankDeaths +=1
-                        if Target == BluHitscan:
-                            BluHitscanDeaths +=1
-                        if Target == BluProj:
-                            BluProjDeaths +=1
-                        if Target == BluMainSupp:
-                            BluMainSuppDeaths +=1
-                        if Target == BluOffSupp:
-                            BluOffSuppDeaths +=1
+                    if KillBlocks["ability"] != "resurrect":
+                        if KillerTeam == "blue":
+                            if Killer == BluMainTank:
+                                BluMainTankKills +=1
+                            if Killer == BluOffTank:
+                                BluOffTankKills +=1
+                            if Killer == BluHitscan:
+                                BluHitscanKills +=1
+                            if Killer == BluProj:
+                                BluProjKills +=1
+                            if Killer == BluMainSupp:
+                                BluMainSuppKills +=1
+                            if Killer == BluOffSupp:
+                                BluOffSuppKills +=1
+                            #Killees
+                            if Target == RedMainTank:
+                                RedMainTankDeaths +=1
+                            if Target == RedOffTank:
+                                RedOffTankDeaths +=1
+                            if Target == RedHitscan:
+                                RedHitscanDeaths +=1
+                            if Target == RedProj:
+                                RedProjDeaths +=1
+                            if Target == RedMainSupp:
+                                RedMainSuppDeaths +=1
+                            if Target == RedOffSupp:
+                                RedOffSuppDeaths +=1
+        
+                        #RedTeam
+                        #kills
+                        if KillerTeam == "red":
+                            if Killer == RedMainTank:
+                                RedMainTankKills +=1
+                            if Killer == RedOffTank:
+                                RedOffTankKills +=1
+                            if Killer == RedHitscan:
+                                RedHitscanKills +=1
+                            if Killer == RedProj:
+                                RedProjKills +=1
+                            if Killer == RedMainSupp:
+                                RedMainSuppKills +=1
+                            if Killer == RedOffSupp:
+                                RedOffSuppKills +=1  
+                            #killees
+                            if Target == BluMainTank:
+                                BluMainTankDeaths +=1
+                            if Target == BluOffTank:
+                                BluOffTankDeaths +=1
+                            if Target == BluHitscan:
+                                BluHitscanDeaths +=1
+                            if Target == BluProj:
+                                BluProjDeaths +=1
+                            if Target == BluMainSupp:
+                                BluMainSuppDeaths +=1
+                            if Target == BluOffSupp:
+                                BluOffSuppDeaths +=1
                             
             #Output - TODO, Clean this holy fuck it's messy dude
             CSVOutput += "\n" + map + "," + stage + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"]) + "," + str(BluMainTankKills) + "," + str(BluMainTankDeaths) + "," + str(BluOffTankKills) + "," + str(BluOffTankDeaths) + "," + str(BluHitscanKills) + "," + str(BluHitscanDeaths)+ "," + str(BluProjKills) + "," + str(BluProjDeaths) + "," + str(BluMainSuppKills) + "," + str(BluMainSuppDeaths) + "," + str(BluOffSuppKills) + "," + str(BluOffSuppDeaths) + "," + str(RedMainTankKills) + "," + str(RedMainTankDeaths) + "," + str(RedOffTankKills) + "," + str(RedOffTankDeaths) + "," + str(RedHitscanKills) + "," + str(RedHitscanDeaths)+ "," + str(RedProjKills) + "," + str(RedProjDeaths) + "," + str(RedMainSuppKills) + "," + str(RedMainSuppDeaths) + "," + str(RedOffSuppKills) + "," + str(RedOffSuppDeaths)

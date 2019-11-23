@@ -193,6 +193,22 @@ def ConvertToCSV():
                 return "hitscan"
             elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "doomfist"):
                 return "hitscan"
+            elif (Hero == "mei") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "sombra"):
+                return "proj"
+            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "sombra"):
+                return "proj"
+            elif (Hero == "sombra") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "mei"):
+                return "hitscan"
+            elif (Hero == "sombra") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
+                return "hitscan"
+            elif (Hero == "tracer") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "mei"):
+                return "hitscan"
+            elif (Hero == "tracer") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
+                return "hitscan"
+            elif (Hero == "mei") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "tracer"):
+                return "proj"
+            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
+                return "proj"
         return "error"
 
     def FindRedSecondaryRole(Hero):  
@@ -355,6 +371,22 @@ def ConvertToCSV():
                 return "hitscan"
             elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "doomfist"):
                 return "hitscan"
+            elif (Hero == "mei") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "sombra"):
+                return "proj"
+            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "sombra"):
+                return "proj"
+            elif (Hero == "sombra") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "mei"):
+                return "hitscan"
+            elif (Hero == "sombra") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
+                return "hitscan"
+            elif (Hero == "tracer") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "mei"):
+                return "hitscan"
+            elif (Hero == "tracer") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
+                return "hitscan"
+            elif (Hero == "mei") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
+                return "proj"
+            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
+                return "proj"
         return "error"            
     
     
@@ -401,12 +433,58 @@ def ConvertToCSV():
     MatchAnalytics = App.GrabAnalytics(IdList)
 
     #Create a custom CSV based on what we want
-    CSVOutput = "Map ,Stage, Start, End, Duration, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, Total Blue Ults, Total Red Ults, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills,  "
+    CSVOutput = "Map ,Stage, Start, End, Duration, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, Total Blue Ults, Total Red Ults, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills, Blue MT Kills, Blue MT Deaths, Blue OT Kills, Blue OT Deaths, Blue HS Kills, Blue HS Deaths, Blue Proj Kills, Blue Proj Deaths, Blue FS Kills, Blue FS Deaths, Blue MS Kills, Blue MS Deaths, Red MT Kills, Red MT Deaths, Red OT Kills, Red OT Deaths, Red HS Kills, Red HS Deaths, Red Proj Kills, Red Proj Deaths, Red FS Kills, Red FS Deaths, Red MS Kills, Red MS Deaths,  "
 
     print("[LOG] Sorting matches...")
     #For each match analyzed
     
     for MatchUps in MatchAnalytics["matches"]:
+        #grab killfeed
+        for KillBlocks in MatchUps["data"]["kills"]:
+
+                #Setup Killer
+                Killer      = KillBlocks["killer"]["hero"]
+                KillerTeam  = KillBlocks["killer"]["color"]
+            
+                #Target
+                Target      = KillBlocks["killee"]["hero"]
+            
+                #Ability used
+                Ability     = ""
+            
+                if KillBlocks["ability"] == "none":
+                    Ability = " "
+                elif KillBlocks["ability"] == None:
+                    Ability = " "
+            
+                else:
+                    Ability = KillBlocks["ability"]
+                    
+                #Loop through the assists, and organize them into role
+                Assists = ""
+            
+                #If there are no assists, leave it blank
+                if KillBlocks["assists"] is None:
+                    Assists = " , , , , , ,"
+            
+                #There are assists, loop through them and document them
+                else:
+                    AssistCount = 0
+                    for AssistHero in KillBlocks["assists"]:
+                        Assists += AssistHero + ","
+                        AssistCount += 1
+            
+                    #For all the missing heroes, fill in blank spots
+                    for MissingHeros in range(6 - AssistCount):
+                        Assists += ", "
+            
+            
+                #Test for suicide
+                if KillerTeam == None:
+                    KillerTeam = KillBlocks["killee"]["color"]
+                if Killer == None:
+                    Killer = KillBlocks["killee"]["hero"]
+
         #For each fight in match
         for TeamFights in MatchUps["data"]["teamfights"]:
             #Setup heroes
@@ -420,6 +498,20 @@ def ConvertToCSV():
             RedTempSupp = []
             RedTempDPS = []
             RedTempTank = []
+            
+            BluMainTank = ""
+            BluOffTank = ""
+            BluHitscan = ""
+            BluProj = ""
+            BluMainSupp = ""
+            BluOffSupp = ""
+            
+            RedMainTank = ""
+            RedOffTank = ""
+            RedHitscan = ""
+            RedProj = ""
+            RedMainSupp = ""
+            RedOffSupp = ""
 
             BluTemp    = []
             RedTemp    = []
@@ -460,21 +552,45 @@ def ConvertToCSV():
                 for Hero in BluTempSupp:
                     if(FindBluSecondaryRole(Hero) == Role):
                         BluTemp.append(Hero)
+                        if Role == "mainsupport":
+                            BluMainSupp = Hero
+                        elif Role == "offsupport":
+                            BluOffSupp = Hero
                 for Hero in BluTempTank:
                     if(FindBluSecondaryRole(Hero) == Role):
                         BluTemp.append(Hero)
+                        if Role == "maintank":
+                            BluMainTank = Hero
+                        elif Role == "offtank":
+                            BluOffTank = Hero  
                 for Hero in BluTempDPS:
                     if(FindBluSecondaryRole(Hero) == Role):
                         BluTemp.append(Hero)
+                        if Role == "hitscan":
+                            BluHitscan = Hero
+                        elif Role == "proj":
+                            BluProj = Hero
                 for Hero in RedTempSupp:
                     if(FindRedSecondaryRole(Hero) == Role):
                         RedTemp.append(Hero)
+                        if Role == "mainsupport":
+                            RedMainSupp = Hero
+                        elif Role == "offsupport":
+                            RedOffSupp = Hero
                 for Hero in RedTempTank:
                     if(FindRedSecondaryRole(Hero) == Role):
                         RedTemp.append(Hero)
+                        if Role == "maintank":
+                            RedMainTank = Hero
+                        elif Role == "offtank":
+                            RedOffTank = Hero
                 for Hero in RedTempDPS:
                     if(FindRedSecondaryRole(Hero) == Role):                  
                         RedTemp.append(Hero)
+                        if Role == "hitscan":
+                            RedHitscan = Hero
+                        elif Role == "proj":
+                            RedProj = Hero
                                     
             #CSV Format Heroes - Sort through the Heroes, organize them for CSV, and flag which one ulted
             Counter = 0
@@ -630,10 +746,109 @@ def ConvertToCSV():
                     stage = "Mekabase"
                 if "anct" in str(MatchUps["data"]["map"]):
                     stage = "Sanctuary" 
-
+            
+            #killcount
+            BluMainTankKills = 0
+            BluOffTankKills = 0
+            BluHitscanKills = 0
+            BluProjKills = 0
+            BluMainSuppKills = 0
+            BluOffSuppKills = 0
+            
+            RedMainTankKills = 0
+            RedOffTankKills = 0
+            RedHitscanKills = 0
+            RedProjKills = 0
+            RedMainSuppKills = 0
+            RedOffSuppKills = 0
+            
+            #deathcount
+            BluMainTankDeaths = 0
+            BluOffTankDeaths = 0
+            BluHitscanDeaths = 0
+            BluProjDeaths = 0
+            BluMainSuppDeaths = 0
+            BluOffSuppDeaths = 0
+            
+            RedMainTankDeaths = 0
+            RedOffTankDeaths = 0
+            RedHitscanDeaths = 0
+            RedProjDeaths = 0
+            RedMainSuppDeaths = 0
+            RedOffSuppDeaths = 0
+            
+            #Count deaths/kills of individuals in each fight
+            for KillBlocks in MatchUps["data"]["kills"]:
+                if KillBlocks["start_time"] >= TeamFights["start_time"] and KillBlocks["start_time"] <= TeamFights["end_time"]:  
+                    #Setup Killer
+                    Killer      = KillBlocks["killer"]["hero"]
+                    KillerTeam  = KillBlocks["killer"]["color"]
+            
+                    #Target
+                    Target      = KillBlocks["killee"]["hero"]
+                    
+                    #BlueTeam                    
+                    #kills
+                    if KillerTeam == "blue":
+                        if Killer == BluMainTank:
+                            BluMainTankKills +=1
+                        if Killer == BluOffTank:
+                            BluOffTankKills +=1
+                        if Killer == BluHitscan:
+                            BluHitscanKills +=1
+                        if Killer == BluProj:
+                            BluProjKills +=1
+                        if Killer == BluMainSupp:
+                            BluMainSuppKills +=1
+                        if Killer == BluOffSupp:
+                            BluOffSuppKills +=1
+                        #Killees
+                        if Target == RedMainTank:
+                            RedMainTankDeaths +=1
+                        if Target == RedOffTank:
+                            RedOffTankDeaths +=1
+                        if Target == RedHitscan:
+                            RedHitscanDeaths +=1
+                        if Target == RedProj:
+                            RedProjDeaths +=1
+                        if Target == RedMainSupp:
+                            RedMainSuppDeaths +=1
+                        if Target == RedOffSupp:
+                            RedOffSuppDeaths +=1
+    
+                    #RedTeam
+                    #kills
+                    if KillerTeam == "red":
+                        if Killer == RedMainTank:
+                            RedMainTankKills +=1
+                        if Killer == RedOffTank:
+                            RedOffTankKills +=1
+                        if Killer == RedHitscan:
+                            RedHitscanKills +=1
+                        if Killer == RedProj:
+                            RedProjKills +=1
+                        if Killer == RedMainSupp:
+                            RedMainSuppKills +=1
+                        if Killer == RedOffSupp:
+                            RedOffSuppKills +=1  
+                        #killees
+                        if Target == BluMainTank:
+                            BluMainTankDeaths +=1
+                        if Target == BluOffTank:
+                            BluOffTankDeaths +=1
+                        if Target == BluHitscan:
+                            BluHitscanDeaths +=1
+                        if Target == BluProj:
+                            BluProjDeaths +=1
+                        if Target == BluMainSupp:
+                            BluMainSuppDeaths +=1
+                        if Target == BluOffSupp:
+                            BluOffSuppDeaths +=1
+                            
             #Output - TODO, Clean this holy fuck it's messy dude
-            CSVOutput += "\n" + map + "," + stage + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"])
+            CSVOutput += "\n" + map + "," + stage + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"]) + "," + str(BluMainTankKills) + "," + str(BluMainTankDeaths) + "," + str(BluOffTankKills) + "," + str(BluOffTankDeaths) + "," + str(BluHitscanKills) + "," + str(BluHitscanDeaths)+ "," + str(BluProjKills) + "," + str(BluProjDeaths) + "," + str(BluMainSuppKills) + "," + str(BluMainSuppDeaths) + "," + str(BluOffSuppKills) + "," + str(BluOffSuppDeaths) + "," + str(RedMainTankKills) + "," + str(RedMainTankDeaths) + "," + str(RedOffTankKills) + "," + str(RedOffTankDeaths) + "," + str(RedHitscanKills) + "," + str(RedHitscanDeaths)+ "," + str(RedProjKills) + "," + str(RedProjDeaths) + "," + str(RedMainSuppKills) + "," + str(RedMainSuppDeaths) + "," + str(RedOffSuppKills) + "," + str(RedOffSuppDeaths)
 
+            
     print("[LOG] Done sorting")
 
     FileName = input("What would you like to save the file name as?: ")

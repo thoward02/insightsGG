@@ -439,52 +439,7 @@ def ConvertToCSV():
     #For each match analyzed
     
     for MatchUps in MatchAnalytics["matches"]:
-        #grab killfeed
-        for KillBlocks in MatchUps["data"]["kills"]:
-
-                #Setup Killer
-                Killer      = KillBlocks["killer"]["hero"]
-                KillerTeam  = KillBlocks["killer"]["color"]
-            
-                #Target
-                Target      = KillBlocks["killee"]["hero"]
-            
-                #Ability used
-                Ability     = ""
-            
-                if KillBlocks["ability"] == "none":
-                    Ability = " "
-                elif KillBlocks["ability"] == None:
-                    Ability = " "
-            
-                else:
-                    Ability = KillBlocks["ability"]
-                    
-                #Loop through the assists, and organize them into role
-                Assists = ""
-            
-                #If there are no assists, leave it blank
-                if KillBlocks["assists"] is None:
-                    Assists = " , , , , , ,"
-            
-                #There are assists, loop through them and document them
-                else:
-                    AssistCount = 0
-                    for AssistHero in KillBlocks["assists"]:
-                        Assists += AssistHero + ","
-                        AssistCount += 1
-            
-                    #For all the missing heroes, fill in blank spots
-                    for MissingHeros in range(6 - AssistCount):
-                        Assists += ", "
-            
-            
-                #Test for suicide
-                if KillerTeam == None:
-                    KillerTeam = KillBlocks["killee"]["color"]
-                if Killer == None:
-                    Killer = KillBlocks["killee"]["hero"]
-
+        
         #For each fight in match
         for TeamFights in MatchUps["data"]["teamfights"]:
             #Setup heroes

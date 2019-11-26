@@ -209,6 +209,14 @@ def ConvertToCSV():
                 return "proj"
             elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
                 return "proj"
+            elif (Hero == "tracer") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "hanzo"):
+                return "hitscan"
+            elif (Hero == "tracer") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "hanzo"):
+                return "hitscan"
+            elif (Hero == "hanzo") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "tracer"):
+                return "proj"
+            elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
+                return "proj"
         return "error"
 
     def FindRedSecondaryRole(Hero):  
@@ -387,6 +395,14 @@ def ConvertToCSV():
                 return "proj"
             elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
                 return "proj"
+            elif (Hero == "tracer") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "hanzo"):
+                return "hitscan"
+            elif (Hero == "tracer") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "hanzo"):
+                return "hitscan"
+            elif (Hero == "hanzo") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
+                return "proj"
+            elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
+                return "proj
         return "error"            
     
     
@@ -624,7 +640,7 @@ def ConvertToCSV():
                 FirstKillTarget = "Null"
                 FirstKillKiller = "Null"
 
-                
+            #Check and assign the map and stage for KOTH    
             map = ""
             stage = ""
             
@@ -660,7 +676,8 @@ def ConvertToCSV():
                 map = "King's Row"
             if "numbani" in str(MatchUps["data"]["map"]):
                 map = "Numbani"
-
+            
+            #Assigning the stage for KOTH
             if "lijiang" in str(MatchUps["data"]["map"]):
                 map = "Lijiang" 
                 if "arket" in str(MatchUps["data"]["map"]):

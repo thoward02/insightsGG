@@ -402,7 +402,7 @@ def ConvertToCSV():
             elif (Hero == "hanzo") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
                 return "proj"
             elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
-                return "proj
+                return "proj"
         return "error"            
     
     

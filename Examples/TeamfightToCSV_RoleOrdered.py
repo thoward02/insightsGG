@@ -217,6 +217,14 @@ def ConvertToCSV():
                 return "proj"
             elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
                 return "proj"
+            elif (Hero == "tracer") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "doomfist"):
+                return "hitscan"
+            elif (Hero == "tracer") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "doomfist"):
+                return "hitscan"
+            elif (Hero == "doomfist") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "tracer"):
+                return "proj"
+            elif (Hero == "doomfist") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
+                return "proj"
         return "error"
 
     def FindRedSecondaryRole(Hero):  
@@ -402,6 +410,14 @@ def ConvertToCSV():
             elif (Hero == "hanzo") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
                 return "proj"
             elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
+                return "proj"
+            elif (Hero == "tracer") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "doomfist"):
+                return "hitscan"
+            elif (Hero == "tracer") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "doomfist"):
+                return "hitscan"
+            elif (Hero == "doomfist") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
+                return "proj"
+            elif (Hero == "doomfist") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
                 return "proj"
         return "error"            
     
@@ -651,7 +667,7 @@ def ConvertToCSV():
             if "temple" in str(MatchUps["data"]["map"]):
                 map = "Temple of Anubis"
             if "volskaya" in str(MatchUps["data"]["map"]):
-                map = "Volskaya" 
+                map = "Volskaya Industries" 
             if "paris" in str(MatchUps["data"]["map"]):
                 map = "Paris"
             if "dorado" in str(MatchUps["data"]["map"]):
@@ -679,7 +695,7 @@ def ConvertToCSV():
             
             #Assigning the stage for KOTH
             if "lijiang" in str(MatchUps["data"]["map"]):
-                map = "Lijiang" 
+                map = "Lijiang Tower" 
                 if "arket" in str(MatchUps["data"]["map"]):
                     stage = "Night Market"
                 if "arden" in str(MatchUps["data"]["map"]):
@@ -695,7 +711,7 @@ def ConvertToCSV():
                 if "niversity" in str(MatchUps["data"]["map"]):
                     stage = "University"
             if "ilios" in str(MatchUps["data"]["map"]):
-                map = "Illios" 
+                map = "Ilios" 
                 if "uin" in str(MatchUps["data"]["map"]):
                     stage = "Ruins"
                 if "ell" in str(MatchUps["data"]["map"]):
@@ -715,7 +731,7 @@ def ConvertToCSV():
                 if "own" in str(MatchUps["data"]["map"]):
                     stage = "Downtown"
                 if "eka" in str(MatchUps["data"]["map"]):
-                    stage = "Mekabase"
+                    stage = "MEKA base"
                 if "anct" in str(MatchUps["data"]["map"]):
                     stage = "Sanctuary" 
             

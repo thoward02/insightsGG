@@ -42,19 +42,7 @@ def ConvertToCSV():
         
         #supports
         if Hero in BluTempSupp:
-            if (Hero in MainSuppList):
-                return "mainsupport"
-            elif (Hero in OffSuppList):
-                return "offsupport"
-            elif (Hero == BluTempSupp[0]) and (BluTempSupp[1] in OffSuppList):
-                return "mainsupport"
-            elif (Hero == BluTempSupp[1]) and (BluTempSupp[0] in OffSuppList):
-                return "mainsupport"
-            elif (Hero == BluTempSupp[0]) and (BluTempSupp[1] in MainSuppList):
-                return "offsupport"
-            elif (Hero == BluTempSupp[1]) and (BluTempSupp[0] in MainSuppList):
-                return "offsupport"
-            elif (Hero == "baptiste") and (Hero == BluTempSupp[0]) and (BluTempSupp[1] == "ana"):
+            if (Hero == "baptiste") and (Hero == BluTempSupp[0]) and (BluTempSupp[1] == "ana"):
                 return "mainsupport"
             elif (Hero == "ana") and (Hero == BluTempSupp[1]) and (BluTempSupp[0] == "baptiste"):
                 return "offsupport"
@@ -74,11 +62,30 @@ def ConvertToCSV():
                 return "offsupport"   
             elif (Hero == "brigitte") and (Hero == BluTempSupp[1]) and (BluTempSupp[0] == "baptiste"):
                 return "mainsupport"
-                
-                       
+            elif (Hero in MainSuppList):
+                return "mainsupport"
+            elif (Hero in OffSuppList):
+                return "offsupport"
+            elif (Hero == BluTempSupp[0]) and (BluTempSupp[1] in OffSuppList):
+                return "mainsupport"
+            elif (Hero == BluTempSupp[1]) and (BluTempSupp[0] in OffSuppList):
+                return "mainsupport"
+            elif (Hero == BluTempSupp[0]) and (BluTempSupp[1] in MainSuppList):
+                return "offsupport"
+            elif (Hero == BluTempSupp[1]) and (BluTempSupp[0] in MainSuppList):
+                return "offsupport"
+               
         #Tanks
         if Hero in BluTempTank:
-            if (Hero in MainTankList):
+            if (Hero == "reinhardt") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "orisa"):
+                return "offtank"  
+            elif (Hero == "reinhardt") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "orisa"):
+                return "offtank"
+            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "winston"):
+                return "offtank"  
+            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "winston"):
+                return "offtank"
+            elif (Hero in MainTankList):
                 return "maintank"
             elif (Hero in OffTankList):
                 return "offtank"
@@ -90,30 +97,10 @@ def ConvertToCSV():
                 return "offtank"
             elif (Hero == BluTempTank[1]) and (BluTempTank[0] in MainTankList):
                 return "offtank"
-            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "winston"):
-                return "offtank"  
-            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "winston"):
-                return "offtank"
-            elif (Hero == "reinhardt") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "orisa"):
-                return "offtank"  
-            elif (Hero == "reinhardt") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "orisa"):
-                return "offtank"
-    
+
         #DPS
         if Hero in BluTempDPS:
-            if (Hero in HitscanList):
-                return "hitscan"
-            elif (Hero in ProjList):
-                return "proj"
-            elif (Hero == BluTempDPS[0]) and (BluTempDPS[1] in ProjList):
-                return "hitscan"
-            elif (Hero == BluTempDPS[1]) and (BluTempDPS[0] in ProjList):
-                return "hitscan"
-            elif (Hero == BluTempDPS[0]) and (BluTempDPS[1] in HitscanList):
-                return "proj"
-            elif (Hero == BluTempDPS[1]) and (BluTempDPS[0] in HitscanList):
-                return "proj"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "widowmaker"):
+            if (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "widowmaker"):
                 return "proj"
             elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
                 return "hitscan"
@@ -225,6 +212,18 @@ def ConvertToCSV():
                 return "proj"
             elif (Hero == "doomfist") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
                 return "proj"
+            elif (Hero in HitscanList):
+                return "hitscan"
+            elif (Hero in ProjList):
+                return "proj"
+            elif (Hero == BluTempDPS[0]) and (BluTempDPS[1] in ProjList):
+                return "hitscan"
+            elif (Hero == BluTempDPS[1]) and (BluTempDPS[0] in ProjList):
+                return "hitscan"
+            elif (Hero == BluTempDPS[0]) and (BluTempDPS[1] in HitscanList):
+                return "proj"
+            elif (Hero == BluTempDPS[1]) and (BluTempDPS[0] in HitscanList):
+                return "proj"   
         return "error"
 
     def FindRedSecondaryRole(Hero):  
@@ -238,19 +237,7 @@ def ConvertToCSV():
         
         #supports
         if Hero in RedTempSupp:
-            if (Hero in MainSuppList):
-                return "mainsupport"
-            elif (Hero in OffSuppList):
-                return "offsupport"
-            elif (Hero == RedTempSupp[0]) and (RedTempSupp[1] in OffSuppList):
-                return "mainsupport"
-            elif (Hero == RedTempSupp[1]) and (RedTempSupp[0] in OffSuppList):
-                return "mainsupport"
-            elif (Hero == RedTempSupp[0]) and (RedTempSupp[1] in MainSuppList):
-                return "offsupport"
-            elif (Hero == RedTempSupp[1]) and (RedTempSupp[0] in MainSuppList):
-                return "offsupport"
-            elif (Hero == "baptiste") and (Hero == RedTempSupp[0]) and (RedTempSupp[1] == "ana"):
+            if (Hero == "baptiste") and (Hero == RedTempSupp[0]) and (RedTempSupp[1] == "ana"):
                 return "mainsupport"
             elif (Hero == "ana") and (Hero == RedTempSupp[1]) and (RedTempSupp[0] == "baptiste"):
                 return "offsupport"
@@ -270,11 +257,30 @@ def ConvertToCSV():
                 return "offsupport"   
             elif (Hero == "brigitte") and (Hero == RedTempSupp[1]) and (RedTempSupp[0] == "baptiste"):
                 return "mainsupport"
-                
-                       
+            elif (Hero in MainSuppList):
+                return "mainsupport"
+            elif (Hero in OffSuppList):
+                return "offsupport"
+            elif (Hero == RedTempSupp[0]) and (RedTempSupp[1] in OffSuppList):
+                return "mainsupport"
+            elif (Hero == RedTempSupp[1]) and (RedTempSupp[0] in OffSuppList):
+                return "mainsupport"
+            elif (Hero == RedTempSupp[0]) and (RedTempSupp[1] in MainSuppList):
+                return "offsupport"
+            elif (Hero == RedTempSupp[1]) and (RedTempSupp[0] in MainSuppList):
+                return "offsupport"
+           
         #Tanks
         if Hero in RedTempTank:
-            if (Hero in MainTankList):
+            if (Hero == "wrecking_ball") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "winston"):
+                return "offtank"
+            elif (Hero == "wrecking_ball") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "winston"):
+                return "offtank"
+            elif (Hero == "reinhardt") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
+                return "offtank"  
+            elif (Hero == "reinhardt") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
+                return "offtank"
+            elif (Hero in MainTankList):
                 return "maintank"
             elif (Hero in OffTankList):
                 return "offtank"
@@ -286,28 +292,10 @@ def ConvertToCSV():
                 return "offtank"
             elif (Hero == RedTempTank[1]) and (RedTempTank[0] in MainTankList):
                 return "offtank"
-            elif (Hero == "wrecking_ball") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "winston"):
-                return "offtank"
-            elif (Hero == "reinhardt") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
-                return "offtank"  
-            elif (Hero == "reinhardt") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
-                return "offtank"
-    
+
         #DPS
         if Hero in RedTempDPS:
-            if (Hero in HitscanList):
-                return "hitscan"
-            elif (Hero in ProjList):
-                return "proj"
-            elif (Hero == RedTempDPS[0]) and (RedTempDPS[1] in ProjList):
-                return "hitscan"
-            elif (Hero == RedTempDPS[1]) and (RedTempDPS[0] in ProjList):
-                return "hitscan"
-            elif (Hero == RedTempDPS[0]) and (RedTempDPS[1] in HitscanList):
-                return "proj"
-            elif (Hero == RedTempDPS[1]) and (RedTempDPS[0] in HitscanList):
-                return "proj"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "widowmaker"):
+            if (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "widowmaker"):
                 return "proj"
             elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
                 return "hitscan"
@@ -418,6 +406,18 @@ def ConvertToCSV():
             elif (Hero == "doomfist") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
                 return "proj"
             elif (Hero == "doomfist") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
+                return "proj"
+            elif (Hero in HitscanList):
+                return "hitscan"
+            elif (Hero in ProjList):
+                return "proj"
+            elif (Hero == RedTempDPS[0]) and (RedTempDPS[1] in ProjList):
+                return "hitscan"
+            elif (Hero == RedTempDPS[1]) and (RedTempDPS[0] in ProjList):
+                return "hitscan"
+            elif (Hero == RedTempDPS[0]) and (RedTempDPS[1] in HitscanList):
+                return "proj"
+            elif (Hero == RedTempDPS[1]) and (RedTempDPS[0] in HitscanList):
                 return "proj"
         return "error"            
     

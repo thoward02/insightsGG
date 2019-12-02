@@ -81,10 +81,26 @@ def ConvertToCSV():
                 return "offtank"  
             elif (Hero == "reinhardt") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "orisa"):
                 return "offtank"
+            elif (Hero == "orisa") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "reinhardt"):
+                return "maintank"  
+            elif (Hero == "orisa") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "reinhardt"):
+                return "maintank"
             elif (Hero == "wrecking_ball") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "winston"):
                 return "offtank"  
             elif (Hero == "wrecking_ball") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "winston"):
                 return "offtank"
+            elif (Hero == "orisa") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "wrecking_ball"):
+                return "maintank"  
+            elif (Hero == "orisa") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "wrecking_ball"):
+                return "maintank"
+            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "orisa"):
+                return "offtank"  
+            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "orisa"):
+                return "offtank"
+            elif (Hero == "orisa") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "winston"):
+                return "maintank"  
+            elif (Hero == "orisa") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "winston"):
+                return "maintank"
             elif (Hero in MainTankList):
                 return "maintank"
             elif (Hero in OffTankList):
@@ -276,9 +292,33 @@ def ConvertToCSV():
                 return "offtank"
             elif (Hero == "wrecking_ball") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "winston"):
                 return "offtank"
+            elif (Hero == "orisa") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "wrecking_ball"):
+                return "maintank"  
+            elif (Hero == "orisa") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "wrecking_ball"):
+                return "maintank"
+            elif (Hero == "wrecking_ball") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
+                return "offtank"
+            elif (Hero == "wrecking_ball") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
+                return "offtank"
             elif (Hero == "reinhardt") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
                 return "offtank"  
             elif (Hero == "reinhardt") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
+                return "offtank"
+            elif (Hero == "orisa") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "reinhardt"):
+                return "maintank"  
+            elif (Hero == "orisa") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "reinhardt"):
+                return "maintank"
+            elif (Hero == "reinhardt") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
+                return "offtank"  
+            elif (Hero == "reinhardt") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
+                return "offtank"
+            elif (Hero == "orisa") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "winston"):
+                return "maintank"  
+            elif (Hero == "orisa") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "winston"):
+                return "maintank"
+            elif (Hero == "winston") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
+                return "offtank"  
+            elif (Hero == "winston") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
                 return "offtank"
             elif (Hero in MainTankList):
                 return "maintank"
@@ -524,7 +564,7 @@ def ConvertToCSV():
                 elif(FindRole(Hero) == "tank"):
                     BluTempTank.append(Hero)
                 elif(FindRole(Hero) == "dps"):
-                        BluTempDPS.append(Hero)
+                    BluTempDPS.append(Hero)
 
             for Hero in TeamFights["red_heroes"]:
                 if(FindRole(Hero) == "support"):
@@ -538,91 +578,96 @@ def ConvertToCSV():
             for Role in roles:
                 for Hero in BluTempSupp:
                     if(FindBluSecondaryRole(Hero) == Role):
-                        BluTemp.append(Hero)
                         if Role == "mainsupport":
                             BluMainSupp = Hero
                         elif Role == "offsupport":
                             BluOffSupp = Hero
                 for Hero in BluTempTank:
                     if(FindBluSecondaryRole(Hero) == Role):
-                        BluTemp.append(Hero)
                         if Role == "maintank":
                             BluMainTank = Hero
                         elif Role == "offtank":
                             BluOffTank = Hero  
                 for Hero in BluTempDPS:
                     if(FindBluSecondaryRole(Hero) == Role):
-                        BluTemp.append(Hero)
                         if Role == "hitscan":
                             BluHitscan = Hero
                         elif Role == "proj":
                             BluProj = Hero
                 for Hero in RedTempSupp:
                     if(FindRedSecondaryRole(Hero) == Role):
-                        RedTemp.append(Hero)
                         if Role == "mainsupport":
                             RedMainSupp = Hero
                         elif Role == "offsupport":
                             RedOffSupp = Hero
                 for Hero in RedTempTank:
                     if(FindRedSecondaryRole(Hero) == Role):
-                        RedTemp.append(Hero)
                         if Role == "maintank":
                             RedMainTank = Hero
                         elif Role == "offtank":
                             RedOffTank = Hero
                 for Hero in RedTempDPS:
                     if(FindRedSecondaryRole(Hero) == Role):                  
-                        RedTemp.append(Hero)
                         if Role == "hitscan":
                             RedHitscan = Hero
                         elif Role == "proj":
                             RedProj = Hero
+
+            #Build team lists in role order                
+            BluTemp.append(BluMainTank)
+            BluTemp.append(BluOffTank)
+            BluTemp.append(BluHitscan)
+            BluTemp.append(BluProj)
+            BluTemp.append(BluOffSupp)
+            BluTemp.append(BluMainSupp)
+                    
+            RedTemp.append(RedMainTank)
+            RedTemp.append(RedOffTank)
+            RedTemp.append(RedHitscan)
+            RedTemp.append(RedProj)
+            RedTemp.append(RedOffSupp)
+            RedTemp.append(RedMainSupp)          
                                     
             #CSV Format Heroes - Sort through the Heroes, organize them for CSV, and flag which one ulted
             Counter = 0
+            BlueUltBefore = ""
+            RedUltBefore = ""
+            BlueUltAfter = ""
+            RedUltAfter = ""
             for Heroes in BluTemp:
                 if Heroes in BlueTempUltUsage:
                     BluUltUsage[Counter] = 1
                 BLUEHEROES += Heroes + ", "
                 Counter += 1
-
+                for Block in TeamFights["blue_team_ults_before"]:
+                    if Block["hero"] == Heroes:
+                        if Block["status"] == "ready":
+                            Block["status"] = "100"
+                        BlueUltBefore += str(Block["status"]) + ","
+                
+                for Block in TeamFights["blue_team_ults_after"]:
+                    if Block["hero"] == Heroes:
+                        if Block["status"] == "ready":
+                            Block["status"] = "100"
+                        BlueUltAfter +=  str(Block["status"]) + ","
+                    
             Counter = 0
-
             for Heroes in RedTemp:
                 if Heroes in RedTempUltUsage:
                     RedUltUsage[Counter] = 1
                 REDHEROES += Heroes + ", "
                 Counter += 1
-    
-            #Fetch Ults
-            BlueUltBefore = ""
-            for Ults in TeamFights["blue_team_ults_before"]:
-                if(Ults["status"] == "ready"):
-                    Ults["status"] = "100"
-                BlueUltBefore += str(Ults["status"]) + ","
-
-
-            RedUltBefore  = ""
-            for Ults in TeamFights["red_team_ults_before"]:
-                if(Ults["status"] == "ready"):
-                    Ults["status"] = "100"
-                RedUltBefore += str(Ults["status"]) + ","
-
-
-            BlueUltAfter = ""
-            for Ults in TeamFights["blue_team_ults_after"]:
-                if(Ults["status"] == "ready"):
-                    Ults["status"] = "100"
-                BlueUltAfter +=  str(Ults["status"]) + ","
-
-
-            RedUltAfter  = ""
-            for Ults in TeamFights["red_team_ults_after"]:
-                if(Ults["status"] == "ready"):
-                    Ults["status"] = "100"
-                RedUltAfter += str(Ults["status"]) + ","
-
+                for Block in TeamFights["red_team_ults_before"]:
+                    if Block["hero"] == Heroes:
+                        if Block["status"] == "ready":
+                            Block["status"] = "100"
+                        RedUltBefore += str(Block["status"]) + ","
+                
+                for Block in TeamFights["red_team_ults_after"]:
+                    if Block["hero"] == Heroes:
+                        if Block["status"] == "ready":
+                            Block["status"] = "100"
+                        RedUltAfter +=  str(Block["status"]) + "," 
             #Ults used
             BlueUltsUsed = ""
             RedUltsUsed  = ""

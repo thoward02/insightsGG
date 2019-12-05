@@ -1,5 +1,5 @@
 #Import insights class
-import App
+import insightsGG
 
 #Import json for dealing with json
 import json
@@ -12,237 +12,28 @@ import sys
 import os
 
 #Setup the App object containing the class
-App = App.App()
+App = insightsGG.App()
 
-#Converts data to CSV
-def ConvertToCSV():
-    #Find a heros' role based on their hero | TODO: Move this... It's really odd...
-    def FindRole(Hero):
+#Create the data scrubber class (Contains functions too big to contain below)
+class DataCleaner:
+    #Find a heros' role based on their hero
+    def FindRole(self, Hero):
         SupportList = ["lucio", "moira", "zenyatta", "brigitte", "mercy", "ana", "baptiste"]
         DpsList     = ["ashe", "bastion", "doomfist", "genji", "hanzo", "junkrat", "mccree","mei","pharah","reaper","soldier_76","sombra", "symmetra", "torbjorn", "tracer","widowmaker"]
         TankList    = ["dva","orisa","reinhardt", "roadhog", "winston", "wrecking_ball", "zarya", "sigma"]
-      
+
         if (Hero in SupportList):
             return "support"
-            
+
         if (Hero in DpsList):
             return "dps"
-            
+
         if (Hero in TankList):
             return "tank"
-            
-    def FindBluSecondaryRole(Hero):  
-        SecondaryHeroRoleList = ["maintank","offtank","hitscan","projectile","offsupport","mainsupport"]
-        MainSuppList = ["lucio", "mercy"]
-        OffSuppList = ["moira","zenyatta"]
-        HitscanList     = ["ashe","mccree" , "reaper", "soldier_76", "widowmaker","bastion"]
-        ProjList     = ["genji", "pharah", "junkrat"]
-        MainTankList    = ["reinhardt", "winston", "orisa"]
-        OffTankList    = ["dva", "roadhog", "zarya", "sigma"]
-        
-        #supports
-        if Hero in BluTempSupp:
-            if (Hero == "baptiste") and (Hero == BluTempSupp[0]) and (BluTempSupp[1] == "ana"):
-                return "mainsupport"
-            elif (Hero == "ana") and (Hero == BluTempSupp[1]) and (BluTempSupp[0] == "baptiste"):
-                return "offsupport"
-            elif (Hero == "baptiste") and (Hero == BluTempSupp[1]) and (BluTempSupp[0] == "ana"):
-                return "mainsupport"
-            elif (Hero == "ana") and (Hero == BluTempSupp[0]) and (BluTempSupp[1] == "baptiste"):
-                return "offsupport"
-            elif (Hero == "baptiste") and (Hero == BluTempSupp[0]) and (BluTempSupp[1] == "lucio"):
-                return "offsupport"
-            elif (Hero == "brigitte") and (Hero == BluTempSupp[0]) and (BluTempSupp[1] == "lucio"):
-                return "offsupport"
-            elif (Hero == "baptiste") and (Hero == BluTempSupp[0]) and (BluTempSupp[1] == "brigitte"):
-                return "offsupport"   
-            elif (Hero == "brigitte") and (Hero == BluTempSupp[0]) and (BluTempSupp[1] == "baptiste"):
-                return "mainsupport"
-            elif (Hero == "baptiste") and (Hero == BluTempSupp[1]) and (BluTempSupp[0] == "brigitte"):
-                return "offsupport"   
-            elif (Hero == "brigitte") and (Hero == BluTempSupp[1]) and (BluTempSupp[0] == "baptiste"):
-                return "mainsupport"
-            elif (Hero in MainSuppList):
-                return "mainsupport"
-            elif (Hero in OffSuppList):
-                return "offsupport"
-            elif (Hero == BluTempSupp[0]) and (BluTempSupp[1] in OffSuppList):
-                return "mainsupport"
-            elif (Hero == BluTempSupp[1]) and (BluTempSupp[0] in OffSuppList):
-                return "mainsupport"
-            elif (Hero == BluTempSupp[0]) and (BluTempSupp[1] in MainSuppList):
-                return "offsupport"
-            elif (Hero == BluTempSupp[1]) and (BluTempSupp[0] in MainSuppList):
-                return "offsupport"
-               
-        #Tanks
-        if Hero in BluTempTank:
-            if (Hero == "reinhardt") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "orisa"):
-                return "offtank"  
-            elif (Hero == "reinhardt") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "orisa"):
-                return "offtank"
-            elif (Hero == "orisa") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "reinhardt"):
-                return "maintank"  
-            elif (Hero == "orisa") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "reinhardt"):
-                return "maintank"
-            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "winston"):
-                return "offtank"  
-            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "winston"):
-                return "offtank"
-            elif (Hero == "orisa") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "wrecking_ball"):
-                return "maintank"  
-            elif (Hero == "orisa") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "wrecking_ball"):
-                return "maintank"
-            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "orisa"):
-                return "offtank"  
-            elif (Hero == "wrecking_ball") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "orisa"):
-                return "offtank"
-            elif (Hero == "orisa") and (Hero == BluTempTank[0]) and (BluTempTank[1] == "winston"):
-                return "maintank"  
-            elif (Hero == "orisa") and (Hero == BluTempTank[1]) and (BluTempTank[0] == "winston"):
-                return "maintank"
-            elif (Hero in MainTankList):
-                return "maintank"
-            elif (Hero in OffTankList):
-                return "offtank"
-            elif (Hero == BluTempTank[0]) and (BluTempTank[1] in OffTankList):
-                return "maintank"
-            elif (Hero == BluTempTank[1]) and (BluTempTank[0] in OffTankList):
-                return "maintank"
-            elif (Hero == BluTempTank[0]) and (BluTempTank[1] in MainTankList):
-                return "offtank"
-            elif (Hero == BluTempTank[1]) and (BluTempTank[0] in MainTankList):
-                return "offtank"
 
-        #DPS
-        if Hero in BluTempDPS:
-            if (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "widowmaker"):
-                return "proj"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
-                return "hitscan"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "mei"):
-                return "hitscan"
-            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "hanzo"):
-                return "proj"
-            elif (Hero == "mei") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "hanzo"):
-                return "proj"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "pharah"):
-                return "hitscan"
-            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "hanzo"):
-                return "proj"
-            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "doomfist"):
-                return "hitscan"
-            elif (Hero == "doomfist") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "mei"):
-                return "proj"
-            elif (Hero == "mei") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "doomfist"):
-                return "hitscan"
-            elif (Hero == "doomfist") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
-                return "proj"   
-            elif (Hero == "bastion") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
-                return "proj"
-            elif (Hero == "sombra") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
-                return "hitscan"
-            elif (Hero == "tracer") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "sombra"):
-                return "proj"
-            elif (Hero == "sombra") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "tracer"):
-                return "hitscan"
-            elif (Hero == "tracer") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "sombra"):
-                return "proj"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "bastion"):
-                return "proj"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "bastion"):
-                return "proj"
-            elif (Hero == "mei") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "bastion"):
-                return "proj"
-            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "bastion"):
-                return "proj"
-            elif (Hero == "sombra") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "hanzo"):
-                return "hitscan"
-            elif (Hero == "sombra") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "hanzo"):
-                return "hitscan"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "sombra"):
-                return "proj"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "sombra"):
-                return "proj"
-            elif (Hero == "torbjorn") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "mei"):
-                return "hitscan"
-            elif (Hero == "torbjorn") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
-                return "hitscan"
-            elif (Hero == "mei") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "torbjorn"):
-                return "proj"
-            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "torbjorn"):
-                return "proj"
-            elif (Hero == "doomfist") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "sombra"):
-                return "proj"
-            elif (Hero == "doomfist") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "sombra"):
-                return "proj"
-            elif (Hero == "sombra") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "doomfist"):
-                return "hitscan"
-            elif (Hero == "sombra") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "doomfist"):
-                return "hitscan"
-            elif (Hero == "mei") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "symmetra"):
-                return "proj"
-            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "symmetra"):
-                return "proj"
-            elif (Hero == "symmetra") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "mei"):
-                return "hitscan"
-            elif (Hero == "symmetra") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
-                return "hitscan"
-            elif (Hero == "doomfist") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "hanzo"):
-                return "proj"
-            elif (Hero == "doomfist") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "hanzo"):
-                return "proj"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "doomfist"):
-                return "hitscan"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "doomfist"):
-                return "hitscan"
-            elif (Hero == "mei") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "sombra"):
-                return "proj"
-            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "sombra"):
-                return "proj"
-            elif (Hero == "sombra") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "mei"):
-                return "hitscan"
-            elif (Hero == "sombra") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
-                return "hitscan"
-            elif (Hero == "tracer") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "mei"):
-                return "hitscan"
-            elif (Hero == "tracer") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "mei"):
-                return "hitscan"
-            elif (Hero == "mei") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "tracer"):
-                return "proj"
-            elif (Hero == "mei") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
-                return "proj"
-            elif (Hero == "tracer") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "hanzo"):
-                return "hitscan"
-            elif (Hero == "tracer") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "hanzo"):
-                return "hitscan"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "tracer"):
-                return "proj"
-            elif (Hero == "hanzo") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
-                return "proj"
-            elif (Hero == "tracer") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "doomfist"):
-                return "hitscan"
-            elif (Hero == "tracer") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "doomfist"):
-                return "hitscan"
-            elif (Hero == "doomfist") and (Hero == BluTempDPS[1]) and (BluTempDPS[0] == "tracer"):
-                return "proj"
-            elif (Hero == "doomfist") and (Hero == BluTempDPS[0]) and (BluTempDPS[1] == "tracer"):
-                return "proj"
-            elif (Hero in HitscanList):
-                return "hitscan"
-            elif (Hero in ProjList):
-                return "proj"
-            elif (Hero == BluTempDPS[0]) and (BluTempDPS[1] in ProjList):
-                return "hitscan"
-            elif (Hero == BluTempDPS[1]) and (BluTempDPS[0] in ProjList):
-                return "hitscan"
-            elif (Hero == BluTempDPS[0]) and (BluTempDPS[1] in HitscanList):
-                return "proj"
-            elif (Hero == BluTempDPS[1]) and (BluTempDPS[0] in HitscanList):
-                return "proj"   
-        return "error"
 
-    def FindRedSecondaryRole(Hero):  
+    #Find red's secondary role
+    def FindSecondaryRole(self, Hero, TempSupp, TempTank, TempDPS):
         SecondaryHeroRoleList = ["maintank","offtank","hitscan","projectile","offsupport","mainsupport"]
         MainSuppList = ["lucio", "mercy"]
         OffSuppList = ["moira","zenyatta"]
@@ -250,218 +41,334 @@ def ConvertToCSV():
         ProjList     = ["genji", "pharah", "junkrat"]
         MainTankList    = ["reinhardt", "winston","orisa"]
         OffTankList    = ["dva", "roadhog", "zarya", "sigma"]
-        
+
         #supports
-        if Hero in RedTempSupp:
-            if (Hero == "baptiste") and (Hero == RedTempSupp[0]) and (RedTempSupp[1] == "ana"):
+        if Hero in TempSupp:
+            if (Hero == "baptiste") and (Hero == TempSupp[0]) and (TempSupp[1] == "ana"):
                 return "mainsupport"
-            elif (Hero == "ana") and (Hero == RedTempSupp[1]) and (RedTempSupp[0] == "baptiste"):
+            elif (Hero == "ana") and (Hero == TempSupp[1]) and (TempSupp[0] == "baptiste"):
                 return "offsupport"
-            elif (Hero == "baptiste") and (Hero == RedTempSupp[1]) and (RedTempSupp[0] == "ana"):
+            elif (Hero == "baptiste") and (Hero == TempSupp[1]) and (TempSupp[0] == "ana"):
                 return "mainsupport"
-            elif (Hero == "ana") and (Hero == RedTempSupp[0]) and (RedTempSupp[1] == "baptiste"):
+            elif (Hero == "ana") and (Hero == TempSupp[0]) and (TempSupp[1] == "baptiste"):
                 return "offsupport"
-            elif (Hero == "baptiste") and (Hero == RedTempSupp[0]) and (RedTempSupp[1] == "lucio"):
+            elif (Hero == "baptiste") and (Hero == TempSupp[0]) and (TempSupp[1] == "lucio"):
                 return "offsupport"
-            elif (Hero == "brigitte") and (Hero == RedTempSupp[0]) and (RedTempSupp[1] == "lucio"):
+            elif (Hero == "brigitte") and (Hero == TempSupp[0]) and (TempSupp[1] == "lucio"):
                 return "offsupport"
-            elif (Hero == "baptiste") and (Hero == RedTempSupp[0]) and (RedTempSupp[1] == "brigitte"):
-                return "offsupport"   
-            elif (Hero == "brigitte") and (Hero == RedTempSupp[0]) and (RedTempSupp[1] == "baptiste"):
+            elif (Hero == "baptiste") and (Hero == TempSupp[0]) and (TempSupp[1] == "brigitte"):
+                return "offsupport"
+            elif (Hero == "brigitte") and (Hero == TempSupp[0]) and (TempSupp[1] == "baptiste"):
                 return "mainsupport"
-            elif (Hero == "baptiste") and (Hero == RedTempSupp[1]) and (RedTempSupp[0] == "brigitte"):
-                return "offsupport"   
-            elif (Hero == "brigitte") and (Hero == RedTempSupp[1]) and (RedTempSupp[0] == "baptiste"):
+            elif (Hero == "baptiste") and (Hero == TempSupp[1]) and (TempSupp[0] == "brigitte"):
+                return "offsupport"
+            elif (Hero == "brigitte") and (Hero == TempSupp[1]) and (TempSupp[0] == "baptiste"):
                 return "mainsupport"
+            elif (Hero == "mercy") and (Hero == TempSupp[0]) and (TempSupp[1] == "lucio"):
+                return "mainsupport"
+            elif (Hero == "mercy") and (Hero == TempSupp[0]) and (TempSupp[1] == "lucio"):
+                return "mainsupport"
+            elif (Hero == "lucio") and (Hero == TempSupp[0]) and (TempSupp[1] == "mercy"):
+                return "offsupport"
+            elif (Hero == "lucio") and (Hero == TempSupp[1]) and (TempSupp[0] == "mercy"):
+                return "offsupport"
             elif (Hero in MainSuppList):
                 return "mainsupport"
             elif (Hero in OffSuppList):
                 return "offsupport"
-            elif (Hero == RedTempSupp[0]) and (RedTempSupp[1] in OffSuppList):
+            elif (Hero == TempSupp[0]) and (TempSupp[1] in OffSuppList):
                 return "mainsupport"
-            elif (Hero == RedTempSupp[1]) and (RedTempSupp[0] in OffSuppList):
+            elif (Hero == TempSupp[1]) and (TempSupp[0] in OffSuppList):
                 return "mainsupport"
-            elif (Hero == RedTempSupp[0]) and (RedTempSupp[1] in MainSuppList):
+            elif (Hero == TempSupp[0]) and (TempSupp[1] in MainSuppList):
                 return "offsupport"
-            elif (Hero == RedTempSupp[1]) and (RedTempSupp[0] in MainSuppList):
+            elif (Hero == TempSupp[1]) and (TempSupp[0] in MainSuppList):
                 return "offsupport"
-           
+
         #Tanks
-        if Hero in RedTempTank:
-            if (Hero == "wrecking_ball") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "winston"):
+        if Hero in TempTank:
+            if (Hero == "wrecking_ball") and (Hero == TempTank[0]) and (TempTank[1] == "winston"):
                 return "offtank"
-            elif (Hero == "wrecking_ball") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "winston"):
+            elif (Hero == "wrecking_ball") and (Hero == TempTank[1]) and (TempTank[0] == "winston"):
                 return "offtank"
-            elif (Hero == "orisa") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "wrecking_ball"):
-                return "maintank"  
-            elif (Hero == "orisa") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "wrecking_ball"):
+            elif (Hero == "orisa") and (Hero == TempTank[0]) and (TempTank[1] == "wrecking_ball"):
                 return "maintank"
-            elif (Hero == "wrecking_ball") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
-                return "offtank"
-            elif (Hero == "wrecking_ball") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
-                return "offtank"
-            elif (Hero == "reinhardt") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
-                return "offtank"  
-            elif (Hero == "reinhardt") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
-                return "offtank"
-            elif (Hero == "orisa") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "reinhardt"):
-                return "maintank"  
-            elif (Hero == "orisa") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "reinhardt"):
+            elif (Hero == "orisa") and (Hero == TempTank[1]) and (TempTank[0] == "wrecking_ball"):
                 return "maintank"
-            elif (Hero == "reinhardt") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
-                return "offtank"  
-            elif (Hero == "reinhardt") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
+            elif (Hero == "wrecking_ball") and (Hero == TempTank[0]) and (TempTank[1] == "orisa"):
                 return "offtank"
-            elif (Hero == "orisa") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "winston"):
-                return "maintank"  
-            elif (Hero == "orisa") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "winston"):
+            elif (Hero == "wrecking_ball") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
+                return "offtank"
+            elif (Hero == "reinhardt") and (Hero == TempTank[0]) and (TempTank[1] == "orisa"):
+                return "offtank"
+            elif (Hero == "reinhardt") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
+                return "offtank"
+            elif (Hero == "orisa") and (Hero == TempTank[0]) and (TempTank[1] == "reinhardt"):
                 return "maintank"
-            elif (Hero == "winston") and (Hero == RedTempTank[0]) and (RedTempTank[1] == "orisa"):
-                return "offtank"  
-            elif (Hero == "winston") and (Hero == RedTempTank[1]) and (RedTempTank[0] == "orisa"):
+            elif (Hero == "orisa") and (Hero == TempTank[1]) and (TempTank[0] == "reinhardt"):
+                return "maintank"
+            elif (Hero == "reinhardt") and (Hero == TempTank[0]) and (TempTank[1] == "orisa"):
+                return "offtank"
+            elif (Hero == "reinhardt") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
+                return "offtank"
+            elif (Hero == "orisa") and (Hero == TempTank[0]) and (TempTank[1] == "winston"):
+                return "maintank"
+            elif (Hero == "orisa") and (Hero == TempTank[1]) and (TempTank[0] == "winston"):
+                return "maintank"
+            elif (Hero == "winston") and (Hero == TempTank[0]) and (TempTank[1] == "orisa"):
+                return "offtank"
+            elif (Hero == "winston") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
                 return "offtank"
             elif (Hero in MainTankList):
                 return "maintank"
             elif (Hero in OffTankList):
                 return "offtank"
-            elif (Hero == RedTempTank[0]) and (RedTempTank[1] in OffTankList):
+            elif (Hero == TempTank[0]) and (TempTank[1] in OffTankList):
                 return "maintank"
-            elif (Hero == RedTempTank[1]) and (RedTempTank[0] in OffTankList):
+            elif (Hero == TempTank[1]) and (TempTank[0] in OffTankList):
                 return "maintank"
-            elif (Hero == RedTempTank[0]) and (RedTempTank[1] in MainTankList):
+            elif (Hero == TempTank[0]) and (TempTank[1] in MainTankList):
                 return "offtank"
-            elif (Hero == RedTempTank[1]) and (RedTempTank[0] in MainTankList):
+            elif (Hero == TempTank[1]) and (TempTank[0] in MainTankList):
                 return "offtank"
 
         #DPS
-        if Hero in RedTempDPS:
-            if (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "widowmaker"):
+        if Hero in TempDPS:
+            if (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "widowmaker"):
                 return "proj"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
                 return "hitscan"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "mei"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
                 return "hitscan"
-            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "hanzo"):
+            elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
                 return "proj"
-            elif (Hero == "mei") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "hanzo"):
+            elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "hanzo"):
                 return "proj"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "pharah"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "pharah"):
                 return "hitscan"
-            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "hanzo"):
+            elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
                 return "proj"
-            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "doomfist"):
+            elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "doomfist"):
                 return "hitscan"
-            elif (Hero == "doomfist") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "mei"):
+            elif (Hero == "doomfist") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
                 return "proj"
-            elif (Hero == "mei") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "doomfist"):
+            elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "doomfist"):
                 return "hitscan"
-            elif (Hero == "doomfist") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
-                return "proj"   
-            elif (Hero == "bastion") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
+            elif (Hero == "doomfist") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
                 return "proj"
-            elif (Hero == "sombra") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
+            elif (Hero == "bastion") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
+                return "proj"
+            elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "tracer"):
                 return "hitscan"
-            elif (Hero == "tracer") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "sombra"):
+            elif (Hero == "tracer") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
                 return "proj"
-            elif (Hero == "sombra") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
+            elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "tracer"):
                 return "hitscan"
-            elif (Hero == "tracer") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "sombra"):
+            elif (Hero == "tracer") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
                 return "proj"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "bastion"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "bastion"):
                 return "proj"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "bastion"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "bastion"):
                 return "proj"
-            elif (Hero == "mei") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "bastion"):
+            elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "bastion"):
                 return "proj"
-            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "bastion"):
+            elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "bastion"):
                 return "proj"
-            elif (Hero == "sombra") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "hanzo"):
+            elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "hanzo"):
                 return "hitscan"
-            elif (Hero == "sombra") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "hanzo"):
+            elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
                 return "hitscan"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "sombra"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
                 return "proj"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "sombra"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
                 return "proj"
-            elif (Hero == "torbjorn") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "mei"):
+            elif (Hero == "torbjorn") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
                 return "hitscan"
-            elif (Hero == "torbjorn") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
+            elif (Hero == "torbjorn") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
                 return "hitscan"
-            elif (Hero == "mei") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "torbjorn"):
+            elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "torbjorn"):
                 return "proj"
-            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "torbjorn"):
+            elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "torbjorn"):
                 return "proj"
-            elif (Hero == "doomfist") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "sombra"):
+            elif (Hero == "doomfist") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
                 return "proj"
-            elif (Hero == "doomfist") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "sombra"):
+            elif (Hero == "doomfist") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
                 return "proj"
-            elif (Hero == "sombra") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "doomfist"):
+            elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "doomfist"):
                 return "hitscan"
-            elif (Hero == "sombra") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "doomfist"):
+            elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "doomfist"):
                 return "hitscan"
-            elif (Hero == "mei") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "symmetra"):
+            elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "symmetra"):
                 return "proj"
-            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "symmetra"):
+            elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "symmetra"):
                 return "proj"
-            elif (Hero == "symmetra") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "mei"):
+            elif (Hero == "symmetra") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
                 return "hitscan"
-            elif (Hero == "symmetra") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
+            elif (Hero == "symmetra") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
                 return "hitscan"
-            elif (Hero == "doomfist") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "hanzo"):
+            elif (Hero == "doomfist") and (Hero == TempDPS[1]) and (TempDPS[0] == "hanzo"):
                 return "proj"
-            elif (Hero == "doomfist") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "hanzo"):
+            elif (Hero == "doomfist") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
                 return "proj"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "doomfist"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "doomfist"):
                 return "hitscan"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "doomfist"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "doomfist"):
                 return "hitscan"
-            elif (Hero == "mei") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "sombra"):
+            elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
                 return "proj"
-            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "sombra"):
+            elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
                 return "proj"
-            elif (Hero == "sombra") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "mei"):
+            elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
                 return "hitscan"
-            elif (Hero == "sombra") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
+            elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
                 return "hitscan"
-            elif (Hero == "tracer") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "mei"):
+            elif (Hero == "tracer") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
                 return "hitscan"
-            elif (Hero == "tracer") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "mei"):
+            elif (Hero == "tracer") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
                 return "hitscan"
-            elif (Hero == "mei") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
+            elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "tracer"):
                 return "proj"
-            elif (Hero == "mei") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
+            elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "tracer"):
                 return "proj"
-            elif (Hero == "tracer") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "hanzo"):
+            elif (Hero == "tracer") and (Hero == TempDPS[1]) and (TempDPS[0] == "hanzo"):
                 return "hitscan"
-            elif (Hero == "tracer") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "hanzo"):
+            elif (Hero == "tracer") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
                 return "hitscan"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "tracer"):
                 return "proj"
-            elif (Hero == "hanzo") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
+            elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "tracer"):
                 return "proj"
-            elif (Hero == "tracer") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "doomfist"):
+            elif (Hero == "tracer") and (Hero == TempDPS[1]) and (TempDPS[0] == "doomfist"):
                 return "hitscan"
-            elif (Hero == "tracer") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "doomfist"):
+            elif (Hero == "tracer") and (Hero == TempDPS[0]) and (TempDPS[1] == "doomfist"):
                 return "hitscan"
-            elif (Hero == "doomfist") and (Hero == RedTempDPS[1]) and (RedTempDPS[0] == "tracer"):
+            elif (Hero == "doomfist") and (Hero == TempDPS[1]) and (TempDPS[0] == "tracer"):
                 return "proj"
-            elif (Hero == "doomfist") and (Hero == RedTempDPS[0]) and (RedTempDPS[1] == "tracer"):
+            elif (Hero == "doomfist") and (Hero == TempDPS[0]) and (TempDPS[1] == "tracer"):
+                return "proj"
+            elif (Hero == "bastion") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
+                return "hitscan"
+            elif (Hero == "bastion") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
+                return "hitscan"
+            elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "bastion"):
+                return "proj"
+            elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "bastion"):
                 return "proj"
             elif (Hero in HitscanList):
                 return "hitscan"
             elif (Hero in ProjList):
                 return "proj"
-            elif (Hero == RedTempDPS[0]) and (RedTempDPS[1] in ProjList):
+            elif (Hero == TempDPS[0]) and (TempDPS[1] in ProjList):
                 return "hitscan"
-            elif (Hero == RedTempDPS[1]) and (RedTempDPS[0] in ProjList):
+            elif (Hero == TempDPS[1]) and (TempDPS[0] in ProjList):
                 return "hitscan"
-            elif (Hero == RedTempDPS[0]) and (RedTempDPS[1] in HitscanList):
+            elif (Hero == TempDPS[0]) and (TempDPS[1] in HitscanList):
                 return "proj"
-            elif (Hero == RedTempDPS[1]) and (RedTempDPS[0] in HitscanList):
+            elif (Hero == TempDPS[1]) and (TempDPS[0] in HitscanList):
                 return "proj"
-        return "error"            
-    
-    
+        return "error"
+
+    #Sort a list of ults by their execution time :eyes:
+    def SortUltsByTime(self, Data):
+        RangeLen = len(Data)
+
+        for UltPos in range(RangeLen):
+
+            for SortPos in range(0, RangeLen - UltPos - 1):
+                if Data[SortPos]["time"] > Data[SortPos+1]["time"] :
+                    Data[SortPos], Data[SortPos+1] = Data[SortPos+1], Data[SortPos]
+
+        return Data
+
+
+    def FindMap(Map):
+        map   = ""
+        stage = ""
+
+        #TODO : Jesus please clean this, like fuck
+        if "hanamura" in str(Map):
+            map = "Hanamura"
+        if "lunar" in str(Map):
+            map = "Lunar"
+        if "temple" in str(Map):
+            map = "Temple of Anubis"
+        if "volskaya" in str(Map):
+            map = "Volskaya Industries"
+        if "paris" in str(Map):
+            map = "Paris"
+        if "dorado" in str(Map):
+            map = "Dorado"
+        if "junkertown" in str(Map):
+            map = "Junkertown"
+        if "rialto" in str(Map):
+            map = "Rialto"
+        if "route" in str(Map):
+            map = "Route 66"
+        if "gibraltar" in str(Map):
+            map = "Gibraltar"
+        if "havana" in str(Map):
+            map = "Havana"
+        if "blizz" in str(Map):
+            map = "Blizzard World"
+        if "eichen" in str(Map):
+            map = "Eichenwalde"
+        if "hollywood" in str(Map):
+            map = "Hollywood"
+        if "kings" in str(Map):
+            map = "King's Row"
+        if "numbani" in str(Map):
+            map = "Numbani"
+
+        #Assigning the stage for KOTH
+        if "lijiang" in str(Map):
+            map = "Lijiang Tower"
+            if "arket" in str(Map):
+                stage = "Night Market"
+            if "arden" in str(Map):
+                stage = "Garden"
+            if "ontrol" in str(Map):
+                stage = "Control Center"
+        if "oasis" in str(Map):
+            map = "Oasis"
+            if "ity" in str(Map):
+                stage = "City Center"
+            if "arden" in str(Map):
+                stage = "Gardens"
+            if "niversity" in str(Map):
+                stage = "University"
+        if "ilios" in str(Map):
+            map = "Ilios"
+            if "uin" in str(Map):
+                stage = "Ruins"
+            if "ell" in str(Map):
+                stage = "Well"
+            if "ight" in str(Map):
+                stage = "Lighthouse"
+        if "nepal" in str(Map):
+            map = "Nepal"
+            if "illage" in str(Map):
+                stage = "Village"
+            if "hrine" in str(Map):
+                stage = "Shrine"
+            if "anctum" in str(Map):
+                stage = "Sanctum"
+        if "busan" in str(Map):
+            map = "Busan"
+            if "own" in str(Map):
+                stage = "Downtown"
+            if "eka" in str(Map):
+                stage = "MEKA base"
+            if "anct" in str(Map):
+                stage = "Sanctuary"
+
+
+        return [map, stage]
+
+#Converts data to CSV
+def ConvertToCSV():
+    #Create the cleaner
+    Cleaner = DataCleaner()
+
     #Get Users teams  - Check and see if team exists, loop until right team name has been input
     print("[LOG] Here are your teams...")
     for Names in App.Teams:
@@ -505,13 +412,13 @@ def ConvertToCSV():
     MatchAnalytics = App.GrabAnalytics(IdList)
 
     #Create a custom CSV based on what we want
-    CSVOutput = "Map ,Stage, Start, End, Duration, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Before Ult %, BTank 2 Before Ult %, BDps 1 Before Ult %, BDps 2 Before Ult %, BSupport 1 Before Ult %, BSupport 2 Before Ult %, RTank 1 Before Ult %, RTank 2 Before Ult %, RDps 1 Before Ult %, RDps 2 Before Ult %, RSupport 1 Before Ult %, RSupport 2 Before Ult %, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, Total Blue Ults, Total Red Ults, BTank 1 After Ult %, BTank 2 After Ult %, BDps 1 After Ult %, BDps 2 After Ult %, BSupport 1 After Ult %, BSupport 2 After Ult %, RTank 1 After Ult %, RTank 2 After Ult %, RDps 1 After Ult %, RDps 2 After Ult %, RSupport 1 After Ult %, RSupport 2 After Ult %, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills, Blue MT Kills, Blue MT Deaths, Blue OT Kills, Blue OT Deaths, Blue HS Kills, Blue HS Deaths, Blue Proj Kills, Blue Proj Deaths, Blue FS Kills, Blue FS Deaths, Blue MS Kills, Blue MS Deaths, Red MT Kills, Red MT Deaths, Red OT Kills, Red OT Deaths, Red HS Kills, Red HS Deaths, Red Proj Kills, Red Proj Deaths, Red FS Kills, Red FS Deaths, Red MS Kills, Red MS Deaths,  "
+    CSVOutput = "Map ,Stage, Start, End, Duration, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, Total Blue Ults, Total Red Ults, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills, Blue MT Kills, Blue MT Deaths, Blue OT Kills, Blue OT Deaths, Blue HS Kills, Blue HS Deaths, Blue Proj Kills, Blue Proj Deaths, Blue FS Kills, Blue FS Deaths, Blue MS Kills, Blue MS Deaths, Red MT Kills, Red MT Deaths, Red OT Kills, Red OT Deaths, Red HS Kills, Red HS Deaths, Red Proj Kills, Red Proj Deaths, Red FS Kills, Red FS Deaths, Red MS Kills, Red MS Deaths,  "
 
     print("[LOG] Sorting matches...")
     #For each match analyzed
-    
+
     for MatchUps in MatchAnalytics["matches"]:
-        
+
         #For each fight in match
         for TeamFights in MatchUps["data"]["teamfights"]:
             #Setup heroes
@@ -525,14 +432,14 @@ def ConvertToCSV():
             RedTempSupp = []
             RedTempDPS = []
             RedTempTank = []
-            
+
             BluMainTank = ""
             BluOffTank = ""
             BluHitscan = ""
             BluProj = ""
             BluMainSupp = ""
             BluOffSupp = ""
-            
+
             RedMainTank = ""
             RedOffTank = ""
             RedHitscan = ""
@@ -549,7 +456,7 @@ def ConvertToCSV():
 
             BluUltUsage      = [0, 0, 0, 0, 0, 0]
             RedUltUsage      = [0, 0, 0, 0, 0, 0]
-            
+
             for Ults in TeamFights["blue_team_ults_used"]:
                 BlueTempUltUsage.append(Ults["hero"])
 
@@ -559,75 +466,75 @@ def ConvertToCSV():
             #Easy organization of teams
             #Seperate teams into character type
             for Hero in TeamFights["blue_heroes"]:
-                if(FindRole(Hero) == "support"):
+                if(Cleaner.FindRole(Hero) == "support"):
                     BluTempSupp.append(Hero)
-                elif(FindRole(Hero) == "tank"):
+                elif(Cleaner.FindRole(Hero) == "tank"):
                     BluTempTank.append(Hero)
-                elif(FindRole(Hero) == "dps"):
+                elif(Cleaner.FindRole(Hero) == "dps"):
                     BluTempDPS.append(Hero)
 
             for Hero in TeamFights["red_heroes"]:
-                if(FindRole(Hero) == "support"):
+                if(Cleaner.FindRole(Hero) == "support"):
                     RedTempSupp.append(Hero)
-                elif(FindRole(Hero) == "tank"):
+                elif(Cleaner.FindRole(Hero) == "tank"):
                     RedTempTank.append(Hero)
-                elif(FindRole(Hero) == "dps"):
+                elif(Cleaner.FindRole(Hero) == "dps"):
                     RedTempDPS.append(Hero)
-            
+
             #Seperate Heros in each character type into roles
             for Role in roles:
                 for Hero in BluTempSupp:
-                    if(FindBluSecondaryRole(Hero) == Role):
+                    if(Cleaner.FindSecondaryRole(Hero, BluTempSupp, BluTempTank, BluTempDPS) == Role):
                         if Role == "mainsupport":
                             BluMainSupp = Hero
                         elif Role == "offsupport":
                             BluOffSupp = Hero
                 for Hero in BluTempTank:
-                    if(FindBluSecondaryRole(Hero) == Role):
+                    if(Cleaner.FindSecondaryRole(Hero, BluTempSupp, BluTempTank, BluTempDPS) == Role):
                         if Role == "maintank":
                             BluMainTank = Hero
                         elif Role == "offtank":
-                            BluOffTank = Hero  
+                            BluOffTank = Hero
                 for Hero in BluTempDPS:
-                    if(FindBluSecondaryRole(Hero) == Role):
+                    if(Cleaner.FindSecondaryRole(Hero, BluTempSupp, BluTempTank, BluTempDPS) == Role):
                         if Role == "hitscan":
                             BluHitscan = Hero
                         elif Role == "proj":
                             BluProj = Hero
                 for Hero in RedTempSupp:
-                    if(FindRedSecondaryRole(Hero) == Role):
+                    if(Cleaner.FindSecondaryRole(Hero, RedTempSupp, RedTempTank, RedTempDPS) == Role):
                         if Role == "mainsupport":
                             RedMainSupp = Hero
                         elif Role == "offsupport":
                             RedOffSupp = Hero
                 for Hero in RedTempTank:
-                    if(FindRedSecondaryRole(Hero) == Role):
+                    if(Cleaner.FindSecondaryRole(Hero, RedTempSupp, RedTempTank, RedTempDPS) == Role):
                         if Role == "maintank":
                             RedMainTank = Hero
                         elif Role == "offtank":
                             RedOffTank = Hero
                 for Hero in RedTempDPS:
-                    if(FindRedSecondaryRole(Hero) == Role):                  
+                    if(Cleaner.FindSecondaryRole(Hero, RedTempSupp, RedTempTank, RedTempDPS)== Role):
                         if Role == "hitscan":
                             RedHitscan = Hero
                         elif Role == "proj":
                             RedProj = Hero
 
-            #Build team lists in role order                
+            #Build team lists in role order
             BluTemp.append(BluMainTank)
             BluTemp.append(BluOffTank)
             BluTemp.append(BluHitscan)
             BluTemp.append(BluProj)
             BluTemp.append(BluOffSupp)
             BluTemp.append(BluMainSupp)
-                    
+
             RedTemp.append(RedMainTank)
             RedTemp.append(RedOffTank)
             RedTemp.append(RedHitscan)
             RedTemp.append(RedProj)
             RedTemp.append(RedOffSupp)
-            RedTemp.append(RedMainSupp)          
-                                    
+            RedTemp.append(RedMainSupp)
+
             #CSV Format Heroes - Sort through the Heroes, organize them for CSV, and flag which one ulted
             Counter = 0
             BlueUltBefore = ""
@@ -644,13 +551,13 @@ def ConvertToCSV():
                         if Block["status"] == "ready":
                             Block["status"] = "100"
                         BlueUltBefore += str(Block["status"]) + ","
-                
+
                 for Block in TeamFights["blue_team_ults_after"]:
                     if Block["hero"] == Heroes:
                         if Block["status"] == "ready":
                             Block["status"] = "100"
                         BlueUltAfter +=  str(Block["status"]) + ","
-                    
+
             Counter = 0
             for Heroes in RedTemp:
                 if Heroes in RedTempUltUsage:
@@ -662,20 +569,20 @@ def ConvertToCSV():
                         if Block["status"] == "ready":
                             Block["status"] = "100"
                         RedUltBefore += str(Block["status"]) + ","
-                
+
                 for Block in TeamFights["red_team_ults_after"]:
                     if Block["hero"] == Heroes:
                         if Block["status"] == "ready":
                             Block["status"] = "100"
-                        RedUltAfter +=  str(Block["status"]) + "," 
+                        RedUltAfter +=  str(Block["status"]) + ","
             #Ults used
             BlueUltsUsed = ""
             RedUltsUsed  = ""
-            
+
             #Total up the number
             TotalUltsBlu = sum(BluUltUsage)
             TotalUltsRed = sum(RedUltUsage)
-            
+
             for Ults in BluUltUsage:
                 BlueUltsUsed += str(Ults) + ", "
 
@@ -701,85 +608,13 @@ def ConvertToCSV():
                 FirstKillTarget = "Null"
                 FirstKillKiller = "Null"
 
-            #Check and assign the map and stage for KOTH    
-            map = ""
-            stage = ""
-            
-            if "hanamura" in str(MatchUps["data"]["map"]):
-                map = "Hanamura"
-            if "lunar" in str(MatchUps["data"]["map"]):
-                map = "Lunar" 
-            if "temple" in str(MatchUps["data"]["map"]):
-                map = "Temple of Anubis"
-            if "volskaya" in str(MatchUps["data"]["map"]):
-                map = "Volskaya Industries" 
-            if "paris" in str(MatchUps["data"]["map"]):
-                map = "Paris"
-            if "dorado" in str(MatchUps["data"]["map"]):
-                map = "Dorado" 
-            if "junkertown" in str(MatchUps["data"]["map"]):
-                map = "Junkertown"
-            if "rialto" in str(MatchUps["data"]["map"]):
-                map = "Rialto"
-            if "route" in str(MatchUps["data"]["map"]):
-                map = "Route 66"
-            if "gibraltar" in str(MatchUps["data"]["map"]):
-                map = "Gibraltar" 
-            if "havana" in str(MatchUps["data"]["map"]):
-                map = "Havana"
-            if "blizz" in str(MatchUps["data"]["map"]):
-                map = "Blizzard World" 
-            if "eichen" in str(MatchUps["data"]["map"]):
-                map = "Eichenwalde"
-            if "hollywood" in str(MatchUps["data"]["map"]):
-                map = "Hollywood" 
-            if "kings" in str(MatchUps["data"]["map"]):
-                map = "King's Row"
-            if "numbani" in str(MatchUps["data"]["map"]):
-                map = "Numbani"
-            
-            #Assigning the stage for KOTH
-            if "lijiang" in str(MatchUps["data"]["map"]):
-                map = "Lijiang Tower" 
-                if "arket" in str(MatchUps["data"]["map"]):
-                    stage = "Night Market"
-                if "arden" in str(MatchUps["data"]["map"]):
-                    stage = "Gardens"
-                if "ontrol" in str(MatchUps["data"]["map"]):
-                    stage = "Control Center"
-            if "oasis" in str(MatchUps["data"]["map"]):
-                map = "Oasis" 
-                if "ity" in str(MatchUps["data"]["map"]):
-                    stage = "City Center"
-                if "arden" in str(MatchUps["data"]["map"]):
-                    stage = "Gardens"
-                if "niversity" in str(MatchUps["data"]["map"]):
-                    stage = "University"
-            if "ilios" in str(MatchUps["data"]["map"]):
-                map = "Ilios" 
-                if "uin" in str(MatchUps["data"]["map"]):
-                    stage = "Ruins"
-                if "ell" in str(MatchUps["data"]["map"]):
-                    stage = "Well"
-                if "ight" in str(MatchUps["data"]["map"]):
-                    stage = "Lighthouse" 
-            if "nepal" in str(MatchUps["data"]["map"]):
-                map = "Nepal" 
-                if "illage" in str(MatchUps["data"]["map"]):
-                    stage = "Village"
-                if "hrine" in str(MatchUps["data"]["map"]):
-                    stage = "Shrine"
-                if "anctum" in str(MatchUps["data"]["map"]):
-                    stage = "Sanctum"
-            if "busan" in str(MatchUps["data"]["map"]):
-                map = "Busan" 
-                if "own" in str(MatchUps["data"]["map"]):
-                    stage = "Downtown"
-                if "eka" in str(MatchUps["data"]["map"]):
-                    stage = "MEKA base"
-                if "anct" in str(MatchUps["data"]["map"]):
-                    stage = "Sanctuary" 
-            
+            #Check and assign the map and stage for KOTH
+            MapData = Cleaner.FindMap(MatchUps["data"]["map"])
+
+            map = MapData[0]
+            stage = MapData[1]
+
+
             #killcount
             BluMainTankKills = 0
             BluOffTankKills = 0
@@ -787,14 +622,14 @@ def ConvertToCSV():
             BluProjKills = 0
             BluMainSuppKills = 0
             BluOffSuppKills = 0
-            
+
             RedMainTankKills = 0
             RedOffTankKills = 0
             RedHitscanKills = 0
             RedProjKills = 0
             RedMainSuppKills = 0
             RedOffSuppKills = 0
-            
+
             #deathcount
             BluMainTankDeaths = 0
             BluOffTankDeaths = 0
@@ -802,25 +637,25 @@ def ConvertToCSV():
             BluProjDeaths = 0
             BluMainSuppDeaths = 0
             BluOffSuppDeaths = 0
-            
+
             RedMainTankDeaths = 0
             RedOffTankDeaths = 0
             RedHitscanDeaths = 0
             RedProjDeaths = 0
             RedMainSuppDeaths = 0
             RedOffSuppDeaths = 0
-            
+
             #Count deaths/kills of individuals in each fight
             for KillBlocks in MatchUps["data"]["kills"]:
-                if KillBlocks["start_time"] >= TeamFights["start_time"] and KillBlocks["start_time"] <= TeamFights["end_time"]:  
+                if KillBlocks["start_time"] >= TeamFights["start_time"] and KillBlocks["start_time"] <= TeamFights["end_time"]:
                     #Setup Killer
                     Killer      = KillBlocks["killer"]["hero"]
                     KillerTeam  = KillBlocks["killer"]["color"]
-            
+
                     #Target
                     Target      = KillBlocks["killee"]["hero"]
 
-                    #BlueTeam                    
+                    #BlueTeam
                     #kills
                     if KillBlocks["ability"] != "resurrect":
                         if KillerTeam == "blue":
@@ -849,7 +684,7 @@ def ConvertToCSV():
                                 RedMainSuppDeaths +=1
                             if Target == RedOffSupp:
                                 RedOffSuppDeaths +=1
-        
+
                         #RedTeam
                         #kills
                         if KillerTeam == "red":
@@ -864,7 +699,7 @@ def ConvertToCSV():
                             if Killer == RedMainSupp:
                                 RedMainSuppKills +=1
                             if Killer == RedOffSupp:
-                                RedOffSuppKills +=1  
+                                RedOffSuppKills +=1
                             #killees
                             if Target == BluMainTank:
                                 BluMainTankDeaths +=1
@@ -878,11 +713,11 @@ def ConvertToCSV():
                                 BluMainSuppDeaths +=1
                             if Target == BluOffSupp:
                                 BluOffSuppDeaths +=1
-                            
-            #Output - TODO, Clean this holy fuck it's messy dude
-            CSVOutput += "\n" + map + "," + stage + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES + BlueUltBefore + RedUltBefore + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," +  BlueUltAfter + RedUltAfter + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"]) + "," + str(BluMainTankKills) + "," + str(BluMainTankDeaths) + "," + str(BluOffTankKills) + "," + str(BluOffTankDeaths) + "," + str(BluHitscanKills) + "," + str(BluHitscanDeaths)+ "," + str(BluProjKills) + "," + str(BluProjDeaths) + "," + str(BluMainSuppKills) + "," + str(BluMainSuppDeaths) + "," + str(BluOffSuppKills) + "," + str(BluOffSuppDeaths) + "," + str(RedMainTankKills) + "," + str(RedMainTankDeaths) + "," + str(RedOffTankKills) + "," + str(RedOffTankDeaths) + "," + str(RedHitscanKills) + "," + str(RedHitscanDeaths)+ "," + str(RedProjKills) + "," + str(RedProjDeaths) + "," + str(RedMainSuppKills) + "," + str(RedMainSuppDeaths) + "," + str(RedOffSuppKills) + "," + str(RedOffSuppDeaths)
 
-            
+            #Output - TODO, Clean this holy fuck it's messy dude
+            CSVOutput += "\n" + map + "," + stage + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES  + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"]) + "," + str(BluMainTankKills) + "," + str(BluMainTankDeaths) + "," + str(BluOffTankKills) + "," + str(BluOffTankDeaths) + "," + str(BluHitscanKills) + "," + str(BluHitscanDeaths)+ "," + str(BluProjKills) + "," + str(BluProjDeaths) + "," + str(BluMainSuppKills) + "," + str(BluMainSuppDeaths) + "," + str(BluOffSuppKills) + "," + str(BluOffSuppDeaths) + "," + str(RedMainTankKills) + "," + str(RedMainTankDeaths) + "," + str(RedOffTankKills) + "," + str(RedOffTankDeaths) + "," + str(RedHitscanKills) + "," + str(RedHitscanDeaths)+ "," + str(RedProjKills) + "," + str(RedProjDeaths) + "," + str(RedMainSuppKills) + "," + str(RedMainSuppDeaths) + "," + str(RedOffSuppKills) + "," + str(RedOffSuppDeaths)
+
+
     print("[LOG] Done sorting")
 
     FileName = input("What would you like to save the file name as?: ")

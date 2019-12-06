@@ -11,8 +11,6 @@ import math
 import sys
 import os
 
-#Setup the App object containing the class
-App = insightsGG.App()
 
 #Create the data scrubber class (Contains functions too big to contain below)
 class DataCleaner:
@@ -30,7 +28,6 @@ class DataCleaner:
 
         if (Hero in TankList):
             return "tank"
-
 
     #Find red's secondary role
     def FindSecondaryRole(self, Hero, TempSupp, TempTank, TempDPS):
@@ -280,8 +277,8 @@ class DataCleaner:
 
         return Data
 
-
-    def FindMap(Map):
+    #Clean the map and stage identifier
+    def FindMap(self, Map):
         map   = ""
         stage = ""
 
@@ -364,11 +361,33 @@ class DataCleaner:
 
         return [map, stage]
 
-#Converts data to CSV
-def ConvertToCSV():
-    #Create the cleaner
-    Cleaner = DataCleaner()
+    #Convert found data into csv
+    def ConvertToCSV(self, Data):
+        CsvOutput = ""
+        for Rows in Data:
+            for Columns in Rows:
+                CsvOutput += str(Columns) + ", "
 
+            CsvOutput += "\n"
+
+        return CsvOutput
+
+
+
+#Setup the App object containing the class
+App = insightsGG.App()
+
+#Create the cleaner
+Cleaner = DataCleaner()
+
+
+#Fetches teamfights
+def FetchTeamFights():
+    """
+    TODO:
+        - Clean this messy interface oh dear god
+    """
+    
     #Get Users teams  - Check and see if team exists, loop until right team name has been input
     print("[LOG] Here are your teams...")
     for Names in App.Teams:
@@ -412,18 +431,85 @@ def ConvertToCSV():
     MatchAnalytics = App.GrabAnalytics(IdList)
 
     #Create a custom CSV based on what we want
-    CSVOutput = "Map ,Stage, Start, End, Duration, Winner, BTank 1, BTank 2, BDps 1, BDps 2, BSupport 1, BSupport 2, RTank 1, RTank 2, RDps 1, RDps 2, RSupport 1, RSupport 2, BTank 1 Ult Usage, BTank 2 Ult Usage, BDps 1 Ult Usage, BDps 2 Ult Usage, BSupport 1 Ult Usage, BSupport 2 Ult Usage, RTank 1 Ult Usage, RTank 2 Ult Usage, RDps 1 Ult Usage, RDps 2 Ult Usage, RSupport 1 Ult Usage, RSupport 2 Ult Usage, Total Blue Ults, Total Red Ults, First Ult Team, First Ult Caster, First Kill Team, First Kill Killer, First Kill Killie, Blue Kills, Red Kills, Blue MT Kills, Blue MT Deaths, Blue OT Kills, Blue OT Deaths, Blue HS Kills, Blue HS Deaths, Blue Proj Kills, Blue Proj Deaths, Blue FS Kills, Blue FS Deaths, Blue MS Kills, Blue MS Deaths, Red MT Kills, Red MT Deaths, Red OT Kills, Red OT Deaths, Red HS Kills, Red HS Deaths, Red Proj Kills, Red Proj Deaths, Red FS Kills, Red FS Deaths, Red MS Kills, Red MS Deaths,  "
+    Title = [
+        "Map",
+        "Stage",
+        " Start",
+        " End",
+        " Duration",
+        " Winner",
+        " BTank 1",
+        " BTank 2",
+        " BDps 1",
+        " BDps 2",
+        " BSupport 1",
+        " BSupport 2",
+        " RTank 1",
+        " RTank 2",
+        " RDps 1",
+        " RDps 2",
+        " RSupport 1",
+        " RSupport 2",
+        " BTank 1 Ult Usage",
+        " BTank 2 Ult Usage",
+        " BDps 1 Ult Usage",
+        " BDps 2 Ult Usage",
+        " BSupport 1 Ult Usage",
+        " BSupport 2 Ult Usage",
+        " RTank 1 Ult Usage",
+        " RTank 2 Ult Usage",
+        " RDps 1 Ult Usage",
+        " RDps 2 Ult Usage",
+        " RSupport 1 Ult Usage",
+        " RSupport 2 Ult Usage",
+        " Total Blue Ults",
+        " Total Red Ults",
+        " First Ult Team",
+        " First Ult Caster",
+        " First Kill Team",
+        " First Kill Killer",
+        " First Kill Killie",
+        " Blue Kills",
+        " Red Kills",
+        " Blue MT Kills",
+        " Blue MT Deaths",
+        " Blue OT Kills",
+        " Blue OT Deaths",
+        " Blue HS Kills",
+        " Blue HS Deaths",
+        " Blue Proj Kills",
+        " Blue Proj Deaths",
+        " Blue FS Kills",
+        " Blue FS Deaths",
+        " Blue MS Kills",
+        " Blue MS Deaths",
+        " Red MT Kills",
+        " Red MT Deaths",
+        " Red OT Kills",
+        " Red OT Deaths",
+        " Red HS Kills",
+        " Red HS Deaths",
+        " Red Proj Kills",
+        " Red Proj Deaths",
+        " Red FS Kills",
+        " Red FS Deaths",
+        " Red MS Kills",
+        " Red MS Deaths"
+        ]
+    Output = [Title]
 
     print("[LOG] Sorting matches...")
+
     #For each match analyzed
-
     for MatchUps in MatchAnalytics["matches"]:
-
         #For each fight in match
         for TeamFights in MatchUps["data"]["teamfights"]:
+            #Setup the row output
+            RowOutput = []
+
             #Setup heroes
-            BLUEHEROES = ""
-            REDHEROES  = ""
+            BLUEHEROES = []
+            REDHEROES  = []
 
             roles      = ["maintank","offtank","hitscan", "proj","offsupport", "mainsupport"]
             BluTempSupp = []
@@ -434,18 +520,18 @@ def ConvertToCSV():
             RedTempTank = []
 
             BluMainTank = ""
-            BluOffTank = ""
-            BluHitscan = ""
-            BluProj = ""
+            BluOffTank  = ""
+            BluHitscan  = ""
+            BluProj     = ""
             BluMainSupp = ""
-            BluOffSupp = ""
+            BluOffSupp  = ""
 
             RedMainTank = ""
-            RedOffTank = ""
-            RedHitscan = ""
-            RedProj = ""
+            RedOffTank  = ""
+            RedHitscan  = ""
+            RedProj     = ""
             RedMainSupp = ""
-            RedOffSupp = ""
+            RedOffSupp  = ""
 
             BluTemp    = []
             RedTemp    = []
@@ -536,59 +622,61 @@ def ConvertToCSV():
             RedTemp.append(RedMainSupp)
 
             #CSV Format Heroes - Sort through the Heroes, organize them for CSV, and flag which one ulted
+            BlueUltBefore = []
+            RedUltBefore  = []
+            BlueUltAfter  = []
+            RedUltAfter   = []
+
+            #Comb through the ult usage | Blue team
             Counter = 0
-            BlueUltBefore = ""
-            RedUltBefore = ""
-            BlueUltAfter = ""
-            RedUltAfter = ""
             for Heroes in BluTemp:
+                #Find if ult used
                 if Heroes in BlueTempUltUsage:
                     BluUltUsage[Counter] = 1
-                BLUEHEROES += Heroes + ", "
+                BLUEHEROES.append(Heroes)
                 Counter += 1
+
+                #Find the ult % before
                 for Block in TeamFights["blue_team_ults_before"]:
                     if Block["hero"] == Heroes:
                         if Block["status"] == "ready":
                             Block["status"] = "100"
-                        BlueUltBefore += str(Block["status"]) + ","
+                        BlueUltBefore.append(str(Block["status"]))
 
+                #Find the ult % afterwards
                 for Block in TeamFights["blue_team_ults_after"]:
                     if Block["hero"] == Heroes:
                         if Block["status"] == "ready":
                             Block["status"] = "100"
-                        BlueUltAfter +=  str(Block["status"]) + ","
+                        BlueUltAfter.append(str(Block["status"]))
 
+            #Comb through the ult usage | RED TEAM
             Counter = 0
             for Heroes in RedTemp:
+                #Find if the ult was used
                 if Heroes in RedTempUltUsage:
                     RedUltUsage[Counter] = 1
-                REDHEROES += Heroes + ", "
+                REDHEROES.append(Heroes)
                 Counter += 1
+
+                #Find the ult % before
                 for Block in TeamFights["red_team_ults_before"]:
                     if Block["hero"] == Heroes:
                         if Block["status"] == "ready":
                             Block["status"] = "100"
-                        RedUltBefore += str(Block["status"]) + ","
+                        RedUltBefore.append(str(Block["status"]))
 
+                #Find ult % afterwards
                 for Block in TeamFights["red_team_ults_after"]:
                     if Block["hero"] == Heroes:
                         if Block["status"] == "ready":
                             Block["status"] = "100"
-                        RedUltAfter +=  str(Block["status"]) + ","
-            #Ults used
-            BlueUltsUsed = ""
-            RedUltsUsed  = ""
+                        RedUltAfter.append(str(Block["status"]))
 
             #Total up the number
             TotalUltsBlu = sum(BluUltUsage)
             TotalUltsRed = sum(RedUltUsage)
 
-            for Ults in BluUltUsage:
-                BlueUltsUsed += str(Ults) + ", "
-
-
-            for Ults in RedUltUsage:
-                RedUltsUsed += str(Ults) + ", "
 
             #Ults - If there were first ults used, port them over
             if(TeamFights["first_ult"] != ""):
@@ -617,33 +705,33 @@ def ConvertToCSV():
 
             #killcount
             BluMainTankKills = 0
-            BluOffTankKills = 0
-            BluHitscanKills = 0
-            BluProjKills = 0
+            BluOffTankKills  = 0
+            BluHitscanKills  = 0
+            BluProjKills     = 0
             BluMainSuppKills = 0
-            BluOffSuppKills = 0
+            BluOffSuppKills  = 0
 
             RedMainTankKills = 0
-            RedOffTankKills = 0
-            RedHitscanKills = 0
-            RedProjKills = 0
+            RedOffTankKills  = 0
+            RedHitscanKills  = 0
+            RedProjKills     = 0
             RedMainSuppKills = 0
-            RedOffSuppKills = 0
+            RedOffSuppKills  = 0
 
             #deathcount
             BluMainTankDeaths = 0
-            BluOffTankDeaths = 0
-            BluHitscanDeaths = 0
-            BluProjDeaths = 0
+            BluOffTankDeaths  = 0
+            BluHitscanDeaths  = 0
+            BluProjDeaths     = 0
             BluMainSuppDeaths = 0
-            BluOffSuppDeaths = 0
+            BluOffSuppDeaths  = 0
 
             RedMainTankDeaths = 0
-            RedOffTankDeaths = 0
-            RedHitscanDeaths = 0
-            RedProjDeaths = 0
+            RedOffTankDeaths  = 0
+            RedHitscanDeaths  = 0
+            RedProjDeaths     = 0
             RedMainSuppDeaths = 0
-            RedOffSuppDeaths = 0
+            RedOffSuppDeaths  = 0
 
             #Count deaths/kills of individuals in each fight
             for KillBlocks in MatchUps["data"]["kills"]:
@@ -714,18 +802,92 @@ def ConvertToCSV():
                             if Target == BluOffSupp:
                                 BluOffSuppDeaths +=1
 
-            #Output - TODO, Clean this holy fuck it's messy dude
-            CSVOutput += "\n" + map + "," + stage + "," + str(int(TeamFights["start_time"])) + "," + str(int(TeamFights["end_time"])) + "," + str(int(TeamFights["end_time"] - TeamFights["start_time"])) + "," + TeamFights["winner"]  + "," + BLUEHEROES + REDHEROES  + BlueUltsUsed +  RedUltsUsed + str(TotalUltsBlu) + "," + str(TotalUltsRed) + "," + FirstUltTeam + "," + FirstUltTarget + "," + FirstKillTeam + "," + FirstKillKiller + "," + FirstKillTarget + "," + str(TeamFights["blue_team_kills"]) + "," + str(TeamFights["red_team_kills"]) + "," + str(BluMainTankKills) + "," + str(BluMainTankDeaths) + "," + str(BluOffTankKills) + "," + str(BluOffTankDeaths) + "," + str(BluHitscanKills) + "," + str(BluHitscanDeaths)+ "," + str(BluProjKills) + "," + str(BluProjDeaths) + "," + str(BluMainSuppKills) + "," + str(BluMainSuppDeaths) + "," + str(BluOffSuppKills) + "," + str(BluOffSuppDeaths) + "," + str(RedMainTankKills) + "," + str(RedMainTankDeaths) + "," + str(RedOffTankKills) + "," + str(RedOffTankDeaths) + "," + str(RedHitscanKills) + "," + str(RedHitscanDeaths)+ "," + str(RedProjKills) + "," + str(RedProjDeaths) + "," + str(RedMainSuppKills) + "," + str(RedMainSuppDeaths) + "," + str(RedOffSuppKills) + "," + str(RedOffSuppDeaths)
+            #Output
+            RowOutput = [
+        #Map Data
+        map,
+        stage,
+
+        #Timing
+        str(int(TeamFights["start_time"])),
+        str(int(TeamFights["end_time"])),
+        str(int(TeamFights["end_time"] - TeamFights["start_time"])),
+
+        #Fight Winner
+        TeamFights["winner"],
+
+        #Blue team
+        BLUEHEROES[0],
+        BLUEHEROES[1],
+        BLUEHEROES[2],
+        BLUEHEROES[3],
+        BLUEHEROES[4],
+        BLUEHEROES[5],
+
+        #Red team
+        REDHEROES[0],
+        REDHEROES[1],
+        REDHEROES[2],
+        REDHEROES[3],
+        REDHEROES[4],
+        REDHEROES[5],
+
+        BluUltUsage[0],
+        BluUltUsage[1],
+        BluUltUsage[2],
+        BluUltUsage[3],
+        BluUltUsage[4],
+        BluUltUsage[5],
+
+        RedUltUsage[0],
+        RedUltUsage[1],
+        RedUltUsage[2],
+        RedUltUsage[3],
+        RedUltUsage[4],
+        RedUltUsage[5],
+
+        str(TotalUltsBlu),
+        str(TotalUltsRed),
+
+        FirstUltTeam,
+        FirstUltTarget,
+        FirstKillTeam,
+        FirstKillKiller,
+        FirstKillTarget,
+        str(TeamFights["blue_team_kills"]),
+        str(TeamFights["red_team_kills"]),
+        str(BluMainTankKills),
+        str(BluMainTankDeaths),
+        str(BluOffTankKills),
+        str(BluOffTankDeaths),
+        str(BluHitscanKills),
+        str(BluHitscanDeaths),
+        str(BluProjKills),
+        str(BluProjDeaths),
+        str(BluMainSuppKills),
+        str(BluMainSuppDeaths),
+        str(BluOffSuppKills),
+        str(BluOffSuppDeaths),
+        str(RedMainTankKills),
+        str(RedMainTankDeaths),
+        str(RedOffTankKills),
+        str(RedOffTankDeaths),
+        str(RedHitscanKills),
+        str(RedHitscanDeaths),
+        str(RedProjKills),
+        str(RedProjDeaths),
+        str(RedMainSuppKills),
+        str(RedMainSuppDeaths),
+        str(RedOffSuppKills),
+        str(RedOffSuppDeaths)
+    ]
+            Output.append(RowOutput)
 
 
     print("[LOG] Done sorting")
 
-    FileName = input("What would you like to save the file name as?: ")
-    #Push the output
-    with open("Outputs/" + FileName + ".csv", "w") as OutputFile:
-        OutputFile.write(CSVOutput)
-
-    print("[LOG] Done! Exiting")
+    #Convert output to CSV
+    return Output
 
 
 #Starting Point
@@ -768,7 +930,16 @@ def Start():
     print("[LOG] Logged in. ")
 
     #Start the user task
-    ConvertToCSV()
+    FetchFights = FetchTeamFights()
+
+    #Convert the output to CSV
+    CsvOutput = Cleaner.ConvertToCSV(FetchFights)
+
+    #Save output to CSV
+    FileName = input("What would you like to save the file name as?: ")
+    #Push the output
+    with open("Outputs/" + FileName + ".csv", "w") as OutputFile:
+        OutputFile.write(CsvOutput)
 
 
 

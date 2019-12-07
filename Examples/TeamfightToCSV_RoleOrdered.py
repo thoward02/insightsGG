@@ -387,7 +387,7 @@ def FetchTeamFights():
     TODO:
         - Clean this messy interface oh dear god
     """
-    
+
     #Get Users teams  - Check and see if team exists, loop until right team name has been input
     print("[LOG] Here are your teams...")
     for Names in App.Teams:
@@ -434,43 +434,66 @@ def FetchTeamFights():
     Title = [
         "Map",
         "Stage",
+
         " Start",
         " End",
         " Duration",
+
         " Winner",
+
         " BTank 1",
         " BTank 2",
         " BDps 1",
         " BDps 2",
         " BSupport 1",
         " BSupport 2",
+
         " RTank 1",
         " RTank 2",
         " RDps 1",
         " RDps 2",
         " RSupport 1",
         " RSupport 2",
+
         " BTank 1 Ult Usage",
+        " BTank 1 Ult Order",
         " BTank 2 Ult Usage",
+        " BTank 2 Ult Order",
         " BDps 1 Ult Usage",
+        " BDps 1 Ult Order",
         " BDps 2 Ult Usage",
+        " BDps 2 Ult Order",
         " BSupport 1 Ult Usage",
+        " BSupport 1 Ult Order",
         " BSupport 2 Ult Usage",
+        " BSupport 2 Ult Order",
+
         " RTank 1 Ult Usage",
+        " RTank 1 Ult Order",
         " RTank 2 Ult Usage",
+        " RTank 2 Ult Order",
         " RDps 1 Ult Usage",
+        " RDps 1 Ult Order",
         " RDps 2 Ult Usage",
+        " RDps 2 Ult Order",
         " RSupport 1 Ult Usage",
+        " RSupport 1 Ult Order",
         " RSupport 2 Ult Usage",
+        " RSupport 2 Ult Order",
+
         " Total Blue Ults",
         " Total Red Ults",
+
         " First Ult Team",
         " First Ult Caster",
+
         " First Kill Team",
         " First Kill Killer",
         " First Kill Killie",
+
         " Blue Kills",
         " Red Kills",
+
         " Blue MT Kills",
         " Blue MT Deaths",
         " Blue OT Kills",
@@ -483,6 +506,7 @@ def FetchTeamFights():
         " Blue FS Deaths",
         " Blue MS Kills",
         " Blue MS Deaths",
+
         " Red MT Kills",
         " Red MT Deaths",
         " Red OT Kills",
@@ -542,6 +566,9 @@ def FetchTeamFights():
 
             BluUltUsage      = [0, 0, 0, 0, 0, 0]
             RedUltUsage      = [0, 0, 0, 0, 0, 0]
+
+            RedUltOrder      = [0, 0, 0, 0, 0, 0]
+            BluUltOrder      = [0, 0, 0, 0, 0, 0]
 
             for Ults in TeamFights["blue_team_ults_used"]:
                 BlueTempUltUsage.append(Ults["hero"])
@@ -633,6 +660,8 @@ def FetchTeamFights():
                 #Find if ult used
                 if Heroes in BlueTempUltUsage:
                     BluUltUsage[Counter] = 1
+                    BluUltOrder[Counter] = BluTemp.index(Heroes) + 1
+
                 BLUEHEROES.append(Heroes)
                 Counter += 1
 
@@ -656,6 +685,8 @@ def FetchTeamFights():
                 #Find if the ult was used
                 if Heroes in RedTempUltUsage:
                     RedUltUsage[Counter] = 1
+                    RedUltOrder[Counter] = RedTemp.index(Heroes) + 1
+
                 REDHEROES.append(Heroes)
                 Counter += 1
 
@@ -833,18 +864,30 @@ def FetchTeamFights():
         REDHEROES[5],
 
         BluUltUsage[0],
+        BluUltOrder[0],
         BluUltUsage[1],
+        BluUltOrder[1],
         BluUltUsage[2],
+        BluUltOrder[2],
         BluUltUsage[3],
+        BluUltOrder[3],
         BluUltUsage[4],
+        BluUltOrder[4],
         BluUltUsage[5],
+        BluUltOrder[5],
 
         RedUltUsage[0],
+        RedUltOrder[0],
         RedUltUsage[1],
+        RedUltOrder[1],
         RedUltUsage[2],
+        RedUltOrder[2],
         RedUltUsage[3],
+        RedUltOrder[3],
         RedUltUsage[4],
+        RedUltOrder[4],
         RedUltUsage[5],
+        RedUltOrder[5],
 
         str(TotalUltsBlu),
         str(TotalUltsRed),

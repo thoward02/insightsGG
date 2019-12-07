@@ -575,11 +575,21 @@ def FetchTeamFights():
             RedUltOrder      = [0, 0, 0, 0, 0, 0]
             BluUltOrder      = [0, 0, 0, 0, 0, 0]
 
+            #Fetch ults
             for Ults in TeamFights["blue_team_ults_used"]:
                 BlueTempUltUsage.append(Ults["hero"])
 
             for Ults in TeamFights["red_team_ults_used"]:
                 RedTempUltUsage.append(Ults["hero"])
+
+            #Order them
+            UltsToOrder = []
+            for Ultsets in [TeamFights["blue_team_ults_used"], TeamFights["red_team_ults_used"]]:
+                for Ults in Ultsets:
+                    UltsToOrder.append(Ults)
+
+            #Returns all of the ults ordered by time, where 0 is the earliest
+            UltsToOrder = Cleaner.SortUltsByTime(UltsToOrder)
 
             #Easy organization of teams
             #Seperate teams into character type
@@ -665,7 +675,11 @@ def FetchTeamFights():
                 #Find if ult used
                 if Heroes in BlueTempUltUsage:
                     BluUltUsage[Counter] = 1
-                    BluUltOrder[Counter] = BluTemp.index(Heroes) + 1
+
+                    #Find the order
+                    for Ults in UltsToOrder:
+                        if Ults["hero"] == Heroes and Ults["index"] < 6:
+                            BluUltOrder[Counter] = str(UltsToOrder.index(Ults) + 1)
 
                 BLUEHEROES.append(Heroes)
                 Counter += 1
@@ -690,7 +704,10 @@ def FetchTeamFights():
                 #Find if the ult was used
                 if Heroes in RedTempUltUsage:
                     RedUltUsage[Counter] = 1
-                    RedUltOrder[Counter] = RedTemp.index(Heroes) + 1
+                    #Find the order
+                    for Ults in UltsToOrder:
+                        if Ults["hero"] == Heroes and Ults["index"] >= 6:
+                            RedUltOrder[Counter] = str(UltsToOrder.index(Ults) + 1) + "__"
 
                 REDHEROES.append(Heroes)
                 Counter += 1

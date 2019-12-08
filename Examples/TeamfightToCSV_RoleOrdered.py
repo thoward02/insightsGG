@@ -265,8 +265,7 @@ class DataCleaner:
                     return "proj"
 
         except:
-            print("ERRROR\n" + str(TempTank) + "\n"+ str(TempDPS) + "\n" + str(TempSupp))
-            return "error"
+            print("ERRROR\n\tTankList\n\t\t" + str(TempTank) + "\n\tDPSLIST\n\t\t"+ str(TempDPS) + "\nSupportList\n\t\t" + str(TempSupp))
 
         return "error"
 
@@ -594,20 +593,30 @@ def FetchTeamFights():
             #Easy organization of teams
             #Seperate teams into character type
             for Hero in TeamFights["blue_heroes"]:
-                if(Cleaner.FindRole(Hero) == "support"):
+                FindRole = Cleaner.FindRole(Hero)
+                if(FindRole == "support"):
                     BluTempSupp.append(Hero)
-                elif(Cleaner.FindRole(Hero) == "tank"):
+                elif(FindRole == "tank"):
                     BluTempTank.append(Hero)
-                elif(Cleaner.FindRole(Hero) == "dps"):
+                elif(FindRole == "dps"):
                     BluTempDPS.append(Hero)
 
+                if FindRole not in ["support", "tank", "dps"]:
+                    raise ValueError("UNRECOGNIZED HERO, \"" + Hero +"\"")
+
+
             for Hero in TeamFights["red_heroes"]:
-                if(Cleaner.FindRole(Hero) == "support"):
+                FindRole = Cleaner.FindRole(Hero)
+                if(FindRole == "support"):
                     RedTempSupp.append(Hero)
-                elif(Cleaner.FindRole(Hero) == "tank"):
+                elif(FindRole == "tank"):
                     RedTempTank.append(Hero)
-                elif(Cleaner.FindRole(Hero) == "dps"):
+                elif(FindRole == "dps"):
                     RedTempDPS.append(Hero)
+
+                if FindRole not in ["support", "tank", "dps"]:
+                    raise ValueError("UNRECOGNIZED HERO, \"" + Hero +"\"")
+
 
             #Seperate Heros in each character type into roles
             for Role in roles:
@@ -707,7 +716,7 @@ def FetchTeamFights():
                     #Find the order
                     for Ults in UltsToOrder:
                         if Ults["hero"] == Heroes and Ults["index"] >= 6:
-                            RedUltOrder[Counter] = str(UltsToOrder.index(Ults) + 1) + "__"
+                            RedUltOrder[Counter] = str(UltsToOrder.index(Ults) + 1)
 
                 REDHEROES.append(Heroes)
                 Counter += 1
@@ -857,95 +866,95 @@ def FetchTeamFights():
 
             #Output
             RowOutput = [
-        #Map Data
-        map,
-        stage,
+                #Map Data
+                map,
+                stage,
 
-        #Timing
-        str(int(TeamFights["start_time"])),
-        str(int(TeamFights["end_time"])),
-        str(int(TeamFights["end_time"] - TeamFights["start_time"])),
+                #Timing
+                str(int(TeamFights["start_time"])),
+                str(int(TeamFights["end_time"])),
+                str(int(TeamFights["end_time"] - TeamFights["start_time"])),
 
-        #Fight Winner
-        TeamFights["winner"],
+                #Fight Winner
+                TeamFights["winner"],
 
-        #Blue team
-        BLUEHEROES[0],
-        BLUEHEROES[1],
-        BLUEHEROES[2],
-        BLUEHEROES[3],
-        BLUEHEROES[4],
-        BLUEHEROES[5],
+                #Blue team
+                BLUEHEROES[0],
+                BLUEHEROES[1],
+                BLUEHEROES[2],
+                BLUEHEROES[3],
+                BLUEHEROES[4],
+                BLUEHEROES[5],
 
-        #Red team
-        REDHEROES[0],
-        REDHEROES[1],
-        REDHEROES[2],
-        REDHEROES[3],
-        REDHEROES[4],
-        REDHEROES[5],
+                #Red team
+                REDHEROES[0],
+                REDHEROES[1],
+                REDHEROES[2],
+                REDHEROES[3],
+                REDHEROES[4],
+                REDHEROES[5],
 
-        BluUltUsage[0],
-        BluUltOrder[0],
-        BluUltUsage[1],
-        BluUltOrder[1],
-        BluUltUsage[2],
-        BluUltOrder[2],
-        BluUltUsage[3],
-        BluUltOrder[3],
-        BluUltUsage[4],
-        BluUltOrder[4],
-        BluUltUsage[5],
-        BluUltOrder[5],
+                BluUltUsage[0],
+                BluUltOrder[0],
+                BluUltUsage[1],
+                BluUltOrder[1],
+                BluUltUsage[2],
+                BluUltOrder[2],
+                BluUltUsage[3],
+                BluUltOrder[3],
+                BluUltUsage[4],
+                BluUltOrder[4],
+                BluUltUsage[5],
+                BluUltOrder[5],
 
-        RedUltUsage[0],
-        RedUltOrder[0],
-        RedUltUsage[1],
-        RedUltOrder[1],
-        RedUltUsage[2],
-        RedUltOrder[2],
-        RedUltUsage[3],
-        RedUltOrder[3],
-        RedUltUsage[4],
-        RedUltOrder[4],
-        RedUltUsage[5],
-        RedUltOrder[5],
+                RedUltUsage[0],
+                RedUltOrder[0],
+                RedUltUsage[1],
+                RedUltOrder[1],
+                RedUltUsage[2],
+                RedUltOrder[2],
+                RedUltUsage[3],
+                RedUltOrder[3],
+                RedUltUsage[4],
+                RedUltOrder[4],
+                RedUltUsage[5],
+                RedUltOrder[5],
 
-        str(TotalUltsBlu),
-        str(TotalUltsRed),
+                str(TotalUltsBlu),
+                str(TotalUltsRed),
 
-        FirstUltTeam,
-        FirstUltTarget,
-        FirstKillTeam,
-        FirstKillKiller,
-        FirstKillTarget,
-        str(TeamFights["blue_team_kills"]),
-        str(TeamFights["red_team_kills"]),
-        str(BluMainTankKills),
-        str(BluMainTankDeaths),
-        str(BluOffTankKills),
-        str(BluOffTankDeaths),
-        str(BluHitscanKills),
-        str(BluHitscanDeaths),
-        str(BluProjKills),
-        str(BluProjDeaths),
-        str(BluMainSuppKills),
-        str(BluMainSuppDeaths),
-        str(BluOffSuppKills),
-        str(BluOffSuppDeaths),
-        str(RedMainTankKills),
-        str(RedMainTankDeaths),
-        str(RedOffTankKills),
-        str(RedOffTankDeaths),
-        str(RedHitscanKills),
-        str(RedHitscanDeaths),
-        str(RedProjKills),
-        str(RedProjDeaths),
-        str(RedMainSuppKills),
-        str(RedMainSuppDeaths),
-        str(RedOffSuppKills),
-        str(RedOffSuppDeaths)
-    ]
+                FirstUltTeam,
+                FirstUltTarget,
+                FirstKillTeam,
+                FirstKillKiller,
+                FirstKillTarget,
+                str(TeamFights["blue_team_kills"]),
+                str(TeamFights["red_team_kills"]),
+                str(BluMainTankKills),
+                str(BluMainTankDeaths),
+                str(BluOffTankKills),
+                str(BluOffTankDeaths),
+                str(BluHitscanKills),
+                str(BluHitscanDeaths),
+                str(BluProjKills),
+                str(BluProjDeaths),
+                str(BluMainSuppKills),
+                str(BluMainSuppDeaths),
+                str(BluOffSuppKills),
+                str(BluOffSuppDeaths),
+                str(RedMainTankKills),
+                str(RedMainTankDeaths),
+                str(RedOffTankKills),
+                str(RedOffTankDeaths),
+                str(RedHitscanKills),
+                str(RedHitscanDeaths),
+                str(RedProjKills),
+                str(RedProjDeaths),
+                str(RedMainSuppKills),
+                str(RedMainSuppDeaths),
+                str(RedOffSuppKills),
+                str(RedOffSuppDeaths)
+            ]
             Output.append(RowOutput)
 
 

@@ -11,7 +11,6 @@ import math
 import sys
 import os
 
-
 #Create the data scrubber class (Contains functions too big to contain below)
 class DataCleaner:
     #Find a heros' role based on their hero
@@ -377,13 +376,11 @@ class DataCleaner:
         return CsvOutput
 
 
-
 #Setup the App object containing the class
 App = insightsGG.App()
 
 #Create the cleaner
 Cleaner = DataCleaner()
-
 
 #Fetches teamfights
 def FetchTeamFights():
@@ -439,6 +436,7 @@ def FetchTeamFights():
         "Map",
         "Stage",
 
+        " Team fight number",
         " Start",
         " End",
         " Duration",
@@ -460,29 +458,31 @@ def FetchTeamFights():
         " RSupport 2",
 
         " BTank 1 Ult Usage",
-        " BTank 1 Ult Order",
         " BTank 2 Ult Usage",
-        " BTank 2 Ult Order",
         " BDps 1 Ult Usage",
-        " BDps 1 Ult Order",
         " BDps 2 Ult Usage",
-        " BDps 2 Ult Order",
         " BSupport 1 Ult Usage",
-        " BSupport 1 Ult Order",
         " BSupport 2 Ult Usage",
-        " BSupport 2 Ult Order",
 
         " RTank 1 Ult Usage",
-        " RTank 1 Ult Order",
         " RTank 2 Ult Usage",
-        " RTank 2 Ult Order",
         " RDps 1 Ult Usage",
-        " RDps 1 Ult Order",
         " RDps 2 Ult Usage",
-        " RDps 2 Ult Order",
         " RSupport 1 Ult Usage",
-        " RSupport 1 Ult Order",
         " RSupport 2 Ult Usage",
+        
+        " BTank 1 Ult Order",
+        " BTank 2 Ult Order",
+        " BDps 1 Ult Order",
+        " BDps 2 Ult Order",
+        " BSupport 1 Ult Order",
+        " BSupport 2 Ult Order",
+
+        " RTank 1 Ult Order",
+        " RTank 2 Ult Order",
+        " RDps 1 Ult Order",
+        " RDps 2 Ult Order",
+        " RSupport 1 Ult Order",
         " RSupport 2 Ult Order",
 
         " Total Blue Ults",
@@ -499,29 +499,31 @@ def FetchTeamFights():
         " Red Kills",
 
         " Blue MT Kills",
-        " Blue MT Deaths",
         " Blue OT Kills",
-        " Blue OT Deaths",
         " Blue HS Kills",
-        " Blue HS Deaths",
         " Blue Proj Kills",
-        " Blue Proj Deaths",
         " Blue FS Kills",
-        " Blue FS Deaths",
         " Blue MS Kills",
-        " Blue MS Deaths",
 
         " Red MT Kills",
-        " Red MT Deaths",
         " Red OT Kills",
-        " Red OT Deaths",
         " Red HS Kills",
-        " Red HS Deaths",
         " Red Proj Kills",
-        " Red Proj Deaths",
         " Red FS Kills",
-        " Red FS Deaths",
         " Red MS Kills",
+        
+        " Blue MT Deaths",
+        " Blue OT Deaths",
+        " Blue HS Deaths",
+        " Blue Proj Deaths",
+        " Blue FS Deaths",
+        " Blue MS Deaths",
+
+        " Red MT Deaths",
+        " Red OT Deaths",
+        " Red HS Deaths",
+        " Red Proj Deaths",
+        " Red FS Deaths",
         " Red MS Deaths"
         ]
     Output = [Title]
@@ -531,7 +533,10 @@ def FetchTeamFights():
     #For each match analyzed
     for MatchUps in MatchAnalytics["matches"]:
         #For each fight in match
+        TeamFightNum = 0
+        
         for TeamFights in MatchUps["data"]["teamfights"]:
+            TeamFightNum += 1
             #Setup the row output
             RowOutput = []
 
@@ -574,22 +579,7 @@ def FetchTeamFights():
             RedUltOrder      = [0, 0, 0, 0, 0, 0]
             BluUltOrder      = [0, 0, 0, 0, 0, 0]
 
-            #Fetch ults
-            for Ults in TeamFights["blue_team_ults_used"]:
-                BlueTempUltUsage.append(Ults["hero"])
-
-            for Ults in TeamFights["red_team_ults_used"]:
-                RedTempUltUsage.append(Ults["hero"])
-
-            #Order them
-            UltsToOrder = []
-            for Ultsets in [TeamFights["blue_team_ults_used"], TeamFights["red_team_ults_used"]]:
-                for Ults in Ultsets:
-                    UltsToOrder.append(Ults)
-
-            #Returns all of the ults ordered by time, where 0 is the earliest
-            UltsToOrder = Cleaner.SortUltsByTime(UltsToOrder)
-
+            
             #Easy organization of teams
             #Seperate teams into character type
             for Hero in TeamFights["blue_heroes"]:
@@ -677,6 +667,22 @@ def FetchTeamFights():
             RedUltBefore  = []
             BlueUltAfter  = []
             RedUltAfter   = []
+            
+            #Fetch ults
+            for Ults in TeamFights["blue_team_ults_used"]:
+                BlueTempUltUsage.append(Ults["hero"])
+
+            for Ults in TeamFights["red_team_ults_used"]:
+                RedTempUltUsage.append(Ults["hero"])
+
+            #Order them
+            UltsToOrder = []
+            for Ultsets in [TeamFights["blue_team_ults_used"], TeamFights["red_team_ults_used"]]:
+                for Ults in Ultsets:
+                    UltsToOrder.append(Ults)
+
+            #Returns all of the ults ordered by time, where 0 is the earliest
+            UltsToOrder = Cleaner.SortUltsByTime(UltsToOrder)
 
             #Comb through the ult usage | Blue team
             Counter = 0
@@ -871,6 +877,7 @@ def FetchTeamFights():
                 stage,
 
                 #Timing
+                TeamFightNum,
                 str(int(TeamFights["start_time"])),
                 str(int(TeamFights["end_time"])),
                 str(int(TeamFights["end_time"] - TeamFights["start_time"])),
@@ -895,29 +902,31 @@ def FetchTeamFights():
                 REDHEROES[5],
 
                 BluUltUsage[0],
-                BluUltOrder[0],
                 BluUltUsage[1],
-                BluUltOrder[1],
                 BluUltUsage[2],
-                BluUltOrder[2],
                 BluUltUsage[3],
-                BluUltOrder[3],
                 BluUltUsage[4],
-                BluUltOrder[4],
                 BluUltUsage[5],
-                BluUltOrder[5],
 
                 RedUltUsage[0],
-                RedUltOrder[0],
                 RedUltUsage[1],
-                RedUltOrder[1],
                 RedUltUsage[2],
-                RedUltOrder[2],
                 RedUltUsage[3],
-                RedUltOrder[3],
                 RedUltUsage[4],
-                RedUltOrder[4],
                 RedUltUsage[5],
+                
+                BluUltOrder[0],
+                BluUltOrder[1],
+                BluUltOrder[2],
+                BluUltOrder[3],
+                BluUltOrder[4],
+                BluUltOrder[5],
+
+                RedUltOrder[0],
+                RedUltOrder[1],
+                RedUltOrder[2],
+                RedUltOrder[3],
+                RedUltOrder[4],
                 RedUltOrder[5],
 
                 str(TotalUltsBlu),
@@ -931,28 +940,28 @@ def FetchTeamFights():
                 str(TeamFights["blue_team_kills"]),
                 str(TeamFights["red_team_kills"]),
                 str(BluMainTankKills),
-                str(BluMainTankDeaths),
                 str(BluOffTankKills),
-                str(BluOffTankDeaths),
                 str(BluHitscanKills),
-                str(BluHitscanDeaths),
                 str(BluProjKills),
-                str(BluProjDeaths),
                 str(BluMainSuppKills),
-                str(BluMainSuppDeaths),
                 str(BluOffSuppKills),
-                str(BluOffSuppDeaths),
                 str(RedMainTankKills),
-                str(RedMainTankDeaths),
                 str(RedOffTankKills),
-                str(RedOffTankDeaths),
                 str(RedHitscanKills),
-                str(RedHitscanDeaths),
                 str(RedProjKills),
-                str(RedProjDeaths),
                 str(RedMainSuppKills),
-                str(RedMainSuppDeaths),
                 str(RedOffSuppKills),
+                str(BluMainTankDeaths),
+                str(BluOffTankDeaths),
+                str(BluHitscanDeaths),
+                str(BluProjDeaths),
+                str(BluMainSuppDeaths),
+                str(BluOffSuppDeaths),
+                str(RedMainTankDeaths),
+                str(RedOffTankDeaths),
+                str(RedHitscanDeaths),
+                str(RedProjDeaths),
+                str(RedMainSuppDeaths),
                 str(RedOffSuppDeaths)
             ]
             Output.append(RowOutput)

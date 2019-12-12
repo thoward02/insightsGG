@@ -96,6 +96,14 @@ class DataCleaner:
                         return "offtank"
                     elif (Hero == "wrecking_ball") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
                         return "offtank"
+                    elif (Hero == "sigma") and (Hero == TempTank[0]) and (TempTank[1] == "wrecking_ball"):
+                        return "offtank"
+                    elif (Hero == "sigma") and (Hero == TempTank[1]) and (TempTank[0] == "wrecking_ball"):
+                        return "offtank"
+                    elif (Hero == "wrecking_ball") and (Hero == TempTank[0]) and (TempTank[1] == "sigma"):
+                        return "maintank"
+                    elif (Hero == "wrecking_ball") and (Hero == TempTank[1]) and (TempTank[0] == "sigma"):
+                        return "maintank"
                     elif (Hero == "reinhardt") and (Hero == TempTank[0]) and (TempTank[1] == "orisa"):
                         return "offtank"
                     elif (Hero == "reinhardt") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
@@ -769,7 +777,6 @@ def FetchTeamFights():
 
             map = MapData[0]
             stage = MapData[1]
-
 
             #killcount
             BluMainTankKills = 0

@@ -29,7 +29,7 @@ First off you'll need python which can be aqquired through `apt` (for debian lin
 After that you'll need to install the API via the pip system by going into your terminal and running `python3 -m pip install insightsGG` or `py -m pip install insightsGG` if you're on windows
 
 ## Python Requirements
-The only library you'll need is `requests`, which can be pip installed by `python3 -m pip install requests` on Linux, or `py -m pip install requests` on windows *Note this should install when you install via pip, but if you are manually installing you'll need to hand install the dependencies*
+The only library you'll need is `requests`, which can be pip installed by `python3 -m pip install requests` on Linux, or `py -m pip install requests` on windows *Note this should install when you install the lib via pip, but if you are manually installing you'll need to hand install the dependencies*
 
 ## Login Requirements
 All of the examples can be ran by inputting your username and password as parameters, for example: `python3 filename.py rawxd@ihatemyself.com OkBoomer`, where `rawrxd@ihatemyself.com` is the your login email, and `OkBoomer` is your login password.

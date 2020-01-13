@@ -37,7 +37,7 @@ class App:
         Return = LoginRequest
 
         if "error" in Return:
-            raise ValueError("[Error] Username or password was incorrect")
+            return {"Success" : False, "Error" : "Unknown username or password"}
 
         #Pull Bearer token out of login request
         self.Token = Return["access_token"]
@@ -51,6 +51,10 @@ class App:
         #Populate Teams with Vods
         for Teams in self.Teams:
             self.Teams[Teams]["VodList"] = self.GrabTeamVodList(self.Teams[Teams]["id"], 100)
+
+        #Done, send success
+        return {"Success" : True}
+
 
     def BuildUser(self):
         #Return object
@@ -254,20 +258,20 @@ class App:
         return GrabRequest
 
     def GetPendingInvatations(self, TeamId):
-                #Build Request
-                RequestData = {}
+        #Build Request
+        RequestData = {}
 
-                RequestData["operationName"] = "GetPendingInvitationsQuery"
-                RequestData["variables"]     = {"teamId" : TeamId}
-                RequestData["query"]         = self.NetManager.RequestOptions["GetPendingInvitationsQuery"]
+        RequestData["operationName"] = "GetPendingInvitationsQuery"
+        RequestData["variables"]     = {"teamId" : TeamId}
+        RequestData["query"]         = self.NetManager.RequestOptions["GetPendingInvitationsQuery"]
 
-                #Convert request to a string because GraphQL will only take a string request
-                RequestData = json.dumps(RequestData)
+        #Convert request to a string because GraphQL will only take a string request
+        RequestData = json.dumps(RequestData)
 
-                GrabRequest = self.NetManager.SendRequest(self.Token, RequestData)
+        GrabRequest = self.NetManager.SendRequest(self.Token, RequestData)
 
-                #Clean up request, then store it
-                return GrabRequest
+        #Clean up request, then store it
+        return GrabRequest
 
 
     def CreateTeam(self, TeamName, TeamDescription):

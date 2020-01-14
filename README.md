@@ -84,9 +84,9 @@ Now running python code in windows is pretty easy, you just type `py FILENAME.py
 <br />
 And that's it, you're done! That approach will work for the rest of the examples within that folder!
 
-### Linux Tutorial 
+#### Linux Tutorial 
 If you're on linux you should know what you're doing...
 
-## Mac Tutorial 
+#### Mac Tutorial 
 Switch platforms. 
 

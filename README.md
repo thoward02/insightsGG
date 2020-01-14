@@ -50,15 +50,14 @@ The only library you'll need is `requests`, which can be pip installed by `pytho
 When first getting started, it is highly recommened that you read into the [Wiki](https://github.com/thoward02/insightsGG/wiki/) so that you understand how and why this wrapper was written. Knowing such will allow you to better understand the API Wrapper itself, and work more effiecently with it. 
 
 ## Examples
-**NOTE: As of 01/14/20 I am unsure of which examples take which login format, so please bare with me as I attempt rewrite them on a later date. Keep this in mind when running and exploring the Examples, as some may require you to authenticate using your username and password as command line parameters, and some may not.**
+Within this repository you'll find a directory, or folder, named `Examples`, which contains all of the works I and the HSL Boys have done with the API Wrapper. These are included to give you an idea of how we're using the API Wrapper, in hopes that it'll familiarize you with the wrapper itself.
 <br />
-<br />
-Within this repository you'll find a Directory, or folder, named `Examples`, which contains all of the works I and the HSL Boys have done with the API Wrapper. These are included to give you an idea of how we're using the API Wrapper, in hopes that it'll familiarize you with the wrapper itself.
-
-### Example Code
 All of the files ending with `.py` are example programs that you can run, and their titles pretty much explain what they do. For example `FetchUserInfo.py` fetches the user info of what ever account you logged into, and prints it out. 
 <br />
 The `Output` directory or folder contains all of the file outputs of the example programs, for example: The example programs that push out CSV formatted data, save that data to the `Output` directory. The same premis applies for the JSON examples as well.
+<br />
+And the `ExampleRequests` directory or folder  contains all of the example GraphQL requests that the Insights.gg Webclient makes to the Insights.gg Servers. If you ever wanted to take a look at those, you could, but they're pretty unimportant. They're saved there for later when I plan to build a GraphQL element, that allows you to actually pick and choose what you want to fetch from the server. 
+<br />
 <br />
 All of the examples can be ran by inputting your username and password as parameters, for example: `python3 filename.py rawxd@ihatemyself.com OkBoomer`, where `rawrxd@ihatemyself.com` is the your login email, and `OkBoomer` is your login password.
 <br />
@@ -71,4 +70,23 @@ The `login.json` structure basically implies you create a file named `login.json
   }
 ```
 
+### Example Code
+If you want to run an example, first ensure that you have completed the "Before you get started" steps, then: 
+Choose which file you want to run; For this example we're going to use the `FetchUserInfo.py` example. 
+
+#### Windows Tutorial 
+Your first step is to download the repository, which can be done by clicking this button on the [repository homepage](https://github.com/thoward02/insightsGG) ![oops it broke](https://i.imgur.com/AtpDnNv.png)
+Once you download the zip file containing the repository, unzip it to a place you can get to later. (Most people new to github, and coding, usually just unzip the file to the desktop. We're going to prentend that you did.)
+<br />
+Next you'll want to open CMD, by clicking the windows key on your keyboard and searching up cmd. This will allow us to run the code. Now when you open up CMD you'll usually start up in the `User` folder, so we'll have to navigate to whereever you unzipped the repository to. Now assuming that you unzipped the code folder into your `Desktop`, we'll type `cd Desktop/insightsGG-master/Examples` into cmd in order to Change Dir into the `Example` folder within the unzipped folder on your desktop. 
+<br />
+Now running python code in windows is pretty easy, you just type `py FILENAME.py` into cmd and boom you're done. So in order to run the example `FetchUserInfo.py` we're going to type `py FetchUserInfo.py YOURINSIGHTSUSERNAME YOURINSIGHTSPASSWORD` into cmd, and hit enter. The program will run using the creds you typed up, and fetch your user info. 
+<br />
+And that's it, you're done! That approach will work for the rest of the examples within that folder!
+
+### Linux Tutorial 
+If you're on linux you should know what you're doing...
+
+## Mac Tutorial 
+Switch platforms. 
 

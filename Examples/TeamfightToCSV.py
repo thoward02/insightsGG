@@ -1,5 +1,5 @@
 #Import insights class
-import App
+import insightGG
 
 #Import json for dealing with json
 import json
@@ -78,7 +78,7 @@ def ConvertToCSV():
 
     print("[LOG] Sorting matches...")
     #For each match analyzed
-	
+
     for MatchUps in MatchAnalytics["matches"]:
         #For each fight in match
         for TeamFights in MatchUps["data"]["teamfights"]:
@@ -97,7 +97,7 @@ def ConvertToCSV():
 
             BluUltUsage      = [0, 0, 0, 0, 0, 0]
             RedUltUsage      = [0, 0, 0, 0, 0, 0]
-			
+
             for Ults in TeamFights["blue_team_ults_used"]:
                 BlueTempUltUsage.append(Ults["hero"])
 
@@ -129,7 +129,7 @@ def ConvertToCSV():
                     RedUltUsage[Counter] = 1
                 REDHEROES += Heroes + ", "
                 Counter += 1
-	
+
             #Fetch Ults
             BlueUltBefore = ""
             for Ults in TeamFights["blue_team_ults_before"]:
@@ -161,11 +161,11 @@ def ConvertToCSV():
             #Ults used
             BlueUltsUsed = ""
             RedUltsUsed  = ""
-			
+
 			#Total up the number
             TotalUltsBlu = sum(BluUltUsage)
             TotalUltsRed = sum(RedUltUsage)
-			
+
             for Ults in BluUltUsage:
                 BlueUltsUsed += str(Ults) + ", "
 

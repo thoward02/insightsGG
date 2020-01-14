@@ -18,6 +18,22 @@ def Login():
         Username = sys.argv[1]
         Password = sys.argv[2]
 
+    elif os.path.exists("Login.json"):
+        #Grab user info from file
+        try:
+            with open("Login.json") as LoginFile:
+                LoginInfo = json.load(LoginFile)
+        except:
+            raise ValueError("[Error] Could not read login.json")
+
+        #Check to see if username and password dicts are there
+        if "username" in LoginInfo and "password" in LoginInfo:
+            Username = LoginInfo["username"]
+            Password = LoginInfo["password"]
+        #If username | password doesn't exist, toss an error
+        else:
+            raise ValueError("[Error] Couldn't find the username or password in login.json, check to see if you formatted it correctly")
+
     else:
         raise ValueError("[Error] Did not get a username and password to work with... Check the README and ensure you're following the instructions.")
 
@@ -108,7 +124,7 @@ def Start():
 
             else:
                 Ability = KillBlocks["ability"]
-                
+
             #Loop through the assists, and organize them into role
             Assists = ""
 

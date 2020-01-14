@@ -75,7 +75,12 @@ If you want to run an example, first ensure that you have completed the "Before 
 Choose which file you want to run; For this example we're going to use the `FetchUserInfo.py` example. 
 
 #### Windows Tutorial 
-Your first step is to download the repository, which can be done by clicking this button on the [repository homepage](https://github.com/thoward02/insightsGG) ![oops it broke](https://i.imgur.com/AtpDnNv.png)
+Your first step is to download the repository, which can be done by clicking this button on the [repository homepage](https://github.com/thoward02/insightsGG) 
+<br />
+![oops it broke](https://i.imgur.com/AtpDnNv.png) 
+<br />
+or clicking [this link](https://github.com/thoward02/insightsGG/archive/master.zip)
+<br />
 Once you download the zip file containing the repository, unzip it to a place you can get to later. (Most people new to github, and coding, usually just unzip the file to the desktop. We're going to prentend that you did.)
 <br />
 Next you'll want to open CMD, by clicking the windows key on your keyboard and searching up cmd. This will allow us to run the code. Now when you open up CMD you'll usually start up in the `User` folder, so we'll have to navigate to whereever you unzipped the repository to. Now assuming that you unzipped the code folder into your `Desktop`, we'll type `cd Desktop/insightsGG-master/Examples` into cmd in order to Change Dir into the `Example` folder within the unzipped folder on your desktop. 

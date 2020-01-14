@@ -52,13 +52,13 @@ When first getting started, it is highly recommened that you read into the (http
 ## Examples
 **NOTE: As of 01/14/20 I am unsure of which examples take which login format, so please bare with me as I attempt rewrite them on a later date. Keep this in mind when running and exploring the Examples, as some may require you to authenticate using your username and password as command line parameters, and some may not.**
 <br />
+<br />
 Within this repository you'll find a Directory, or folder, named `Examples`, which contains all of the works I and the HSL Boys have done with the API Wrapper. These are included to give you an idea of how we're using the API Wrapper, in hopes that it'll familiarize you with the wrapper itself.
 
 ### Example Code
 All of the files ending with `.py` are example programs that you can run, and their titles pretty much explain what they do. For example `FetchUserInfo.py` fetches the user info of what ever account you logged into, and prints it out. 
 <br />
-The `Output` directory or folder contains all of the file outputs of the example programs, for example: The example programs that push out CSV formatted data, saves it to that directory and the same applies for the JSON files.
-
+The `Output` directory or folder contains all of the file outputs of the example programs, for example: The example programs that push out CSV formatted data, save that data to the `Output` directory. The same premis applies for the JSON examples as well.
 <br />
 All of the examples can be ran by inputting your username and password as parameters, for example: `python3 filename.py rawxd@ihatemyself.com OkBoomer`, where `rawrxd@ihatemyself.com` is the your login email, and `OkBoomer` is your login password.
 <br />

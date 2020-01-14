@@ -47,7 +47,7 @@ The only library you'll need is `requests`, which can be pip installed by `pytho
 
 # Getting Started
 ## The Wiki 
-When first getting started, it is highly recommened that you read into the (https://github.com/thoward02/insightsGG/wiki/)[Wiki] so that you understand how and why this wrapper was written. Knowing such will allow you to better understand the API Wrapper itself, and work more effiecently with it. 
+When first getting started, it is highly recommened that you read into the [Wiki](https://github.com/thoward02/insightsGG/wiki/) so that you understand how and why this wrapper was written. Knowing such will allow you to better understand the API Wrapper itself, and work more effiecently with it. 
 
 ## Examples
 **NOTE: As of 01/14/20 I am unsure of which examples take which login format, so please bare with me as I attempt rewrite them on a later date. Keep this in mind when running and exploring the Examples, as some may require you to authenticate using your username and password as command line parameters, and some may not.**

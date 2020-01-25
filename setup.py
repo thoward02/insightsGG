@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="InsightsGG",
-    version="0.7.5",
+    version="0.7.7",
     author="Aud",
     author_email="audaciousxth@gmail.com",
     description="The unofficial api for Insights.gg",

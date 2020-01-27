@@ -160,8 +160,9 @@ class App:
     DeleteVod(VodId)
         Deletes a vod
 
-    ModifyVod(VodId, Name, Public)
-        Renames a vod, and sets it to be public or not
+    ModifyVod(VodId, Name, Public, OpenComments)
+        Renames a vod, and sets it to be visable to the public as well as open
+        to public comments
 
     RequestOverwatchAnalysis(VideoId)
         Requests an analysis on the video id
@@ -574,12 +575,12 @@ class App:
         #Clean up request, then store it
         return GrabRequest
 
-    def ModifyVod(self, VideoId, Name, Public):
+    def ModifyVod(self, VideoId, Name, Public, OpenComments):
         #Build Request
         RequestData = {}
 
         RequestData["operationName"] = "UpdateVideoMutation"
-        RequestData["variables"]     = {"input" : {"id" : VideoId, "name" : Name, "public" : Public}}
+        RequestData["variables"]     = {"input" : {"id" : VideoId, "name" : Name, "public" : Public, "openComments" : OpenComments}}
         RequestData["query"]         = self.NetManager.RequestOptions["UpdateVideoMutation"]
 
         #Convert request to a string because GraphQL will only take a string request

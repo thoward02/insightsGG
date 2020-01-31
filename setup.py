@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="InsightsGG",
-    version="0.7.76",
+    version="0.7.77",
     author="Aud",
     author_email="audaciousxth@gmail.com",
     description="The unofficial api for Insights.gg",
@@ -21,5 +21,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.5',
 )

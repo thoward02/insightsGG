@@ -34,13 +34,11 @@ class App:
         LoginRequest = self.NetManager.SendLoginRequest(LoginData)
 
         #Check and see if login was right
-        Return = LoginRequest
-
-        if "error" in Return:
+        if "error" in LoginRequest:
             return {"Success" : False, "Error" : "Unknown username or password"}
 
         #Pull Bearer token out of login request
-        self.Token = Return["access_token"]
+        self.Token = LoginRequest["access_token"]
 
         #Grab user information, and store it in user
         self.User  = self.BuildUser()
@@ -194,6 +192,13 @@ class App:
         Grabs the OverwatchAnalysis of a particular match
 
     ------------------------------------------------------------------------
+    ======================= Owl Stats Functions ============================
+    ------------------------------------------------------------------------
+    GetOWLVideos(Year, Week, Limit)
+        Grabs a list of the matches that happened on the Week of the Year. So
+        if I wanted week one of 2020's vods, Year would be 2020 (int) and Week
+        would be 1 (int). The amount of vods fetched is set by the limit
+        function.
     """
 
     """
@@ -709,9 +714,36 @@ class App:
 
         GrabRequest = self.NetManager.SendRequest(self.Token, RequestData)
 
+        Analytics = GrabRequest["data"]
+
+        return Analytics
+
+
+    """
+    == OWL STATS FUNCTIONS
+    """
+    def GetOWLVideos(self, Year, Week, Limit):
+        RequestData = {}
+
+        RequestData["operationName"] = "GetOWLVideosQuery"
+        RequestData["variables"]     = {
+            "year"  : Year,
+            "week"  : Week,
+            "limit" : Limit
+        }
+        RequestData["query"]         = self.NetManager.RequestOptions["GetOWLVideosQuery"]
+
+        #Convert request to a string because GraphQL will only take a string request
+        RequestData = json.dumps(RequestData)
+
+        GrabRequest = self.NetManager.SendRequest(self.Token, RequestData)
+
         Timeline = GrabRequest["data"]
 
         return Timeline
+
+
+
 
     ### DEPRECATED ###
     def BuildTeams(self, TeamLimit):

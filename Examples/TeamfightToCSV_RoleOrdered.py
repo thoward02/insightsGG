@@ -296,7 +296,7 @@ class DataCleaner:
         #TODO : Jesus please clean this, like fuck
         if "hanamura" in str(Map):
             map = "Hanamura"
-        if "lunar" in str(Map):
+        if "horizon" in str(Map):
             map = "Lunar"
         if "temple" in str(Map):
             map = "Temple of Anubis"
@@ -312,7 +312,7 @@ class DataCleaner:
             map = "Rialto"
         if "route" in str(Map):
             map = "Route 66"
-        if "gibraltar" in str(Map):
+        if "watchpointGibraltar" in str(Map):
             map = "Gibraltar"
         if "havana" in str(Map):
             map = "Havana"
@@ -478,7 +478,7 @@ def FetchTeamFights():
         " RDps 2 Ult Usage",
         " RSupport 1 Ult Usage",
         " RSupport 2 Ult Usage",
-        
+
         " BTank 1 Ult Order",
         " BTank 2 Ult Order",
         " BDps 1 Ult Order",
@@ -519,7 +519,7 @@ def FetchTeamFights():
         " Red Proj Kills",
         " Red FS Kills",
         " Red MS Kills",
-        
+
         " Blue MT Deaths",
         " Blue OT Deaths",
         " Blue HS Deaths",
@@ -542,7 +542,7 @@ def FetchTeamFights():
     for MatchUps in MatchAnalytics["matches"]:
         #For each fight in match
         TeamFightNum = 0
-        
+
         for TeamFights in MatchUps["data"]["teamfights"]:
             TeamFightNum += 1
             #Setup the row output
@@ -587,7 +587,7 @@ def FetchTeamFights():
             RedUltOrder      = [0, 0, 0, 0, 0, 0]
             BluUltOrder      = [0, 0, 0, 0, 0, 0]
 
-            
+
             #Easy organization of teams
             #Seperate teams into character type
             for Hero in TeamFights["blue_heroes"]:
@@ -675,7 +675,7 @@ def FetchTeamFights():
             RedUltBefore  = []
             BlueUltAfter  = []
             RedUltAfter   = []
-            
+
             #Fetch ults
             for Ults in TeamFights["blue_team_ults_used"]:
                 BlueTempUltUsage.append(Ults["hero"])
@@ -921,7 +921,7 @@ def FetchTeamFights():
                 RedUltUsage[3],
                 RedUltUsage[4],
                 RedUltUsage[5],
-                
+
                 BluUltOrder[0],
                 BluUltOrder[1],
                 BluUltOrder[2],

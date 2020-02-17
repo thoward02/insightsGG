@@ -1,9 +1,13 @@
 #Imports
 import json
 
-#Class imports
-from .Networking import NetworkManager
+from datetime import datetime
 
+#Class imports
+import insightsGG.Errors  as Errors
+import insightsGG.Objects as Objects
+
+from .Networking import NetworkManager
 
 class App:
     #Data
@@ -35,7 +39,7 @@ class App:
 
         #Check and see if login was right
         if "error" in LoginRequest:
-            return {"Success" : False, "Error" : "Unknown username or password"}
+            raise Errors.LoginError(LoginRequest["error"])
 
         #Pull Bearer token out of login request
         self.Token = LoginRequest["access_token"]
@@ -46,12 +50,9 @@ class App:
         #Grab and store user's teams
         self.Teams = self.BuildTeams(100)
 
-        #Populate Teams with Vods
-        for Teams in self.Teams:
-            self.Teams[Teams]["VodList"] = self.GrabTeamVodList(self.Teams[Teams]["id"], 100)
-
         #Done, send success
-        return {"Success" : True}
+        return
+
 
 
     def BuildUser(self):
@@ -72,9 +73,9 @@ class App:
 
         #Ok so this is really weird, some times the api return the data in a `me` object and sometimes it doesn't
         if "me" in UserInfo["data"]:
-            UserInfo = UserInfo["data"]["me"]
+            UserInfo = Objects.Me(UserInfo["data"]["me"])
         else:
-            Userinfo = UserInfo["data"]
+            Userinfo = Objects.Me(UserInfo["data"])
 
         #return the info
         return UserInfo
@@ -199,6 +200,17 @@ class App:
         if I wanted week one of 2020's vods, Year would be 2020 (int) and Week
         would be 1 (int). The amount of vods fetched is set by the limit
         function.
+
+    ------------------------------------------------------------------------
+    ======================= Core API functions =============================
+    ------------------------------------------------------------------------
+    CreateReturn(Success, Reason, Data):
+        Creates a return back from the API Wrapper where Success is a bool
+        indacating whether or whether not the call succeeded. Reason being
+        a string containing the reason for an error, if an error has
+        occurred, and Data being the data returned from a successful call.
+
+
     """
 
     """
@@ -218,16 +230,11 @@ class App:
         GrabRequest = self.NetManager.SendRequest(self.Token, RequestData)
 
         #Clean up request, then store it
-        TeamList = {}
+        TeamList = []
 
         #Loop through returned teams and store them
         for Teams in GrabRequest["data"]["queryTeams"]["teamEdges"]:
-            TeamName = Teams["team"]["name"]
-            TeamList[TeamName] = {
-                "id" : Teams["team"]["id"],
-                "description" : Teams["team"]["description"],
-                "owner" : Teams["team"]["owner"]["alias"]
-            }
+            TeamList.append(Objects.Team(self, Teams))
 
         return TeamList
 
@@ -544,7 +551,7 @@ class App:
         VodList     = {}
 
         for Vods in GrabRequest["data"]["queryVideos"]["videos"]:
-            VodList[Vods["name"]] = Vods
+            VodList[Vods["name"]] = Objects.Video(Vods)
 
         return VodList
 
@@ -743,7 +750,17 @@ class App:
         return Timeline
 
 
+    """
+    == CORE API FUNCTIONS
+    """
+    def CreateReturn(self, Success, Reason, Data):
+        RObj = {
+            "Success" : Success,
+            "Reason"  : Reason,
+            "Data"    : Data
+        }
 
+        return RObj
 
     ### DEPRECATED ###
     def BuildTeams(self, TeamLimit):

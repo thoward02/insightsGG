@@ -13,3 +13,20 @@ class Role:
         #Setup meta data
         self.Privileges     = InsightsRole["privileges"]
         self.Global         = InsightsRole["global"] #wtf is this?
+
+
+    """
+        == Functions that help the user ==
+    """
+    def __str__(self):
+        return json.dumps(self.toJSON(), indent=4, sort_keys=False)
+
+    def toJSON(self):
+        PrettyPrinted = {
+            "Id"          : self.Id,
+            "Name"        : self.Name,
+            "Privileges"  : self.Privileges,
+            "Global"      : self.Global
+        }
+
+        return PrettyPrinted

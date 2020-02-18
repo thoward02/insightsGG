@@ -4,7 +4,10 @@
     Desc: This file contains the class for creating insights me objects, where
           Me is the current user logged in
 """
+#import json for pretty print
+import json
 
+#Import Libs
 from .User import User
 
 class Me(User):
@@ -22,6 +25,22 @@ class Me(User):
 
 
 
-        #Create custom print out
-        def __str__(self):
-            return "UserObject:\n\tId : {},\n\tName : {},\n\tEmail : {},\n\tNickname : {},\n\tProfilePicture : {},\n\tVerified : {},\n\tWhiteListed : {},\n\tMarketing : {},\n\tUpdates : {}\n\t    ".format(self.Id, self.Name, self.Email, self.Nickname, self.ProfilePicture, self.ProfilePicture, self.Verified, self.WhiteListed, self.Marketing, self.Updates)
+    #Create custom print out
+    def __str__(self):
+        return json.dumps(self.toJSON(), indent=4, sort_keys=False)
+
+
+    #Create custom json output
+    def toJSON(self):
+        Object = {
+            "Id"             : self.Id,
+            "Name"           : self.Name,
+            "Nickname"       : self.Nickname,
+            "Email"          : self.Email,
+            "ProfilePicture" : self.ProfilePicture,
+            "WhiteListed"    : self.WhiteListed,
+            "Marketing"      : self.Marketing,
+            "Updates"        : self.Updates,
+        }
+
+        return Object

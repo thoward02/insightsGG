@@ -64,7 +64,7 @@ class App:
 
         RequestData["operationName"] = "GetUserProfileQuery"
         RequestData["variables"]     = {}
-        RequestData["query"]          = self.NetManager.RequestOptions["GetUserProfileQuery"]
+        RequestData["query"]         = self.NetManager.RequestOptions["GetUserProfileQuery"]
 
         RequestData                  = json.dumps(RequestData)
 

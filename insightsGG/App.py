@@ -53,6 +53,24 @@ class App:
         #Done, send success
         return
 
+    def BotLogin(self, Token):
+        #Set token
+        self.Token = Token
+
+        #Check login
+        Test = self.BuildUser()
+
+        #IF login issue
+        if Test == False:
+            raise Errors.LoginError("INVALID TOKEN")
+
+        #If login success
+        self.User = Test
+
+        #Go ahead and grab teams (assumably it's okay)
+        self.Teams = self.BuildTeams(100)
+
+
 
 
     def BuildUser(self):
@@ -70,6 +88,9 @@ class App:
 
         #Send off the request
         UserInfo = self.NetManager.SendRequest(self.Token, RequestData)
+
+        if UserInfo["data"] == None:
+            return False
 
         #Ok so this is really weird, some times the api return the data in a `me` object and sometimes it doesn't
         if "me" in UserInfo["data"]:
@@ -169,6 +190,9 @@ class App:
     ------------------------------------------------------------------------
     ========================= Tag Functions ================================
     ------------------------------------------------------------------------
+
+    GetTags(TeamId, Limit)
+        Gets all the tags on a team
 
     CreateTag(TeamId, Name, Colour)
         Creates a named tag and gives it an RGB colour
@@ -300,8 +324,12 @@ class App:
 
         GrabRequest = self.NetManager.SendRequest(self.Token, RequestData)
 
+        #Clean up
+        RequestFixed = GrabRequest["data"]["createTeam"]
+        RequestFixed["roles"] = []
+
         #Clean up request, then store it
-        return GrabRequest
+        return Objects.Team(self, RequestFixed)
 
     def EditTeamName(self, TeamId, Name):
         #Build Request Data
@@ -548,10 +576,10 @@ class App:
 
         GrabRequest = self.NetManager.SendRequest(self.Token, RequestData)
 
-        VodList     = {}
+        VodList     = []
 
         for Vods in GrabRequest["data"]["queryVideos"]["videos"]:
-            VodList[Vods["name"]] = Objects.Video(Vods)
+            VodList.append(Objects.Video(ParentClass = self, InsightsObject = Vods))
 
         return VodList
 
@@ -623,6 +651,22 @@ class App:
     """
     == TAG FUNCTIONS ==
     """
+    def GetTags(self, TeamId, Limit):
+        #Build Request
+        RequestData = {}
+
+        RequestData["operationName"] = "GetTagsQuery"
+        RequestData["variables"]     = {"teamId" : TeamId, "limit" : Limit}
+        RequestData["query"]         = self.NetManager.RequestOptions["GetTagsQuery"]
+
+        #Convert request to a string because GraphQL will only take a string request
+        RequestData = json.dumps(RequestData)
+
+        GrabRequest = self.NetManager.SendRequest(self.Token, RequestData)
+
+        #Clean up request, then store it
+        return GrabRequest["data"]["queryTags"]["tags"]
+
     def CreateTag(self, TeamId, Name, Colour):
         #Build Request
         RequestData = {}

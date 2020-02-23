@@ -56,6 +56,8 @@ class NetworkManager:
 
         "CreateAnalysisRequestMutation" : "mutation CreateAnalysisRequestMutation($input: CreateAnalysisRequestInput!) {    createAnalysisRequest(input: $input) {      analysis {        ...AnalysisFragment        __typename      }      __typename    }  }  fragment AnalysisFragment on Analysis {    id    type    created    completed    progress {      current      rate      total      __typename    }    result {      matches {        id        __typename      }      __typename    }    error    __typename  }  ",
 
+        "GetTagsQuery" : "query GetTagsQuery($teamId: ID, $limit: Int, $after: Cursor){ queryTags(teamId: $teamId, limit: $limit, after: $after){        tags {  id    name    color    __typename  }   pageInfo {     end    more      }    }}",
+
         "CreateTagMutation" : "mutation CreateTagMutation($input: CreateTagInput!) {    createTag(input: $input) {      tag {        ...TagFragment        __typename      }      __typename    }  }  fragment TagFragment on Tag {    id    name    color    __typename  }  ",
 
         "DeleteTagMutation" : "mutation DeleteTagMutation($input: DeleteTagInput!) {  deleteTag(input: $input) {    tagId    __typename  }}",

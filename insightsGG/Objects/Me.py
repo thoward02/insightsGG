@@ -1,5 +1,5 @@
 """
-    File: insightsGG/Objects/Team.py
+    File: insightsGG/Objects/Me.py
     Author: Aud#9488
     Desc: This file contains the class for creating insights me objects, where
           Me is the current user logged in

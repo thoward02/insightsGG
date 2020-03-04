@@ -92,7 +92,6 @@ class Video:
     #Fetch Analysis
     def FetchAnalysis(self):
         if self.Analysis == True:
-            print(self.AnalysisIds)
             return self.ParentClass.GrabAnalytics(self.AnalysisIds)
 
         if self.Analysis == False:

@@ -6,6 +6,7 @@ from datetime import datetime
 #Class imports
 import insightsGG.Errors  as Errors
 import insightsGG.Objects as Objects
+import insightsGG.Objects.OverwatchAnalytics as OWAnalytics
 
 from .Networking import NetworkManager
 
@@ -765,9 +766,12 @@ class App:
 
         GrabRequest = self.NetManager.SendRequest(self.Token, RequestData)
 
-        Analytics = GrabRequest["data"]
+        ReturnList = []
 
-        return Analytics
+        for Matches in GrabRequest["data"]["matches"]:
+            ReturnList.append(OWAnalytics.Match(Matches))
+
+        return ReturnList
 
 
     """

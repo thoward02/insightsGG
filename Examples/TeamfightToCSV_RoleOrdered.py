@@ -31,44 +31,44 @@ class DataCleaner:
     #Find red's secondary role
     def FindSecondaryRole(self, Hero, TempSupp, TempTank, TempDPS):
         SecondaryHeroRoleList = ["maintank","offtank","hitscan","projectile","offsupport","mainsupport"]
-        MainSuppList          = ["lucio", "mercy"]
-        OffSuppList           = ["moira","zenyatta", "brigitte"]
-        HitscanList           = ["ashe","mccree" , "reaper", "soldier_76", "widowmaker"]
-        ProjList              = ["genji", "pharah", "junkrat"]
-        MainTankList          = ["reinhardt", "winston","orisa"]
-        OffTankList           = ["dva", "roadhog", "zarya", "sigma", "wrecking_ball"]
+        MainSuppList          = ["brigitte","mercy","lucio"]
+        OffSuppList           = ["moira","zenyatta"]
+        HitscanList           = ["ashe","reaper","soldier_76","tracer","mccree","widowmaker"] #ordered by "least" to "most" hitscan
+        ProjList              = ["hanzo","mei","genji","doomfist","pharah","junkrat"] #as above, for proj
+        MainTankList          = ["winston","reinhardt","orisa"] #as above, for MT
+        OffTankList           = ["roadhog","dva","zarya"] #as above, for OT
 
         try:
-            #supports
+            #Supports
             if Hero in TempSupp:
+                #secondary roles with 2 hybrid supp (ana bap)
                 if (Hero == "baptiste") and (Hero == TempSupp[0]) and (TempSupp[1] == "ana"):
                     return "mainsupport"
-                elif (Hero == "ana") and (Hero == TempSupp[1]) and (TempSupp[0] == "baptiste"):
-                    return "offsupport"
                 elif (Hero == "baptiste") and (Hero == TempSupp[1]) and (TempSupp[0] == "ana"):
                     return "mainsupport"
                 elif (Hero == "ana") and (Hero == TempSupp[0]) and (TempSupp[1] == "baptiste"):
                     return "offsupport"
-                elif (Hero == "baptiste") and (Hero == TempSupp[0]) and (TempSupp[1] == "lucio"):
+                elif (Hero == "ana") and (Hero == TempSupp[1]) and (TempSupp[0] == "baptiste"):
                     return "offsupport"
+                #secondary roles with 2 main supp
+                elif (Hero == "lucio") and (Hero == TempSupp[0]) and (TempSupp[1] == "mercy"):
+                    return "offsupport" #debatable, imo (Jack) mercy would be offsupport
+                elif (Hero == "lucio") and (Hero == TempSupp[1]) and (TempSupp[0] == "mercy"):
+                    return "offsupport" #as above
                 elif (Hero == "brigitte") and (Hero == TempSupp[0]) and (TempSupp[1] == "lucio"):
                     return "offsupport"
-                elif (Hero == "baptiste") and (Hero == TempSupp[0]) and (TempSupp[1] == "brigitte"):
+                elif (Hero == "brigitte") and (Hero == TempSupp[1]) and (TempSupp[0] == "lucio"):
                     return "offsupport"
-                elif (Hero == "brigitte") and (Hero == TempSupp[0]) and (TempSupp[1] == "baptiste"):
-                    return "mainsupport"
-                elif (Hero == "baptiste") and (Hero == TempSupp[1]) and (TempSupp[0] == "brigitte"):
+                elif (Hero == "brigitte") and (Hero == TempSupp[0]) and (TempSupp[1] == "mercy"):
                     return "offsupport"
-                elif (Hero == "brigitte") and (Hero == TempSupp[1]) and (TempSupp[0] == "baptiste"):
-                    return "mainsupport"
-                elif (Hero == "mercy") and (Hero == TempSupp[0]) and (TempSupp[1] == "lucio"):
-                    return "mainsupport"
-                elif (Hero == "mercy") and (Hero == TempSupp[0]) and (TempSupp[1] == "lucio"):
-                    return "mainsupport"
-                elif (Hero == "lucio") and (Hero == TempSupp[0]) and (TempSupp[1] == "mercy"):
+                elif (Hero == "brigitte") and (Hero == TempSupp[1]) and (TempSupp[0] == "mercy"):
                     return "offsupport"
-                elif (Hero == "lucio") and (Hero == TempSupp[1]) and (TempSupp[0] == "mercy"):
-                    return "offsupport"
+                #secondary roles with 2 off supp
+                elif (Hero == "moira") and (Hero == TempSupp[0]) and (TempSupp[1] == "zenyatta"):
+                    return "mainsupport"
+                elif (Hero == "moira") and (Hero == TempSupp[1]) and (TempSupp[0] == "zenyatta"):
+                    return "mainsupport"
+                #all other comps
                 elif (Hero in MainSuppList):
                     return "mainsupport"
                 elif (Hero in OffSuppList):
@@ -81,22 +81,10 @@ class DataCleaner:
                     return "offsupport"
                 elif (Hero == TempSupp[1]) and (TempSupp[0] in MainSuppList):
                     return "offsupport"
-
             #Tanks
             if Hero in TempTank:
-                    if (Hero == "wrecking_ball") and (Hero == TempTank[0]) and (TempTank[1] == "winston"):
-                        return "offtank"
-                    elif (Hero == "wrecking_ball") and (Hero == TempTank[1]) and (TempTank[0] == "winston"):
-                        return "offtank"
-                    elif (Hero == "orisa") and (Hero == TempTank[0]) and (TempTank[1] == "wrecking_ball"):
-                        return "maintank"
-                    elif (Hero == "orisa") and (Hero == TempTank[1]) and (TempTank[0] == "wrecking_ball"):
-                        return "maintank"
-                    elif (Hero == "wrecking_ball") and (Hero == TempTank[0]) and (TempTank[1] == "orisa"):
-                        return "offtank"
-                    elif (Hero == "wrecking_ball") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
-                        return "offtank"
-                    elif (Hero == "sigma") and (Hero == TempTank[0]) and (TempTank[1] == "wrecking_ball"):
+                    #secondary roles with 2 hybrid tank (sigma ball)
+                    if (Hero == "sigma") and (Hero == TempTank[0]) and (TempTank[1] == "wrecking_ball"):
                         return "offtank"
                     elif (Hero == "sigma") and (Hero == TempTank[1]) and (TempTank[0] == "wrecking_ball"):
                         return "offtank"
@@ -104,27 +92,22 @@ class DataCleaner:
                         return "maintank"
                     elif (Hero == "wrecking_ball") and (Hero == TempTank[1]) and (TempTank[0] == "sigma"):
                         return "maintank"
-                    elif (Hero == "reinhardt") and (Hero == TempTank[0]) and (TempTank[1] == "orisa"):
-                        return "offtank"
-                    elif (Hero == "reinhardt") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
-                        return "offtank"
-                    elif (Hero == "orisa") and (Hero == TempTank[0]) and (TempTank[1] == "reinhardt"):
-                        return "maintank"
-                    elif (Hero == "orisa") and (Hero == TempTank[1]) and (TempTank[0] == "reinhardt"):
-                        return "maintank"
-                    elif (Hero == "reinhardt") and (Hero == TempTank[0]) and (TempTank[1] == "orisa"):
-                        return "offtank"
-                    elif (Hero == "reinhardt") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
-                        return "offtank"
-                    elif (Hero == "orisa") and (Hero == TempTank[0]) and (TempTank[1] == "winston"):
-                        return "maintank"
-                    elif (Hero == "orisa") and (Hero == TempTank[1]) and (TempTank[0] == "winston"):
-                        return "maintank"
-                    elif (Hero == "winston") and (Hero == TempTank[0]) and (TempTank[1] == "orisa"):
-                        return "offtank"
-                    elif (Hero == "winston") and (Hero == TempTank[1]) and (TempTank[0] == "orisa"):
-                        return "offtank"
-                    elif (Hero in MainTankList):
+                    #secondary roles with 2 main tank
+                    for i in range(len(MainTankList) - 1):
+                        for j in range(i + 1, len(MainTankList)):
+                            if (Hero == MainTankList[i]) and (Hero == TempDPS[0]) and (TempDPS[1] == MainTankList[j]):
+                                return "offtank"
+                            elif (Hero == MainTankList[i]) and (Hero == TempDPS[1]) and (TempDPS[0] == MainTankList[j]):
+                                return "offtank"
+                    #secondary roles with 2 off tank (should never happen but heh)
+                    for i in range(len(OffTankList) - 1):
+                        for j in range(i + 1, len(OffTankList)):
+                            if (Hero == OffTankList[i]) and (Hero == TempDPS[0]) and (TempDPS[1] == OffTankList[j]):
+                                return "maintank"
+                            elif (Hero == OffTankList[i]) and (Hero == TempDPS[1]) and (TempDPS[0] == OffTankList[j]):
+                                return "maintank"
+                    #all other comps
+                    if (Hero in MainTankList):
                         return "maintank"
                     elif (Hero in OffTankList):
                         return "offtank"
@@ -138,127 +121,71 @@ class DataCleaner:
                         return "offtank"
             #DPS
             if Hero in TempDPS:
-                if (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "widowmaker"):
-                    return "proj"
-                elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
+                #secondary roles with 2 hybrid dps (bast, sombra, sym, torb), kinda arbitrary as very rare to be used
+                if (Hero == "bastion") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
                     return "hitscan"
-                elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
+                elif (Hero == "bastion") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
                     return "hitscan"
-                elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
+                elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "bastion"):
                     return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "hanzo"):
+                elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "bastion"):
                     return "proj"
-                elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "pharah"):
+                elif (Hero == "bastion") and (Hero == TempDPS[0]) and (TempDPS[1] == "symmetra"):
                     return "hitscan"
-                elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
-                    return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "doomfist"):
+                elif (Hero == "bastion") and (Hero == TempDPS[1]) and (TempDPS[0] == "symmetra"):
                     return "hitscan"
-                elif (Hero == "doomfist") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
+                elif (Hero == "symmetra") and (Hero == TempDPS[0]) and (TempDPS[1] == "bastion"):
                     return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "doomfist"):
+                elif (Hero == "symmetra") and (Hero == TempDPS[1]) and (TempDPS[0] == "bastion"):
+                    return "proj"
+                elif (Hero == "bastion") and (Hero == TempDPS[0]) and (TempDPS[1] == "torbjorn"):
                     return "hitscan"
-                elif (Hero == "doomfist") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
-                    return "proj"
-                elif (Hero == "bastion") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
-                    return "proj"
-                elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "tracer"):
+                elif (Hero == "bastion") and (Hero == TempDPS[1]) and (TempDPS[0] == "torbjorn"):
                     return "hitscan"
-                elif (Hero == "tracer") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
+                elif (Hero == "torbjorn") and (Hero == TempDPS[0]) and (TempDPS[1] == "bastion"):
                     return "proj"
-                elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "tracer"):
+                elif (Hero == "torbjorn") and (Hero == TempDPS[1]) and (TempDPS[0] == "bastion"):
+                    return "proj"
+                elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "symmetra"):
                     return "hitscan"
-                elif (Hero == "tracer") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
-                    return "proj"
-                elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "bastion"):
-                    return "proj"
-                elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "bastion"):
-                    return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "bastion"):
-                    return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "bastion"):
-                    return "proj"
-                elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "hanzo"):
+                elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "symmetra"):
                     return "hitscan"
-                elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
+                elif (Hero == "symmetra") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
+                    return "proj"
+                elif (Hero == "symmetra") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
+                    return "proj"
+                elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "torbjorn"):
                     return "hitscan"
-                elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
-                    return "proj"
-                elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
-                    return "proj"
-                elif (Hero == "torbjorn") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
+                elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "torbjorn"):
                     return "hitscan"
-                elif (Hero == "torbjorn") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
+                elif (Hero == "torbjorn") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
+                    return "proj"
+                elif (Hero == "torbjorn") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
+                    return "proj"
+                elif (Hero == "symmetra") and (Hero == TempDPS[0]) and (TempDPS[1] == "torbjorn"):
                     return "hitscan"
-                elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "torbjorn"):
-                    return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "torbjorn"):
-                    return "proj"
-                elif (Hero == "doomfist") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
-                    return "proj"
-                elif (Hero == "doomfist") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
-                    return "proj"
-                elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "doomfist"):
+                elif (Hero == "symmetra") and (Hero == TempDPS[1]) and (TempDPS[0] == "torbjorn"):
                     return "hitscan"
-                elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "doomfist"):
-                    return "hitscan"
-                elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "symmetra"):
+                elif (Hero == "torbjorn") and (Hero == TempDPS[0]) and (TempDPS[1] == "symmetra"):
                     return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "symmetra"):
+                elif (Hero == "torbjorn") and (Hero == TempDPS[1]) and (TempDPS[0] == "symmetra"):
                     return "proj"
-                elif (Hero == "symmetra") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
-                    return "hitscan"
-                elif (Hero == "symmetra") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
-                    return "hitscan"
-                elif (Hero == "doomfist") and (Hero == TempDPS[1]) and (TempDPS[0] == "hanzo"):
-                    return "proj"
-                elif (Hero == "doomfist") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
-                    return "proj"
-                elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "doomfist"):
-                    return "hitscan"
-                elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "doomfist"):
-                    return "hitscan"
-                elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "sombra"):
-                    return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "sombra"):
-                    return "proj"
-                elif (Hero == "sombra") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
-                    return "hitscan"
-                elif (Hero == "sombra") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
-                    return "hitscan"
-                elif (Hero == "tracer") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
-                    return "hitscan"
-                elif (Hero == "tracer") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
-                    return "hitscan"
-                elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "tracer"):
-                    return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "tracer"):
-                    return "proj"
-                elif (Hero == "tracer") and (Hero == TempDPS[1]) and (TempDPS[0] == "hanzo"):
-                    return "hitscan"
-                elif (Hero == "tracer") and (Hero == TempDPS[0]) and (TempDPS[1] == "hanzo"):
-                    return "hitscan"
-                elif (Hero == "hanzo") and (Hero == TempDPS[1]) and (TempDPS[0] == "tracer"):
-                    return "proj"
-                elif (Hero == "hanzo") and (Hero == TempDPS[0]) and (TempDPS[1] == "tracer"):
-                    return "proj"
-                elif (Hero == "tracer") and (Hero == TempDPS[1]) and (TempDPS[0] == "doomfist"):
-                    return "hitscan"
-                elif (Hero == "tracer") and (Hero == TempDPS[0]) and (TempDPS[1] == "doomfist"):
-                    return "hitscan"
-                elif (Hero == "doomfist") and (Hero == TempDPS[1]) and (TempDPS[0] == "tracer"):
-                    return "proj"
-                elif (Hero == "doomfist") and (Hero == TempDPS[0]) and (TempDPS[1] == "tracer"):
-                    return "proj"
-                elif (Hero == "bastion") and (Hero == TempDPS[0]) and (TempDPS[1] == "mei"):
-                    return "hitscan"
-                elif (Hero == "bastion") and (Hero == TempDPS[1]) and (TempDPS[0] == "mei"):
-                    return "hitscan"
-                elif (Hero == "mei") and (Hero == TempDPS[0]) and (TempDPS[1] == "bastion"):
-                    return "proj"
-                elif (Hero == "mei") and (Hero == TempDPS[1]) and (TempDPS[0] == "bastion"):
-                    return "proj"
-                elif (Hero in HitscanList):
+                #secondary roles with 2 hitscan
+                for i in range(len(HitscanList) - 1):
+                    for j in range(i + 1, len(HitscanList)):
+                        if (Hero == HitscanList[i]) and (Hero == TempDPS[0]) and (TempDPS[1] == HitscanList[j]):
+                            return "proj"
+                        elif (Hero == HitscanList[i]) and (Hero == TempDPS[1]) and (TempDPS[0] == HitscanList[j]):
+                            return "proj"
+                #secondary roles with 2 proj
+                for i in range(len(ProjList) - 1):
+                    for j in range(i + 1, len(ProjList)):
+                        if (Hero == ProjList[i]) and (Hero == TempDPS[0]) and (TempDPS[1] == ProjList[j]):
+                            return "hitscan"
+                        elif (Hero == ProjList[i]) and (Hero == TempDPS[1]) and (TempDPS[0] == ProjList[j]):
+                            return "hitscan"
+                #all other comps
+                if (Hero in HitscanList):
                     return "hitscan"
                 elif (Hero in ProjList):
                     return "proj"

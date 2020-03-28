@@ -16,7 +16,7 @@ class DataCleaner:
     #Find a heros' role based on their hero
     def FindRole(self, Hero):
         SupportList = ["lucio", "moira", "zenyatta", "brigitte", "mercy", "ana", "baptiste"]
-        DpsList     = ["ashe", "bastion", "doomfist", "genji", "hanzo", "junkrat", "mccree","mei","pharah","reaper","soldier_76","sombra", "symmetra", "torbjorn", "tracer","widowmaker"]
+        DpsList     = ["ashe", "bastion", "doomfist", "echo", "genji", "hanzo", "junkrat", "mccree","mei","pharah","reaper","soldier_76","sombra", "symmetra", "torbjorn", "tracer","widowmaker"]
         TankList    = ["dva","orisa","reinhardt", "roadhog", "winston", "wrecking_ball", "zarya", "sigma"]
 
         if (Hero in SupportList):
@@ -34,7 +34,7 @@ class DataCleaner:
         MainSuppList          = ["brigitte","mercy","lucio"]
         OffSuppList           = ["moira","zenyatta"]
         HitscanList           = ["ashe","reaper","soldier_76","tracer","mccree","widowmaker"] #ordered by "least" to "most" hitscan
-        ProjList              = ["hanzo","mei","genji","doomfist","pharah","junkrat"] #as above, for proj
+        ProjList              = ["echo","hanzo","mei","genji","doomfist","pharah","junkrat"] #as above, for proj
         MainTankList          = ["winston","reinhardt","orisa"] #as above, for MT
         OffTankList           = ["roadhog","dva","zarya"] #as above, for OT
 

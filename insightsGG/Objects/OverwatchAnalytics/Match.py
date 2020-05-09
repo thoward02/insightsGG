@@ -14,6 +14,7 @@ from collections import namedtuple
 #Import our library
 import insightsGG.Objects.OverwatchAnalytics as OWAnalytics
 
+
 class Match():
     def __init__(self, InsightsObject):
         #Identification
@@ -36,25 +37,21 @@ class Match():
         self.Gamemode       = InsightsObject["data"]["gamemode"]
 
         #Analysis data - Score Data
-        self.FinalLeftScore = InsightsObject["data"]["final_left_score"]
-        self.FinalLeftScore = InsightsObject["data"]["final_right_score"]
+        self.FinalBlueScore = InsightsObject["data"]["final_left_score"]
+        self.FinalRedScore = InsightsObject["data"]["final_right_score"]
 
         #Analysis data - Player data
         self.BluePlayers    = []
         self.RedPlayers     = []
 
-        Player = namedtuple("Player", "Id Name Heroes")
-        Hero   = namedtuple("Hero", "Hero StartTime")
-
         Counter = 0
         for Players in InsightsObject["data"]["players"]:
-            #Create hero list
-            HeroList = []
-            for HeroObjs in Players["heroes"]:
-                HeroList.append(Hero(HeroObjs["name"], HeroObjs["start_time"]))
-
             #Create player
-            ThisPlayer = Player(InsightsObject["data"]["player_ids"][Counter], Players["name"], HeroList)
+            ThisPlayer = OWAnalytics.Player(
+                InsightsObject["data"]["player_ids"][Counter],
+                Players["name"],
+                Players["heroes"]
+            )
 
             #Assign player
             if Counter < 6:
@@ -64,6 +61,74 @@ class Match():
 
             Counter += 1
 
+        #Analysis data - Roster Ids
+        self.BlueRosterId = InsightsObject["data"]["roster_ids"][0]
+        self.RedRosterId = InsightsObject["data"]["roster_ids"][1]
 
 
-        print(self.BluePlayers[0].Id)
+        #Analysis data - Score Data
+        self.BlueScoreEvents = []
+        self.RedScoreEvents = []
+      
+        for ScoreEvents in InsightsObject["data"]["left_score"]:
+            self.BlueScoreEvents.append(OWAnalytics.Score(ScoreEvents["start_time"], ScoreEvents["value"]))
+
+        for ScoreEvents in InsightsObject["data"]["right_score"]:
+            self.RedScoreEvents.append(OWAnalytics.Score(ScoreEvents["start_time"], ScoreEvents["value"]))
+
+
+        #Analysis data - TeamFights
+        self.TeamFights = []
+        for Teamfights in InsightsObject["data"]["teamfights"]:
+            self.TeamFights.append(
+                OWAnalytics.TeamFight(Teamfights)
+            )
+
+
+
+    #Pretty print objects
+    def __str__(self):
+        return json.dumps(self.toJSON(), indent=4)
+
+    #Pretty json
+    def toJSON(self):
+        #This is gonna be hella large so we're gonna drop it by taking big lists and turning them into counts
+        BluePlayerLen = len(self.BluePlayers)
+        RedPlayerLen = len(self.RedPlayers)
+
+        #Create objects
+        BlueScoreEvents = []
+        for Events in self.BlueScoreEvents:
+            BlueScoreEvents.append(
+                Events.toJSON()
+            )
+
+        RedScoreEvents = []
+        for Events in self.RedScoreEvents:
+            RedScoreEvents.append(
+                Events.toJSON()
+            )
+
+
+        Object = {
+            "Id"              : self.Id,
+            "AnalysisId"      : self.AnalysisId,
+            "DateCreated"     : self.DateCreated,
+            "Owner"           : self.Owner,
+            "StartTime"       : self.StartTime,
+            "EndTime"         : self.EndTime,
+            "Map"             : self.Map,
+            "MapConfidence"   : self.MapConfidence,
+            "Gamemode"        : self.Gamemode,
+            "FinalLeftScore"  : self.FinalBlueScore,
+            "FinalRightScore" : self.FinalRedScore,
+            "BluePlayers"     : "List of {} players".format(BluePlayerLen),
+            "RedPlayers"      : "List of {} players".format(RedPlayerLen),
+            "BlueRosterId"    : self.BlueRosterId,
+            "RedRosterId"     : self.RedRosterId,
+            "BlueScoreEvents" : BlueScoreEvents,
+            "RedScoreEvents"  : RedScoreEvents,
+            "TeamFights" : "List of {} Teamfights".format(len(self.TeamFights))
+        }
+
+        return Object

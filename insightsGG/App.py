@@ -810,6 +810,29 @@ class App:
 
         return RObj
 
+
+    #Pretty prints
+    def __str__(self):
+        return json.dumps(self.toJSON(), indent=4,  separators=(',', ': '))
+
+    #Creates custom json object representing object
+    def toJSON(self):
+        #Setup json vars
+        TeamList = []
+
+        for Teams in self.Teams:
+            TeamList.append(Teams.Name)
+
+        #Setup json object
+        Object = {
+            "User" : self.User.toJSON(), #I can't get this to pretty print as if we were in JS...,
+            "Teams" : TeamList
+        }
+
+        #Return JSON object
+        return Object
+
+
     ### DEPRECATED ###
     def BuildTeams(self, TeamLimit):
         return self.FetchTeams(TeamLimit)

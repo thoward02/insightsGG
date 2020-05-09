@@ -43,7 +43,7 @@ class Video:
 
         #Setup analysis
         if(InsightsVideo["latestAnalysis"] != None) and (InsightsVideo["latestAnalysis"]["error"] == None):
-            self.Analysis      = True
+            self.Analyzed      = True
             self.AnalysisError = False
 
             #Log ids
@@ -53,14 +53,14 @@ class Video:
 
         #If analysis, but failed
         elif(InsightsVideo["latestAnalysis"] != None) and (InsightsVideo["latestAnalysis"]["error"] != None):
-            self.Analysis      = True
+            self.Analyzed      = True
             self.AnalysisError = True
             self.AnalysisIds   = []
 
 
         #If no analysis
         elif(InsightsVideo["latestAnalysis"] == None):
-            self.Analysis      = False
+            self.Analyzed      = False
             self.AnalysisError = False
             self.AnalysisIds   = []
 
@@ -91,11 +91,11 @@ class Video:
 
     #Fetch Analysis
     def FetchAnalysis(self):
-        if self.Analysis == True:
+        if self.Analyzed == True:
             return self.ParentClass.GrabAnalytics(self.AnalysisIds)
 
-        if self.Analysis == False:
-            raise Errors.VideoError.VodNotAnalyzed("No analysis found")
+        if self.Analyzed == False:
+            raise Errors.VideoError.VodNotAnalyzed("This vod hasn't been analyzed")
 
     """
         == Functions that help the user ==
@@ -121,7 +121,20 @@ class Video:
             "Thumbnail"     : self.Thumbnail,
             "Uploaded"      : self.Uploaded,
             "AllowComments" : self.AllowComments,
-            "Public"        : self.Public
+            "Public"        : self.Public,
+            "Analysis"      : self.Analyzed,
+            
+            "Functions" : {
+                "GrabTags()"      : "Grabs all of the tags on a select team",
+                "Analyze()"       : "Analyzes the current vod",
+                "FetchAnalysis()" : "Fetches the analysis of a vod, if it exists",
+                "Delete()"        : "Deletes the current vod",
+            }
         }
+
+        #Add on if there's an analysis
+        if(self.Analyzed == True):
+            PrettyPrinted["AnalysisError"] = self.AnalysisError
+            PrettyPrinted["AnalysisIds"] = self.AnalysisIds
 
         return PrettyPrinted

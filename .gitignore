@@ -2,4 +2,6 @@
 build/
 dist/
 InsightsGG.egg-info/
-TestingScript.py
+
+#What I used when testing lol
+Test.py

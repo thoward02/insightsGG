@@ -39,8 +39,8 @@ class Team:
     """
 
     #Fetch videoes on this team
-    def GetVods(self):
-        return self.Parent.GrabTeamVodList(self.Id, 100)
+    def GetVods(self, Count):
+        return self.Parent.GrabTeamVodList(self.Id, Count)
 
     #Add vods to a team
     def AddVod(self, VodLink):
@@ -82,8 +82,10 @@ class Team:
             "Name"        : self.Name,
             "Description" : self.Description,
             "Owner"       : self.Owner.__dict__,
-            "Roles"       : []
+            "Roles"       : [],
             #"Privileges"  : self.Privileges
+
+            "GetVods(Count)" : "Gets the first `Count` number of vods belonging to this team"
         }
 
         return PrettyPrinted

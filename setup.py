@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="InsightsGG",
-    version="0.7.77",
+    version="0.9.2",
     author="Aud",
     author_email="audaciousxth@gmail.com",
     description="The unofficial api for Insights.gg",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/thoward02/InsightsGG",
-    packages= ["insightsGG"],
+    packages= ["insightsGG", "insightsGG.Errors", "insightsGG.Objects", "insightsGG.Objects.OverwatchAnalytics"],
     install_requires=[
         "requests",
     ],

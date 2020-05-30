@@ -45,8 +45,8 @@ class Event():
         if(self.Type == "kill"):
             Object["Ablity"] = self.Ability
             Object["Assists"] = self.Assists
-            Object["Killee"] = self.Killee 
-            Object["Killer"] = self.Killer 
+            Object["Killee"] = self.Killee.toJSON()
+            Object["Killer"] = self.Killer.toJSON() 
             
 
         if(self.Type == "suicide"):

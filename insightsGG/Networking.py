@@ -86,7 +86,7 @@ class NetworkManager:
         Header = {"Authorization" : "Bearer " + Token, "content-type" : "application/json"}
 
         #Send the post request
-        GrabRequest = requests.post(url = self.RequestPath, data=Data, headers=Header);
+        GrabRequest = requests.post(url = self.RequestPath, data=Data, headers=Header)
 
         #Return the raw json request
         return GrabRequest.json()

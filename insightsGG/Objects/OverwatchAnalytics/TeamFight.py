@@ -143,13 +143,13 @@ class TeamFight():
             "BlueHeroes" : self.StartTime,
             "RedHeroes" : self.StartTime,
 
-            "BlueKills" : "List of {} Blue Kills".format(self.BlueKills),
-            "BlueDeaths" : "List of {} Blue Deaths".format(self.BlueDeaths),
-            "BlueUltKills" : "List of {} Blue Ult Kills".format(self.BlueUltKills),
+            "BlueKills" : self.BlueKills,
+            "BlueDeaths" : self.BlueDeaths,
+            "BlueUltKills" : self.BlueUltKills,
         
-            "RedKills" : "List of {} Red Kills".format(self.BlueKills),
-            "RedDeaths" : "List of {} Red Deaths".format(self.RedDeaths),
-            "RedUltKills" : "List of {} Red Ult Kills".format(self.RedUltKills),
+            "RedKills" : self.RedKills,
+            "RedDeaths" : self.RedDeaths,
+            "RedUltKills" : self.RedUltKills,
 
             "BlueUltsBefore" : "List of {} Blue Ults Before".format(BlueUltsBeforeCount),
             "BlueUltsUsed" : "List of {} Blue Ults Used".format(BlueUltsUsedCount),
